@@ -67,7 +67,7 @@ public class MainWindow {
 		verticalBox.add(panel_1);
 		
 		JLabel lblXxxxxxxxxxxx = new JLabel("\u822A\u7A7A\u673A\u52A1\u9662\u6821");
-		lblXxxxxxxxxxxx.setFont(new Font("΢���ź�", Font.BOLD, 50));
+		lblXxxxxxxxxxxx.setFont(new Font("微软雅黑", Font.BOLD, 50));
 		lblXxxxxxxxxxxx.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_1.add(lblXxxxxxxxxxxx);
 		
@@ -75,7 +75,7 @@ public class MainWindow {
 		verticalBox.add(panel_2);
 		
 		JLabel label = new JLabel("\u5916\u573A\u5B9E\u4E60\u8BC4\u4F30\u7CFB\u7EDF");
-		label.setFont(new Font("΢���ź�", Font.BOLD, 50));
+		label.setFont(new Font("微软雅黑", Font.BOLD, 50));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_2.add(label);
 		
@@ -103,14 +103,14 @@ public class MainWindow {
 		verticalBox_1.add(panel_7);
 		
 		JButton btnNewButton = new JButton("\u67E5\u8BE2\u767B\u9646");
-		btnNewButton.setFont(new Font("΢���ź� Light", Font.BOLD, 30));
+		btnNewButton.setFont(new Font("微软雅黑 Light", Font.BOLD, 30));
 		panel_7.add(btnNewButton);
 		
 		JPanel panel_8 = new JPanel();
 		verticalBox_1.add(panel_8);
 		
 		JButton btnNewButton_1 = new JButton("\u7BA1\u7406\u767B\u9646");
-		btnNewButton_1.setFont(new Font("΢���ź� Light", Font.BOLD, 30));
+		btnNewButton_1.setFont(new Font("微软雅黑 Light", Font.BOLD, 30));
 		panel_8.add(btnNewButton_1);
 		
 		JPanel panel_9 = new JPanel();
