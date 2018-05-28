@@ -102,16 +102,9 @@ public class MainWindow {
 		JPanel panel_7 = new JPanel();
 		verticalBox_1.add(panel_7);
 		
-		JButton btnNewButton = new JButton("\u67E5\u8BE2\u767B\u9646");
+		JButton btnNewButton = new JButton("点击登陆");
 		btnNewButton.setFont(new Font("微软雅黑 Light", Font.BOLD, 30));
 		panel_7.add(btnNewButton);
-		
-		JPanel panel_8 = new JPanel();
-		verticalBox_1.add(panel_8);
-		
-		JButton btnNewButton_1 = new JButton("\u7BA1\u7406\u767B\u9646");
-		btnNewButton_1.setFont(new Font("微软雅黑 Light", Font.BOLD, 30));
-		panel_8.add(btnNewButton_1);
 		
 		JPanel panel_9 = new JPanel();
 		verticalBox_1.add(panel_9);
