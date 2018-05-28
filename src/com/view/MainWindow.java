@@ -45,7 +45,7 @@ public class MainWindow {
 	 */
 	private void initialize() {
 		setFrame(new JFrame());
-		getFrame().setBounds(100, 100, 940, 605);
+		getFrame().setBounds(100, 100, 900, 600);
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
