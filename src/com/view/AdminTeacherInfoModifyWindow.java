@@ -1,11 +1,12 @@
 package com.view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,19 +26,6 @@ public class AdminTeacherInfoModifyWindow extends JDialog {
 	private JTextField textField_2;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			AdminTeacherInfoModifyWindow dialog = new AdminTeacherInfoModifyWindow();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Create the dialog.
 	 */
 	public AdminTeacherInfoModifyWindow() {
@@ -46,6 +34,15 @@ public class AdminTeacherInfoModifyWindow extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+		int windowWidth = this.getWidth(); // 获得窗口宽
+		int windowHeight = this.getHeight(); // 获得窗口高
+		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
+		Dimension screenSize = kit.getScreenSize(); // 获取屏幕的尺寸
+		int screenWidth = screenSize.width; // 获取屏幕的宽
+		int screenHeight = screenSize.height; // 获取屏幕的高
+		this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// 设置窗口居中显示
+		
 		{
 			JLabel label = new JLabel("修改教师信息");
 			label.setFont(new Font("微软雅黑", Font.BOLD, 50));
@@ -59,7 +56,7 @@ public class AdminTeacherInfoModifyWindow extends JDialog {
 			label.setBounds(147, 193, 116, 38);
 			contentPanel.add(label);
 		}
-		
+
 		textField = new JTextField();
 		textField.setToolTipText("请输入修改后的名称");
 		textField.setBounds(273, 202, 149, 21);
@@ -101,14 +98,21 @@ public class AdminTeacherInfoModifyWindow extends JDialog {
 				JButton okButton = new JButton("确认");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
+				okButton.addActionListener(e->{
+					this.dispose();
+				});
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("取消");
 				cancelButton.setActionCommand("Cancel");
+				cancelButton.addActionListener(e->{
+					this.dispose();
+				});
 				buttonPane.add(cancelButton);
 			}
 		}
+		this.setVisible(true);
 	}
 
 }

@@ -1,12 +1,18 @@
 package com.view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.main.Main;
+
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -19,22 +25,6 @@ public class AdminWindow extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdminWindow frame = new AdminWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public AdminWindow() {
@@ -45,34 +35,66 @@ public class AdminWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		int windowWidth = this.getWidth(); // 获得窗口宽
+		int windowHeight = this.getHeight(); // 获得窗口高
+		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
+		Dimension screenSize = kit.getScreenSize(); // 获取屏幕的尺寸
+		int screenWidth = screenSize.width; // 获取屏幕的宽
+		int screenHeight = screenSize.height; // 获取屏幕的高
+		this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// 设置窗口居中显示
+		
 		JButton button = new JButton("录入班级信息");
 		button.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button.setBounds(174, 103, 235, 23);
+		button.addActionListener(e->{
+			JDialog dialog=new AdminClassInfoWindow();
+			dialog.setVisible(true);
+		});
 		contentPane.add(button);
 		
 		JButton button_1 = new JButton("录入学生信息");
 		button_1.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button_1.setBounds(174, 168, 235, 23);
+		button_1.addActionListener(e->{
+			JDialog dialog=new AdminStudentInfoWindow();
+			dialog.setVisible(true);
+		});
 		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("录入个人成绩");
 		button_2.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button_2.setBounds(174, 234, 235, 23);
+		button_2.addActionListener(e->{
+			JDialog dialog=new AdminStudentGradeWindow();
+			dialog.setVisible(true);
+		});
 		contentPane.add(button_2);
 		
 		JButton button_3 = new JButton("录入素质评分");
 		button_3.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button_3.setBounds(174, 267, 235, 23);
+		button_3.addActionListener(e->{
+			JDialog dialog=new AdminStudentQualityGradeWindow();
+			dialog.setVisible(true);
+		});
 		contentPane.add(button_3);
 		
 		JButton button_4 = new JButton("修改学生信息");
 		button_4.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button_4.setBounds(174, 201, 235, 23);
+		button_4.addActionListener(e->{
+			JDialog dialog=new AdminStudentInfoModifyWindow();
+			dialog.setVisible(true);
+		});
 		contentPane.add(button_4);
 		
 		JButton button_5 = new JButton("修改班级信息");
 		button_5.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button_5.setBounds(174, 135, 235, 23);
+		button_5.addActionListener(e->{
+			JDialog dialog=new AdminClassInfoModifyWindow();
+			dialog.setVisible(true);
+		});
 		contentPane.add(button_5);
 		
 		JLabel label = new JLabel("后台管理");
@@ -85,10 +107,24 @@ public class AdminWindow extends JFrame {
 		button_6.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button_6.setBounds(174, 300, 235, 23);
 		contentPane.add(button_6);
+		button_6.addActionListener(e->{
+			JDialog dialog=new AdminTeacherInfoWindow();
+			dialog.setVisible(true);
+		});
 		
 		JButton button_7 = new JButton("修改教师信息");
 		button_7.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button_7.setBounds(174, 333, 235, 23);
 		contentPane.add(button_7);
+		
+		JLabel label_1 = new JLabel("欢迎您,"+Main.person.getName()+(Main.person.getRole()==1?"老师":"同学")+"!");
+		label_1.setFont(new Font("微软雅黑 Light", Font.PLAIN, 13));
+		label_1.setBounds(439, 10, 124, 15);
+		contentPane.add(label_1);
+		button_7.addActionListener(e->{
+			JDialog dialog=new AdminTeacherInfoModifyWindow();
+			dialog.setVisible(true);
+		});
+		this.setVisible(true);
 	}
 }
