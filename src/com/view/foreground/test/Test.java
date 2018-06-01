@@ -17,15 +17,19 @@ public class Test {
     }
  
     private static CombineTable getTable1() {
-        String[][] datas = new String[10][6];
+        String[][] datas = new String[6][10];
+        System.out.print(datas[4][0]);
         for (int i = 0; i < datas.length; i++) {
             String[] data = datas[i];
             for (int j = 0; j < data.length; j++) {
                 data[j] = "";
             }
-            data[0] = String.valueOf((int) (i / 3));
+            data[0] = String.valueOf((int) (i / 2));
+            
         }
- 
+        datas[4][0]="名字与天分";
+        datas[5][0]="名字与天分";
+        System.out.print(datas[4][0]);
         ArrayList<Integer> combineColumns = new ArrayList<Integer>();
         combineColumns.add(0);
         CombineData m = new CombineData(datas, combineColumns);
