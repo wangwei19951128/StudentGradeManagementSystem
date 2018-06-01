@@ -29,7 +29,7 @@ public class AdminWindow extends JFrame {
 	 */
 	public AdminWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 600, 504);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -121,6 +121,21 @@ public class AdminWindow extends JFrame {
 		label_1.setFont(new Font("微软雅黑 Light", Font.PLAIN, 13));
 		label_1.setBounds(439, 10, 124, 15);
 		contentPane.add(label_1);
+		
+		JButton button_8 = new JButton("分配班级");
+		button_8.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
+		button_8.setBounds(174, 366, 235, 23);
+		contentPane.add(button_8);
+		
+		JButton button_9 = new JButton("修改班级分配");
+		button_9.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
+		button_9.setBounds(174, 399, 235, 23);
+		contentPane.add(button_9);
+		
+		JButton button_10 = new JButton("修改密码");
+		button_10.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
+		button_10.setBounds(174, 432, 235, 23);
+		contentPane.add(button_10);
 		button_7.addActionListener(e->{
 			JDialog dialog=new AdminTeacherInfoModifyWindow();
 			dialog.setVisible(true);

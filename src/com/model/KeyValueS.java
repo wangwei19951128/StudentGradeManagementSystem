@@ -1,15 +1,15 @@
 package com.model;
 
-public class KeyValue {
-	private int id;
+public class KeyValueS {
+	private String id;
 	private String name;
 
-	public KeyValue(int id, String name) {
+	public KeyValueS(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 

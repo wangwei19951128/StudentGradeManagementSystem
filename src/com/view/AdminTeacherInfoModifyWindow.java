@@ -5,14 +5,19 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import com.main.Main;
+import com.model.Person;
 
 public class AdminTeacherInfoModifyWindow extends JDialog {
 
@@ -23,7 +28,6 @@ public class AdminTeacherInfoModifyWindow extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
 
 	/**
 	 * Create the dialog.
@@ -77,20 +81,6 @@ public class AdminTeacherInfoModifyWindow extends JDialog {
 			textField_1.setColumns(10);
 		}
 		{
-			JLabel label = new JLabel("密码");
-			label.setHorizontalAlignment(SwingConstants.RIGHT);
-			label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
-			label.setBounds(192, 245, 71, 28);
-			contentPanel.add(label);
-		}
-		{
-			textField_2 = new JTextField();
-			textField_2.setToolTipText("请输入修改后的密码");
-			textField_2.setBounds(273, 249, 149, 21);
-			contentPanel.add(textField_2);
-			textField_2.setColumns(10);
-		}
-		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -99,6 +89,16 @@ public class AdminTeacherInfoModifyWindow extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				okButton.addActionListener(e->{
+					Person teacher=new Person();
+					teacher.setUsername(textField_1.getText());
+					teacher.setName(textField.getText());
+					try {
+						Main.databaseConnection.modifyPersonInfo(teacher);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "修改教师信息失败！", "错误", JOptionPane.ERROR_MESSAGE);
+					}
 					this.dispose();
 				});
 				getRootPane().setDefaultButton(okButton);

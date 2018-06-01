@@ -5,14 +5,19 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import com.main.Main;
+import com.model.Person;
 
 public class AdminTeacherInfoWindow extends JDialog {
 
@@ -83,7 +88,15 @@ public class AdminTeacherInfoWindow extends JDialog {
 				JButton okButton = new JButton("确认");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
-				okButton.addActionListener(e->{
+				okButton.addActionListener(e -> {
+					Person teacher=new Person(textField_1.getText(),"123456",textField.getText(),1);
+					try {
+						Main.databaseConnection.addPerson(teacher);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "添加教师信息失败！", "错误", JOptionPane.ERROR_MESSAGE);
+					}
 					this.dispose();
 				});
 				getRootPane().setDefaultButton(okButton);
