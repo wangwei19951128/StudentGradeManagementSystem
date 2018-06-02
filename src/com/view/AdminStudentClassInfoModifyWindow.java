@@ -6,38 +6,41 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.sql.SQLException;
+import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.main.Main;
-import com.model.Person;
+import com.model.KeyValue;
+import com.model.KeyValueS;
 
-public class AdminStudentInfoModifyWindow extends JDialog {
+public class AdminStudentClassInfoModifyWindow extends JDialog {
 
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7990143994175382000L;
+	private static final long serialVersionUID = 8058536276325664016L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
+	private Vector<KeyValue> model;
+	private Vector<KeyValueS> modelS;
 
 	/**
 	 * Create the dialog.
 	 */
-	public AdminStudentInfoModifyWindow() {
+	public AdminStudentClassInfoModifyWindow() {
 		setBounds(100, 100, 600, 400);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		
+
 		int windowWidth = this.getWidth(); // 获得窗口宽
 		int windowHeight = this.getHeight(); // 获得窗口高
 		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -45,41 +48,54 @@ public class AdminStudentInfoModifyWindow extends JDialog {
 		int screenWidth = screenSize.width; // 获取屏幕的宽
 		int screenHeight = screenSize.height; // 获取屏幕的高
 		this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// 设置窗口居中显示
-		
+
 		contentPanel.setLayout(null);
 		{
-			JLabel label = new JLabel("修改学生信息");
+			JLabel label = new JLabel("修改分配班级");
+			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setFont(new Font("微软雅黑", Font.BOLD, 50));
 			label.setBounds(135, 58, 314, 78);
 			contentPanel.add(label);
 		}
 		{
-			JLabel label = new JLabel("姓名");
+			JLabel label = new JLabel("选择班级");
 			label.setHorizontalAlignment(SwingConstants.RIGHT);
 			label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
 			label.setBounds(147, 193, 116, 38);
 			contentPanel.add(label);
 		}
-		
-		textField = new JTextField();
-		textField.setToolTipText("请输入修改后的名称");
-		textField.setBounds(273, 202, 149, 21);
-		contentPanel.add(textField);
-		textField.setColumns(10);
-		{
-			JLabel label = new JLabel("用户名");
-			label.setHorizontalAlignment(SwingConstants.RIGHT);
-			label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
-			label.setBounds(168, 146, 95, 41);
-			contentPanel.add(label);
+
+		JLabel label = new JLabel("选择学生");
+		label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
+		label.setHorizontalAlignment(SwingConstants.RIGHT);
+		label.setBounds(157, 146, 106, 37);
+		contentPanel.add(label);
+
+		try {
+			modelS = Main.databaseConnection.queryStudentInfo();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "初始化学生失败！", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
-		{
-			textField_1 = new JTextField();
-			textField_1.setToolTipText("输入要修改学生的用户名");
-			textField_1.setBounds(273, 156, 149, 21);
-			contentPanel.add(textField_1);
-			textField_1.setColumns(10);
+		JComboBox<KeyValueS> comboBox = new JComboBox<KeyValueS>(modelS);
+		comboBox.setToolTipText("选择要修改的学生");
+		comboBox.setBounds(273, 158, 129, 21);
+		contentPanel.add(comboBox);
+
+		try {
+			model = Main.databaseConnection.queryClassInfo();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "初始化班级失败！", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
+		JComboBox<KeyValue> comboBox_1 = new JComboBox<KeyValue>(model);
+		comboBox_1.setToolTipText("选择修改后的班级");
+		comboBox_1.setBounds(273, 206, 129, 21);
+		contentPanel.add(comboBox_1);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -88,16 +104,15 @@ public class AdminStudentInfoModifyWindow extends JDialog {
 				JButton okButton = new JButton("确认");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
-				okButton.addActionListener(e->{
-					Person student=new Person();
-					student.setUsername(textField_1.getText());
-					student.setName(textField.getText());
+				okButton.addActionListener(e -> {
+					String username = ((KeyValueS) comboBox.getSelectedItem()).getId();
+					int classId = ((KeyValue) comboBox_1.getSelectedItem()).getId();
 					try {
-						Main.databaseConnection.modifyPersonInfo(student);
-					} catch (SQLException e1) {
+						Main.databaseConnection.modifyStudentClassInfo(username, classId);
+					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-						JOptionPane.showMessageDialog(null, "修改学生信息失败！", "错误", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "添加班级信息失败！", "错误", JOptionPane.ERROR_MESSAGE);
 					}
 					this.dispose();
 				});
@@ -106,7 +121,7 @@ public class AdminStudentInfoModifyWindow extends JDialog {
 			{
 				JButton cancelButton = new JButton("取消");
 				cancelButton.setActionCommand("Cancel");
-				cancelButton.addActionListener(e->{
+				cancelButton.addActionListener(e -> {
 					this.dispose();
 				});
 				buttonPane.add(cancelButton);

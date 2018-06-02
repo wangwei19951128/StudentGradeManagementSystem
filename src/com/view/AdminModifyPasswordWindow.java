@@ -17,22 +17,33 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.main.Main;
-import com.model.Person;
 
-public class AdminStudentInfoModifyWindow extends JDialog {
+public class AdminModifyPasswordWindow extends JDialog {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7990143994175382000L;
+	private static final long serialVersionUID = 1956936033864880470L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
-	private JTextField textField_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			AdminModifyPasswordWindow dialog = new AdminModifyPasswordWindow();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Create the dialog.
 	 */
-	public AdminStudentInfoModifyWindow() {
+	public AdminModifyPasswordWindow() {
 		setBounds(100, 100, 600, 400);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -48,13 +59,13 @@ public class AdminStudentInfoModifyWindow extends JDialog {
 		
 		contentPanel.setLayout(null);
 		{
-			JLabel label = new JLabel("修改学生信息");
+			JLabel label = new JLabel("修改教师密码");
 			label.setFont(new Font("微软雅黑", Font.BOLD, 50));
 			label.setBounds(135, 58, 314, 78);
 			contentPanel.add(label);
 		}
 		{
-			JLabel label = new JLabel("姓名");
+			JLabel label = new JLabel("新密码");
 			label.setHorizontalAlignment(SwingConstants.RIGHT);
 			label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
 			label.setBounds(147, 193, 116, 38);
@@ -62,24 +73,10 @@ public class AdminStudentInfoModifyWindow extends JDialog {
 		}
 		
 		textField = new JTextField();
-		textField.setToolTipText("请输入修改后的名称");
+		textField.setToolTipText("请输入修改后的密码");
 		textField.setBounds(273, 202, 149, 21);
 		contentPanel.add(textField);
 		textField.setColumns(10);
-		{
-			JLabel label = new JLabel("用户名");
-			label.setHorizontalAlignment(SwingConstants.RIGHT);
-			label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
-			label.setBounds(168, 146, 95, 41);
-			contentPanel.add(label);
-		}
-		{
-			textField_1 = new JTextField();
-			textField_1.setToolTipText("输入要修改学生的用户名");
-			textField_1.setBounds(273, 156, 149, 21);
-			contentPanel.add(textField_1);
-			textField_1.setColumns(10);
-		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -89,15 +86,13 @@ public class AdminStudentInfoModifyWindow extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				okButton.addActionListener(e->{
-					Person student=new Person();
-					student.setUsername(textField_1.getText());
-					student.setName(textField.getText());
+					Main.person.setPassword(textField.getText());
 					try {
-						Main.databaseConnection.modifyPersonInfo(student);
+						Main.databaseConnection.modifyPasswordInfo(Main.person);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
-						JOptionPane.showMessageDialog(null, "修改学生信息失败！", "错误", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "修改密码失败！", "错误", JOptionPane.ERROR_MESSAGE);
 					}
 					this.dispose();
 				});

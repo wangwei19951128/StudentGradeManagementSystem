@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.sql.SQLException;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -18,10 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.main.Main;
-import com.model.KeyValue;
 import com.model.Person;
-
-import javax.swing.JComboBox;
 
 public class AdminStudentInfoWindow extends JDialog {
 
@@ -32,7 +28,6 @@ public class AdminStudentInfoWindow extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private JTextField textField_1;
-	private Vector<KeyValue> model;
 
 	/**
 	 * Create the dialog.
@@ -86,27 +81,6 @@ public class AdminStudentInfoWindow extends JDialog {
 			textField_1.setColumns(10);
 		}
 		{
-			JLabel label = new JLabel("班级");
-			label.setHorizontalAlignment(SwingConstants.RIGHT);
-			label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
-			label.setBounds(168, 241, 96, 38);
-			contentPanel.add(label);
-		}
-
-		try {
-			model = Main.databaseConnection.queryClassInfo();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			JOptionPane.showMessageDialog(null, "初始化班级失败！", "错误", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-		JComboBox<KeyValue> comboBox = new JComboBox<KeyValue>(model);
-		comboBox.setToolTipText("请选择班级");
-		comboBox.setBounds(273, 250, 149, 21);
-		contentPanel.add(comboBox);
-
-		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -115,10 +89,9 @@ public class AdminStudentInfoWindow extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				okButton.addActionListener(e -> {
-					int classId = ((KeyValue) comboBox.getSelectedItem()).getId();
-					Person student=new Person(textField_1.getText(),"123456",textField.getText(),0,classId);
+					Person student=new Person(textField_1.getText(),"123456",textField.getText(),0);
 					try {
-						Main.databaseConnection.addStudent(student);
+						Main.databaseConnection.addPerson(student);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
