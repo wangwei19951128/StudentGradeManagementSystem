@@ -3,6 +3,8 @@ package com.model;
 public class StudentGrade {
 
 	private Person student;
+	
+	private int id;
 
 	/*
 	 * practical_training;// 实战化开训
@@ -32,11 +34,20 @@ public class StudentGrade {
 	
 	private float totalGrade;
 
-	public StudentGrade(Person student) {
+	public StudentGrade(Person student, int id) {
 		super();
 		this.student = student;
+		this.setId(id);
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void setGrade(float[][] grade) {
 		this.grade = grade;
 	}

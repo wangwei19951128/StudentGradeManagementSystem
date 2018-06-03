@@ -11,6 +11,7 @@ import java.util.Vector;
 import com.model.KeyValue;
 import com.model.KeyValueS;
 import com.model.Person;
+import com.model.StudentGrade;
 
 public class DatabaseConnect {
 	private static final String URL = "jdbc:mysql://49.140.86.196:3306/student_grade_management_system?useSSL=false&serverTimezone=Hongkong&characterEncoding=utf-8&autoReconnect=true";
@@ -29,6 +30,14 @@ public class DatabaseConnect {
 	private String modifyPersonInfoSql = "UPDATE user SET name = ? WHERE username = ?";
 	private String queryStudentClassSql = "SELECT id, username, class FROM user_class";
 	private String addStudentClassInfoSql = "INSERT INTO user_class(id, username, class) VALUES (?,?,?)";
+	private String queryStudentGradeInfoBacGradeSql = "SELECT * FROM bac_grade";
+	private String addStudentGradeInfoBacGradeSql = "INSERT INTO bac_grade VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String addStudentGradeInfoFocusTeachingGradeSql = "INSERT INTO focus_on_teaching_grade VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String addStudentGradeInfoperPracticeGradeSql = "INSERT INTO performance_in_practice_grade VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String addStudentGradeInfoCompetitiveGradeSql = "INSERT INTO competitive_grade VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String addStudentGradeInfoSimulateBackboneGradeSql = "INSERT INTO simulated_backbone_grade VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String addStudentGradeInfoCourseGradeSql = "INSERT INTO course_grade VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String addStudentGradeInfoTotalGradeSql = "INSERT INTO total_grade VALUES (?,?,?,?,?,?,?)";
 	private String modifyStudentClassInfoSql = "UPDATE user_class SET class = ? WHERE username = ?";
 	private String modifyPasswordInfoSql = "UPDATE user SET password = ? WHERE username = ?";
 
@@ -149,6 +158,125 @@ public class DatabaseConnect {
 		presta.setInt(1, classid);
 		presta.setString(2, username);
 		presta.executeUpdate();
+	}
+
+	public int queryStudentGradeInfoNumber() throws SQLException {
+		stmt = conn.createStatement();
+		rs = stmt.executeQuery(queryStudentGradeInfoBacGradeSql);
+		rs.last();
+		return rs.getRow();
+	}
+
+	public void addStudentGradeInfo(StudentGrade studentGrade) throws SQLException {
+		conn.setAutoCommit(false); // 需要用到事务，不能让他自动提交，需要手动提交
+		PreparedStatement pst = conn.prepareStatement(addStudentGradeInfoBacGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst1 = conn.prepareStatement(addStudentGradeInfoFocusTeachingGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst2 = conn.prepareStatement(addStudentGradeInfoperPracticeGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst3 = conn.prepareStatement(addStudentGradeInfoCompetitiveGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst4 = conn.prepareStatement(addStudentGradeInfoSimulateBackboneGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst5 = conn.prepareStatement(addStudentGradeInfoCourseGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst6 = conn.prepareStatement(addStudentGradeInfoTotalGradeSql); // INSERT_SQL表示对另一张表的插入记录
+		pst.setInt(1, studentGrade.getId());
+		pst.setString(2, studentGrade.getStudent().getUsername());
+		// 设置sql语句中的values值
+		for (int i = 0; i < 19; i++) {
+			pst.setFloat(i + 3, studentGrade.getGrade()[i][0]);
+		}
+		pst.addBatch();
+		pst1.setInt(1, studentGrade.getId());
+		pst1.setString(2, studentGrade.getStudent().getUsername());
+		// 设置sql语句中的values值
+		for (int i = 0; i < 19; i++) {
+			pst1.setFloat(i + 3, studentGrade.getGrade()[i][1]);
+		}
+		pst1.addBatch();
+		pst2.setInt(1, studentGrade.getId());
+		pst2.setString(2, studentGrade.getStudent().getUsername());
+		// 设置sql语句中的values值
+		for (int i = 0; i < 19; i++) {
+			pst2.setFloat(i + 3, studentGrade.getGrade()[i][2]);
+		}
+		pst2.addBatch();
+		pst3.setInt(1, studentGrade.getId());
+		pst3.setString(2, studentGrade.getStudent().getUsername());
+		// 设置sql语句中的values值
+		for (int i = 0; i < 19; i++) {
+			pst3.setFloat(i + 3, studentGrade.getGrade()[i][3]);
+		}
+		pst3.addBatch();
+		pst4.setInt(1, studentGrade.getId());
+		pst4.setString(2, studentGrade.getStudent().getUsername());
+		// 设置sql语句中的values值
+		for (int i = 0; i < 19; i++) {
+			pst4.setFloat(i + 3, studentGrade.getGrade()[i][4]);
+		}
+		pst4.addBatch();
+		pst5.setInt(1, studentGrade.getId());
+		pst5.setString(2, studentGrade.getStudent().getUsername());
+		// 设置sql语句中的values值
+		for (int i = 0; i < 19; i++) {
+			pst5.setFloat(i + 3, studentGrade.getGrade()[i][5]);
+		}
+		pst5.addBatch();
+		pst6.setInt(1, studentGrade.getId());
+		pst6.setString(2, studentGrade.getStudent().getUsername());
+		// 设置sql语句中的values值
+		for (int i = 0; i < 4; i++) {
+			pst6.setFloat(i + 3, studentGrade.getModuleGrade()[i]);
+		}
+		pst6.setFloat(7, studentGrade.getTotalGrade());
+		pst6.addBatch();
+
+		int[] count = pst.executeBatch();
+		int[] count1 = pst1.executeBatch();
+		int[] count2 = pst2.executeBatch();
+		int[] count3 = pst3.executeBatch();
+		int[] count4 = pst4.executeBatch();
+		int[] count5 = pst5.executeBatch();
+		int[] count6 = pst6.executeBatch();
+		conn.commit(); // 提交事务，这个非常重要
+		for (int i : count) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				throw new SQLException();
+			}
+		}
+		for (int i : count1) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				throw new SQLException();
+			}
+		}
+		for (int i : count2) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				throw new SQLException();
+			}
+		}
+		for (int i : count3) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				throw new SQLException();
+			}
+		}
+		for (int i : count4) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				throw new SQLException();
+			}
+		}
+		for (int i : count5) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				throw new SQLException();
+			}
+		}
+		for (int i : count6) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				throw new SQLException();
+			}
+		}
 	}
 
 	public void modifyPasswordInfo(Person person) throws SQLException {

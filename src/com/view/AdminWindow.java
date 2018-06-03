@@ -115,6 +115,10 @@ public class AdminWindow extends JFrame {
 		JButton button_7 = new JButton("修改教师信息");
 		button_7.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button_7.setBounds(174, 333, 235, 23);
+		button_7.addActionListener(e->{
+			JDialog dialog=new AdminTeacherInfoModifyWindow();
+			dialog.setVisible(true);
+		});
 		contentPane.add(button_7);
 		
 		JLabel label_1 = new JLabel("欢迎您,"+Main.person.getName()+(Main.person.getRole()==1?"老师":"同学")+"!");
@@ -125,19 +129,27 @@ public class AdminWindow extends JFrame {
 		JButton button_8 = new JButton("分配班级");
 		button_8.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button_8.setBounds(174, 366, 235, 23);
+		button_8.addActionListener(e->{
+			JDialog dialog=new AdminStudentClassInfoWindow();
+			dialog.setVisible(true);
+		});
 		contentPane.add(button_8);
 		
 		JButton button_9 = new JButton("修改班级分配");
 		button_9.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button_9.setBounds(174, 399, 235, 23);
+		button_9.addActionListener(e->{
+			JDialog dialog=new AdminStudentClassInfoModifyWindow();
+			dialog.setVisible(true);
+		});
 		contentPane.add(button_9);
 		
 		JButton button_10 = new JButton("修改密码");
 		button_10.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button_10.setBounds(174, 432, 235, 23);
 		contentPane.add(button_10);
-		button_7.addActionListener(e->{
-			JDialog dialog=new AdminTeacherInfoModifyWindow();
+		button_10.addActionListener(e->{
+			JDialog dialog=new AdminModifyPasswordWindow();
 			dialog.setVisible(true);
 		});
 		this.setVisible(true);
