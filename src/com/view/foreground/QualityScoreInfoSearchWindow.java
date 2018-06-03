@@ -77,9 +77,11 @@ public class QualityScoreInfoSearchWindow extends JFrame {
 		panel.add(textField_1);
 		
 		JButton btnNewButton = new JButton("查询");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		btnNewButton.addActionListener(e->{
+			//验证成功
+			PersonalQualityScoreInfoSearchWindow frame = new PersonalQualityScoreInfoSearchWindow();
+			frame.setVisible(true);
+			this.dispose();
 		});
 		btnNewButton.setBounds(10, 78, 84, 21);
 		panel.add(btnNewButton);

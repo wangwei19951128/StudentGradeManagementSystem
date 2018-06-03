@@ -77,9 +77,11 @@ public class CourseScoreInfoSearchWindow extends JFrame {
 		panel.add(textField_1);
 		
 		JButton btnNewButton = new JButton("查询");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		btnNewButton.addActionListener(e -> {
+			//数据库查询验证
+			PersonalScoreInfoWindow frame =new 	PersonalScoreInfoWindow();
+			frame.setVisible(true);
+					this.dispose();
 		});
 		btnNewButton.setBounds(10, 78, 84, 21);
 		panel.add(btnNewButton);
