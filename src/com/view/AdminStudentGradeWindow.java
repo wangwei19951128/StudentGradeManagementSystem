@@ -1084,22 +1084,26 @@ public class AdminStudentGradeWindow extends JDialog {
 						studentGrade.setGrade(17, 5, Float.parseFloat(textField_112.getText()));
 						studentGrade.setGrade(18, 5, Float.parseFloat(textField_113.getText()));
 
-						studentGrade.setModuleGrade(0,
-								(Float.parseFloat(textField_14.getText()) + Float.parseFloat(textField_27.getText())
-										+ Float.parseFloat(textField_40.getText())
-										+ Float.parseFloat(textField_75.getText())
-										+ Float.parseFloat(textField_93.getText())) / 5);
-						studentGrade.setModuleGrade(1, (Float.parseFloat(textField_100.getText())
+						float moduleGrade0 = (Float.parseFloat(textField_14.getText())
+								+ Float.parseFloat(textField_27.getText()) + Float.parseFloat(textField_40.getText())
+								+ Float.parseFloat(textField_75.getText()) + Float.parseFloat(textField_93.getText()))
+								/ 5;
+						studentGrade.setModuleGrade(0, moduleGrade0);
+						float moduleGrade1 = (Float.parseFloat(textField_100.getText())
 								+ Float.parseFloat(textField_101.getText()) + Float.parseFloat(textField_102.getText())
 								+ Float.parseFloat(textField_103.getText()) + Float.parseFloat(textField_104.getText())
 								+ Float.parseFloat(textField_105.getText()) + Float.parseFloat(textField_106.getText())
-								+ Float.parseFloat(textField_107.getText())) / 8);
-						studentGrade.setModuleGrade(2,
-								(Float.parseFloat(textField_108.getText()) + Float.parseFloat(textField_109.getText())
-										+ Float.parseFloat(textField_110.getText())) / 5);
-						studentGrade.setModuleGrade(3,
-								(Float.parseFloat(textField_111.getText()) + Float.parseFloat(textField_112.getText())
-										+ Float.parseFloat(textField_113.getText())) / 5);
+								+ Float.parseFloat(textField_107.getText())) / 8;
+						studentGrade.setModuleGrade(1, moduleGrade1);
+						float moduleGrade2 = (Float.parseFloat(textField_108.getText())
+								+ Float.parseFloat(textField_109.getText()) + Float.parseFloat(textField_110.getText()))
+								/ 3;
+						studentGrade.setModuleGrade(2, moduleGrade2);
+						float moduleGrade3 = (Float.parseFloat(textField_111.getText())
+								+ Float.parseFloat(textField_112.getText()) + Float.parseFloat(textField_113.getText()))
+								/ 3;
+						studentGrade.setModuleGrade(3, moduleGrade3);
+						studentGrade.setTotalGrade((moduleGrade0+moduleGrade1+moduleGrade2+moduleGrade3)/4);
 						Main.databaseConnection.addStudentGradeInfo(studentGrade);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
