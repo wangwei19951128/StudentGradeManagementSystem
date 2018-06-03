@@ -2,7 +2,7 @@ package com.model;
 
 public class StudentQualityGrade {
 	private Person student;
-
+private int id;
 	/*
 	 * practice_results;// 实习成绩
 	 * professional_foundation;// 专业基础
@@ -23,11 +23,20 @@ public class StudentQualityGrade {
 	
 	private float totalGrade;
 
-	public StudentQualityGrade(Person student) {
+	public StudentQualityGrade(Person student,int id) {
 		super();
 		this.student=student;
+		this.setId(id);
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void setGrade(float[][] grade) {
 		this.grade = grade;
 	}
