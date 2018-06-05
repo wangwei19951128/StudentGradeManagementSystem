@@ -77,12 +77,18 @@ public class CompetencyAnalysisHistogramChartWindow extends JDialog {
 			{
 				JButton okButton = new JButton("确认");
 				okButton.setActionCommand("OK");
+				okButton.addActionListener(e -> {
+					this.dispose();
+				});
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("取消");
 				cancelButton.setActionCommand("Cancel");
+				cancelButton.addActionListener(e -> {
+					this.dispose();
+				});
 				buttonPane.add(cancelButton);
 			}
 			// 构造DataSet
@@ -102,9 +108,9 @@ public class CompetencyAnalysisHistogramChartWindow extends JDialog {
 					true, // 是否生成提示的标签
 					true); // 是否生成URL链接
 			//处理主标题的乱码
-            chart.getTitle().setFont(new Font("宋体",Font.BOLD,18));
+            chart.getTitle().setFont(new Font("微软雅黑",Font.BOLD,18));
             //处理子标题乱码
-            chart.getLegend().setItemFont(new Font("宋体",Font.BOLD,15));
+            chart.getLegend().setItemFont(new Font("微软雅黑",Font.BOLD,15));
             //获取图表区域对象
             CategoryPlot categoryPlot = (CategoryPlot)chart.getPlot();
             //获取X轴的对象
@@ -112,13 +118,13 @@ public class CompetencyAnalysisHistogramChartWindow extends JDialog {
             //获取Y轴的对象
             NumberAxis3D numberAxis3D = (NumberAxis3D)categoryPlot.getRangeAxis();
             //处理X轴上的乱码
-            categoryAxis3D.setTickLabelFont(new Font("宋体",Font.BOLD,15));
+            categoryAxis3D.setTickLabelFont(new Font("微软雅黑",Font.BOLD,15));
             //处理X轴外的乱码
-            categoryAxis3D.setLabelFont(new Font("宋体",Font.BOLD,15));
+            categoryAxis3D.setLabelFont(new Font("微软雅黑",Font.BOLD,15));
             //处理Y轴上的乱码
-            numberAxis3D.setTickLabelFont(new Font("宋体",Font.BOLD,15));
+            numberAxis3D.setTickLabelFont(new Font("微软雅黑",Font.BOLD,15));
             //处理Y轴外的乱码
-            numberAxis3D.setLabelFont(new Font("宋体",Font.BOLD,15));
+            numberAxis3D.setLabelFont(new Font("微软雅黑",Font.BOLD,15));
             //处理Y轴上显示的刻度，以10作为1格
             numberAxis3D.setAutoTickUnitSelection(false);
             NumberTickUnit unit = new NumberTickUnit(10);
@@ -130,7 +136,7 @@ public class CompetencyAnalysisHistogramChartWindow extends JDialog {
             //在图形上显示数字
             barRenderer3D.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
             barRenderer3D.setBaseItemLabelsVisible(true);
-            barRenderer3D.setBaseItemLabelFont(new Font("宋体",Font.BOLD,15));
+            barRenderer3D.setBaseItemLabelFont(new Font("微软雅黑",Font.BOLD,15));
 			// 用来放置图表
 			ChartPanel panel = new ChartPanel(chart);
 			getContentPane().add(panel);

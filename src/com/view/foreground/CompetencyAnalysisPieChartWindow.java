@@ -56,12 +56,18 @@ public class CompetencyAnalysisPieChartWindow extends JDialog {
 			{
 				JButton okButton = new JButton("确认");
 				okButton.setActionCommand("OK");
+				okButton.addActionListener(e -> {
+					this.dispose();
+				});
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("取消");
 				cancelButton.setActionCommand("Cancel");
+				cancelButton.addActionListener(e -> {
+					this.dispose();
+				});
 				buttonPane.add(cancelButton);
 			}
 		}
@@ -83,13 +89,13 @@ public class CompetencyAnalysisPieChartWindow extends JDialog {
 		// 创建饼图
 		JFreeChart chart = ChartFactory.createPieChart3D("教学期班--"+className+"--能力素质分析", DataSet, true, true, false);
 		//处理主标题的乱码
-		chart.getTitle().setFont(new Font("宋体",Font.BOLD,18));
+		chart.getTitle().setFont(new Font("微软雅黑",Font.BOLD,18));
         //处理子标题乱码
-		chart.getLegend().setItemFont(new Font("宋体",Font.BOLD,15));
+		chart.getLegend().setItemFont(new Font("微软雅黑",Font.PLAIN,15));
         //获取图表区域对象
         PiePlot3D categoryPlot = (PiePlot3D)chart.getPlot();
         //处理图像上的乱码
-        categoryPlot.setLabelFont(new Font("宋体",Font.BOLD,15));
+        categoryPlot.setLabelFont(new Font("微软雅黑",Font.PLAIN,15));
         //设置图形的生成格式为（上海 2 （10%））
         String format = "{0} {1} ({2})";
         categoryPlot.setLabelGenerator(new StandardPieSectionLabelGenerator(format));
