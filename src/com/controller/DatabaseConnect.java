@@ -58,6 +58,12 @@ public class DatabaseConnect {
 	private String addStudentGradeInfoSimulateBackboneGradeSql = "INSERT INTO simulated_backbone_grade VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private String addStudentGradeInfoCourseGradeSql = "INSERT INTO course_grade VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private String addStudentGradeInfoTotalGradeSql = "INSERT INTO total_grade VALUES (?,?,?,?,?,?,?)";
+	private String queryStudentQualityGradeInfoFirstClassGradeSql = "SELECT * FROM first_class_of_competency";
+	private String addStudentQualityGradeInfoFirstClassGradeSql = "INSERT INTO first_class_of_competency VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String addStudentQualityGradeInfoSecondClassGradeSql = "INSERT INTO second_class_of_competency VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String addStudentQualityGradeInfoThirdClassGradeSql = "INSERT INTO third_class_of_competency VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String addStudentQualityGradeInfoCourseClassGradeSql = "INSERT INTO competency_courses_grade VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String addStudentQualityGradeInfoTotalGradeSql = "INSERT INTO competency_module_grade VALUES (?,?,?,?,?,?)";
 	private String modifyStudentClassInfoSql = "UPDATE user_class SET class = ? WHERE username = ?";
 	private String modifyPasswordInfoSql = "UPDATE user SET password = ? WHERE username = ?";
 
@@ -433,154 +439,353 @@ public class DatabaseConnect {
 		for (int i : count) {
 			if (i == 0) {
 				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
 				throw new SQLException();
 			}
 		}
 		for (int i : count1) {
 			if (i == 0) {
 				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
 				throw new SQLException();
 			}
 		}
 		for (int i : count2) {
 			if (i == 0) {
 				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
 				throw new SQLException();
 			}
 		}
 		for (int i : count3) {
 			if (i == 0) {
 				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
 				throw new SQLException();
 			}
 		}
 		for (int i : count4) {
 			if (i == 0) {
 				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
 				throw new SQLException();
 			}
 		}
 		for (int i : count5) {
 			if (i == 0) {
 				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
 				throw new SQLException();
 			}
 		}
 		for (int i : count6) {
 			if (i == 0) {
 				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
 				throw new SQLException();
 			}
 		}
 	}
 	
-	public void addStudentQualityGradeInfo(StudentQualityGrade studentGrade) throws SQLException {
+	public int queryStudentQualityGradeInfoNumber() throws SQLException {
+		stmt = conn.createStatement();
+		rs = stmt.executeQuery(queryStudentQualityGradeInfoFirstClassGradeSql);
+		rs.last();
+		return rs.getRow();
+	}
+	
+	public void addStudentQualityGradeInfo(StudentQualityGrade studentQualityGrade) throws SQLException {
 		conn.setAutoCommit(false); // 需要用到事务，不能让他自动提交，需要手动提交
-		PreparedStatement pst = conn.prepareStatement(addStudentGradeInfoBacGradeSql); // INSERT_SQL表示对一张表的插入记录
-		PreparedStatement pst1 = conn.prepareStatement(addStudentGradeInfoFocusTeachingGradeSql); // INSERT_SQL表示对一张表的插入记录
-		PreparedStatement pst2 = conn.prepareStatement(addStudentGradeInfoperPracticeGradeSql); // INSERT_SQL表示对一张表的插入记录
-		PreparedStatement pst3 = conn.prepareStatement(addStudentGradeInfoCompetitiveGradeSql); // INSERT_SQL表示对一张表的插入记录
-		PreparedStatement pst4 = conn.prepareStatement(addStudentGradeInfoSimulateBackboneGradeSql); // INSERT_SQL表示对一张表的插入记录
-		PreparedStatement pst5 = conn.prepareStatement(addStudentGradeInfoCourseGradeSql); // INSERT_SQL表示对一张表的插入记录
-		PreparedStatement pst6 = conn.prepareStatement(addStudentGradeInfoTotalGradeSql); // INSERT_SQL表示对另一张表的插入记录
-		pst.setInt(1, studentGrade.getId());
-		pst.setString(2, studentGrade.getStudent().getUsername());
+		PreparedStatement pst = conn.prepareStatement(addStudentQualityGradeInfoFirstClassGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst1 = conn.prepareStatement(addStudentQualityGradeInfoSecondClassGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst2 = conn.prepareStatement(addStudentQualityGradeInfoThirdClassGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst3 = conn.prepareStatement(addStudentQualityGradeInfoCourseClassGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst4 = conn.prepareStatement(addStudentQualityGradeInfoTotalGradeSql); // INSERT_SQL表示对另一张表的插入记录
+		pst.setInt(1, studentQualityGrade.getId());
+		pst.setString(2, studentQualityGrade.getStudent().getUsername());
 		// 设置sql语句中的values值
-		for (int i = 0; i < 19; i++) {
-			pst.setFloat(i + 3, studentGrade.getGrade()[i][0]);
+		for (int i = 0; i < 12; i++) {
+			pst.setFloat(i + 3, studentQualityGrade.getGrade()[i][0]);
 		}
 		pst.addBatch();
-		pst1.setInt(1, studentGrade.getId());
-		pst1.setString(2, studentGrade.getStudent().getUsername());
+		pst1.setInt(1, studentQualityGrade.getId());
+		pst1.setString(2, studentQualityGrade.getStudent().getUsername());
 		// 设置sql语句中的values值
-		for (int i = 0; i < 19; i++) {
-			pst1.setFloat(i + 3, studentGrade.getGrade()[i][1]);
+		for (int i = 0; i < 12; i++) {
+			pst1.setFloat(i + 3, studentQualityGrade.getGrade()[i][1]);
 		}
 		pst1.addBatch();
-		pst2.setInt(1, studentGrade.getId());
-		pst2.setString(2, studentGrade.getStudent().getUsername());
+		pst2.setInt(1, studentQualityGrade.getId());
+		pst2.setString(2, studentQualityGrade.getStudent().getUsername());
 		// 设置sql语句中的values值
-		for (int i = 0; i < 19; i++) {
-			pst2.setFloat(i + 3, studentGrade.getGrade()[i][2]);
+		for (int i = 0; i < 12; i++) {
+			pst2.setFloat(i + 3, studentQualityGrade.getGrade()[i][2]);
 		}
 		pst2.addBatch();
-		pst3.setInt(1, studentGrade.getId());
-		pst3.setString(2, studentGrade.getStudent().getUsername());
+		pst3.setInt(1, studentQualityGrade.getId());
+		pst3.setString(2, studentQualityGrade.getStudent().getUsername());
 		// 设置sql语句中的values值
-		for (int i = 0; i < 19; i++) {
-			pst3.setFloat(i + 3, studentGrade.getGrade()[i][3]);
+		for (int i = 0; i < 12; i++) {
+			pst3.setFloat(i + 3, studentQualityGrade.getGrade()[i][3]);
 		}
 		pst3.addBatch();
-		pst4.setInt(1, studentGrade.getId());
-		pst4.setString(2, studentGrade.getStudent().getUsername());
+		pst4.setInt(1, studentQualityGrade.getId());
+		pst4.setString(2, studentQualityGrade.getStudent().getUsername());
 		// 设置sql语句中的values值
-		for (int i = 0; i < 19; i++) {
-			pst4.setFloat(i + 3, studentGrade.getGrade()[i][4]);
+		for (int i = 0; i < 3; i++) {
+			pst4.setFloat(i + 3, studentQualityGrade.getModuleGrade()[i]);
 		}
+		pst4.setFloat(6, studentQualityGrade.getTotalGrade());
 		pst4.addBatch();
-		pst5.setInt(1, studentGrade.getId());
-		pst5.setString(2, studentGrade.getStudent().getUsername());
-		// 设置sql语句中的values值
-		for (int i = 0; i < 19; i++) {
-			pst5.setFloat(i + 3, studentGrade.getGrade()[i][5]);
-		}
-		pst5.addBatch();
-		pst6.setInt(1, studentGrade.getId());
-		pst6.setString(2, studentGrade.getStudent().getUsername());
-		// 设置sql语句中的values值
-		for (int i = 0; i < 4; i++) {
-			pst6.setFloat(i + 3, studentGrade.getModuleGrade()[i]);
-		}
-		pst6.setFloat(7, studentGrade.getTotalGrade());
-		pst6.addBatch();
 
 		int[] count = pst.executeBatch();
 		int[] count1 = pst1.executeBatch();
 		int[] count2 = pst2.executeBatch();
 		int[] count3 = pst3.executeBatch();
 		int[] count4 = pst4.executeBatch();
-		int[] count5 = pst5.executeBatch();
-		int[] count6 = pst6.executeBatch();
 		conn.commit(); // 提交事务，这个非常重要
 		for (int i : count) {
 			if (i == 0) {
 				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
 				throw new SQLException();
 			}
 		}
 		for (int i : count1) {
 			if (i == 0) {
 				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
 				throw new SQLException();
 			}
 		}
 		for (int i : count2) {
 			if (i == 0) {
 				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
 				throw new SQLException();
 			}
 		}
 		for (int i : count3) {
 			if (i == 0) {
 				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
 				throw new SQLException();
 			}
 		}
 		for (int i : count4) {
 			if (i == 0) {
 				conn.rollback(); // 回滚，非常重要
-				throw new SQLException();
-			}
-		}
-		for (int i : count5) {
-			if (i == 0) {
-				conn.rollback(); // 回滚，非常重要
-				throw new SQLException();
-			}
-		}
-		for (int i : count6) {
-			if (i == 0) {
-				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
 				throw new SQLException();
 			}
 		}
@@ -606,5 +811,4 @@ public class DatabaseConnect {
 			conn.close();
 		}
 	}
-
 }

@@ -13,6 +13,8 @@ import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 
 import javax.swing.JTextField;
@@ -33,13 +35,34 @@ public class LoginWindow extends JFrame {
 	 */
 	public LoginWindow() {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 400);
+
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int option = JOptionPane.showConfirmDialog(LoginWindow.this, "确定退出系统? ", "提示 ",
+						JOptionPane.YES_NO_CANCEL_OPTION);
+				if (option == JOptionPane.YES_OPTION)
+					if (e.getWindow() == LoginWindow.this) {
+						try {
+							Main.databaseConnection.close();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							JOptionPane.showMessageDialog(null, "断开数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
+						}
+						System.exit(0);
+					} else {
+						return;
+					}
+			}
+		});
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		int windowWidth = this.getWidth(); // 获得窗口宽
 		int windowHeight = this.getHeight(); // 获得窗口高
 		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -95,15 +118,15 @@ public class LoginWindow extends JFrame {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			if(Main.person.getRole()==0) {
-				//学生前台界面
-				//new AdminWindow();
-				//frame.dispose();
-			}else if(Main.person.getRole()==1){
+			if (Main.person.getRole() == 0) {
+				// 学生前台界面
+				// new AdminWindow();
+				// frame.dispose();
+			} else if (Main.person.getRole() == 1) {
 				new AdminWindow();
 				this.dispose();
-			}else {
-				JOptionPane.showMessageDialog( null , "登陆失败！" ,"错误" , JOptionPane.ERROR_MESSAGE) ;
+			} else {
+				JOptionPane.showMessageDialog(null, "登陆失败！", "错误", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 		contentPane.add(button);

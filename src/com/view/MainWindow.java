@@ -5,14 +5,21 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Box;
 import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
+import com.main.Main;
+
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 
 public class MainWindow {
 
@@ -24,7 +31,27 @@ public class MainWindow {
 	public MainWindow() {
 		setFrame(new JFrame());
 		getFrame().setBounds(100, 100, 900, 600);
-		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		getFrame().addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int option = JOptionPane.showConfirmDialog(frame, "确定退出系统? ", "提示 ", JOptionPane.YES_NO_CANCEL_OPTION);
+				if (option == JOptionPane.YES_OPTION)
+					if (e.getWindow() == frame) {
+						try {
+							Main.databaseConnection.close();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							JOptionPane.showMessageDialog(null, "断开数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
+						}
+						System.exit(0);
+					} else {
+						return;
+					}
+			}
+		});
 
 		int windowWidth = frame.getWidth(); // 获得窗口宽
 		int windowHeight = frame.getHeight(); // 获得窗口高
