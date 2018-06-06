@@ -10,19 +10,22 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.main.Main;
+import com.model.General;
+import com.model.KeyValue;
 import com.model.Person;
 
 public class ClassGeneralInfoWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-
+	private Vector<General> model;
 	/**
 	 * Launch the application.
 	 */
@@ -41,8 +44,9 @@ public class ClassGeneralInfoWindow extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public ClassGeneralInfoWindow() {
+	public ClassGeneralInfoWindow() throws SQLException {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 519, 388);
@@ -52,8 +56,15 @@ public class ClassGeneralInfoWindow extends JFrame {
 		contentPane.setLayout(null);
 		JButton btn1 = new JButton("课程评分查询");
 		btn1.addActionListener(e -> {
-			CourseScoreInfoSearchWindow frame = new CourseScoreInfoSearchWindow();
-			frame.setVisible(true);
+			CourseScoreInfoSearchWindow frame;
+			try {
+				frame = new CourseScoreInfoSearchWindow();
+				frame.setVisible(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 					this.dispose();
 				});
 		/*btn1.addActionListener(new ActionListener() {
@@ -70,33 +81,49 @@ public class ClassGeneralInfoWindow extends JFrame {
 		btn2.setBounds(10, 66, 136, 23);
 		contentPane.add(btn2);
 		btn2.addActionListener(e -> {
-			QualityScoreInfoSearchWindow frame = new QualityScoreInfoSearchWindow();
-			frame.setVisible(true);
-					this.dispose();
+			QualityScoreInfoSearchWindow frame;
+			try {
+				frame = new QualityScoreInfoSearchWindow();
+				frame.setVisible(true);
+				this.dispose();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 				});
 		JButton btn3 = new JButton("期班教学情况分析");
 		btn3.setBounds(10, 106, 136, 23);
 		contentPane.add(btn3);
 		btn3.addActionListener(e ->{
-			ClassQualityInfoAnaWindow frame = new ClassQualityInfoAnaWindow();
-			frame.setVisible(true);
-			this.dispose();
+			ClassQualityInfoAnaWindow frame;
+			try {
+				frame = new ClassQualityInfoAnaWindow();
+				frame.setVisible(true);
+				this.dispose();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
 		});
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(153, 10, 340, 309);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		model=Main.databaseConnection.queryGeneralInfo();
+		
+		Object a[][] = new Object[model.size()][5];
+		for(int i=0;i<model.size();i++) {
+				General te =model.get(i);
+				a[i][0]=te.getId();
+				a[i][1] = te.getName();
+				a[i][2] = te.getClass();
+				a[i][3] = te.getClassscore();
+				a[i][4] = te.getQuascore();
+		}
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
+			a,
 			new String[] {
 				"\u5E8F\u53F7", "\u59D3\u540D", "\u671F\u73ED", "\u8BFE\u7A0B\u8BC4\u5206", "\u80FD\u529B\u7D20\u8D28\u8BC4\u5206"
 			}

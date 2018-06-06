@@ -10,10 +10,17 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import com.main.Main;
+import com.model.CourseScore;
+import com.model.StudentGrade;
+import com.model.StudentQualityGrade;
 
 public class QualityScoreInfoSearchWindow extends JFrame {
 
@@ -40,8 +47,9 @@ public class QualityScoreInfoSearchWindow extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public QualityScoreInfoSearchWindow() {
+	public QualityScoreInfoSearchWindow() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 566, 427);
 		contentPane = new JPanel();
@@ -79,9 +87,16 @@ public class QualityScoreInfoSearchWindow extends JFrame {
 		JButton btnNewButton = new JButton("查询");
 		btnNewButton.addActionListener(e->{
 			//验证成功
-			PersonalQualityScoreInfoSearchWindow frame = new PersonalQualityScoreInfoSearchWindow();
-			frame.setVisible(true);
-			this.dispose();
+			PersonalQualityScoreInfoSearchWindow frame;
+			try {
+				frame = new PersonalQualityScoreInfoSearchWindow();
+				frame.setVisible(true);
+				this.dispose();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 		});
 		btnNewButton.setBounds(10, 78, 84, 21);
 		panel.add(btnNewButton);
@@ -91,17 +106,20 @@ public class QualityScoreInfoSearchWindow extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		Vector<StudentQualityGrade> model=Main.databaseConnection.queryQualityScoreInfo();
+		Object tsdata[][] = new Object[model.size()][6];
+		for(int i=0;i<model.size();i++) {
+			StudentQualityGrade cst = model.get(i);
+			tsdata[i][0] = i;
+			tsdata[i][1] = cst.getStudent().getName();
+			tsdata[i][2] = cst.getModuleGrade()[0];
+			tsdata[i][3] = cst.getModuleGrade()[1];
+			tsdata[i][4] = cst.getModuleGrade()[2];
+			tsdata[i][5] = cst.getTotalGrade();
+ 					
+		}
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-			},
+			tsdata,
 			new String[] {
 				"\u5E8F\u53F7", "\u59D3\u540D", "\u77E5\u8BC6\u6280\u80FD", "\u6307\u6325\u7BA1\u7406", "\u673A\u52A1\u7D20\u517B", "\u80FD\u529B\u7D20\u8D28\u8BC4\u5206"
 			}

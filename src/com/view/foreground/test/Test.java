@@ -7,6 +7,9 @@ import javax.swing.table.*;
 public class Test {
  
     public static void main(String args[]) {
+    	float a = 13.3f;
+    	String b = String.valueOf(a);
+    	System.out.println(b);
         JFrame jf = new JFrame("Cell Combine Table");
         JTable cTable = getTable1();
  

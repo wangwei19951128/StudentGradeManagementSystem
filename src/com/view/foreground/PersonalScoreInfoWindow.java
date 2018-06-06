@@ -2,6 +2,7 @@ package com.view.foreground;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -10,6 +11,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import com.main.Main;
+import com.model.StudentGrade;
 import com.view.foreground.test.CombineColumnRender;
 import com.view.foreground.test.CombineData;
 import com.view.foreground.test.CombineTable;
@@ -41,8 +44,9 @@ public class PersonalScoreInfoWindow extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public PersonalScoreInfoWindow() {
+	public PersonalScoreInfoWindow() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -61,8 +65,9 @@ public class PersonalScoreInfoWindow extends JFrame {
 		table = getPersonalScoreInfoTable();
 		scrollPane.setViewportView(table);
 	}
-	private CombineTable getPersonalScoreInfoTable() {
+	private CombineTable getPersonalScoreInfoTable() throws SQLException {
         String[][] datas = new String[20][9];
+        Object[][] modeldata = new Object[20][9];
        for(int i = 0;i<datas.length;i++) {
     	   for(int j = 0;j<datas[0].length;j++) {
     		  datas[i][j]=""; 
@@ -102,11 +107,47 @@ public class PersonalScoreInfoWindow extends JFrame {
        datas[17][1]="空军联考";
        datas[18][1]="综合展示";
        datas[19][1]="课程评分";
-        System.out.print(datas[4][0]);
+       StudentGrade model=Main.databaseConnection.queryPersonalScoreInfo("ceshi003");
+       for (int j = 0;j<19;j++) {
+    	   for (int i = 0;i<6;i++) {
+    		   modeldata[j][i+2] = model.getGrade()[j][i];
+    	   }
+       }
+     float sum1 = (model.getGrade()[0][5]+model.getGrade()[1][5]+model.getGrade()[2][5]+model.getGrade()[3][5]+model.getGrade()[4][5])/(5.0f);
+     float sum2 = (model.getGrade()[5][5]+model.getGrade()[6][5]+model.getGrade()[7][5]+model.getGrade()[8][5]+model.getGrade()[9][5]+model.getGrade()[10][5]+model.getGrade()[11][5]+model.getGrade()[12][5])/(8.0f);
+     float sum3 = (model.getGrade()[13][5]+model.getGrade()[14][5]+model.getGrade()[16][5])/(3.0f);
+     float sum4 = (model.getGrade()[16][5]+model.getGrade()[17][5]+model.getGrade()[18][5])/(3.0f);
         ArrayList<Integer> combineColumns = new ArrayList<Integer>();
         combineColumns.add(0);
+        combineColumns.add(8);
+        
+       // ArrayList<Integer> combineColumns1 = new ArrayList<Integer>();
+       // combineColumns1.add(0);
+        //String[][] datas1 = new String[20][1];
+        for(int i = 0;i<2;i++) {
+        	for(int j =0;j<20;j++) {
+        		modeldata[j][i] = datas[j][i];
+        	}
+        }
+        for(int i=0;i<5;i++) {
+        	datas[i][8]=String.valueOf(sum1);
+        	modeldata[i][8]=sum1;
+        }
+        for(int i=5;i<13;i++) {
+        	datas[i][8]=String.valueOf(sum2);
+        	modeldata[i][8]=sum2;
+        }
+        for(int i=13;i<16;i++) {
+        	datas[i][8]=String.valueOf(sum3);
+        	modeldata[i][8]=sum3;
+        }
+        for(int  i=16;i<19;i++) {
+        	datas[i][8]=String.valueOf(sum4);
+        	modeldata[i][8] = sum4;
+        }
         CombineData m = new CombineData(datas, combineColumns);
-        DefaultTableModel tm = new DefaultTableModel(datas, new String[]{"张三","", "课前课后表现", "集中授课表现", "练习中表现", "比武竞赛表现","模拟骨干表现","分数","总分"});
+       // CombineData m1 = new CombineData(datas1, combineColumns1);
+        DefaultTableModel tm = new DefaultTableModel(modeldata, new String[]{"张三","", "课前课后表现", "集中授课表现", "练习中表现", "比武竞赛表现","模拟骨干表现","分数","总分"});
         CombineTable cTable = new CombineTable(m, tm);
  
         TableColumn column = cTable.getColumnModel().getColumn(0);

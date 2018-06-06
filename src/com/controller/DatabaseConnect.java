@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import com.model.ClassScoreSum;
+import com.model.CourseScore;
+import com.model.General;
 import com.model.KeyValue;
 import com.model.KeyValueS;
 import com.model.Person;
@@ -22,7 +25,23 @@ public class DatabaseConnect {
 	private PreparedStatement presta = null;
 	private Statement stmt = null;
 	private ResultSet rs = null;
+	private String queryGeneral ="SELECT user_class.username,user_class.class,competency_module_grade.total_grade,total_grade.total_grade FROM user_class,competency_module_grade,total_grade WHERE user_class.username = competency_module_grade.username AND user_class.username = total_grade.username";
+	private String queryCourseScore = "SELECT * from total_grade";
+	private String queryQualityScore = "SELECT * from competency_module_grade";
+	private String queryClassScoreSum ="SELECT class.classname,AVG(competency_module_grade.knowledge_skills),AVG(competency_module_grade.maintenance_accomplishment),AVG(competency_module_grade.total_grade),AVG(competency_module_grade.command_management) FROM user_class , class,competency_module_grade WHERE user_class.username = competency_module_grade.username AND user_class.class = class.id GROUP BY class.id ";
 	private String loginSql = "SELECT username, password, role, name FROM user WHERE username = ?";
+	private String queryPersonCourse ="SELECT * from bac_grade WHERE username = ?";
+	private String queryPersonCourse1 ="SELECT * from focus_on_teaching_grade WHERE username = ?";
+	private String queryPersonCourse2 ="SELECT * from performance_in_practice_grade WHERE username = ?";
+	private String queryPersonCourse3 ="SELECT * from competitive_grade WHERE username = ?";
+	private String queryPersonCourse4 ="SELECT * from simulated_backbone_grade WHERE username = ?";
+	private String queryPersonCourse5 ="SELECT * from course_grade WHERE username = ?";
+	private String queryPersonCourse6 ="SELECT * from total_grade WHERE username = ?";
+	private String queryPersonQuality ="SELECT * from first_class_of_competency WHERE username = ?";
+	private String queryPersonQuality1 = "SELECT * from second_class_of_competency WHERE username = ?";
+	private String queryPersonQuality2 = "SELECT * from third_class_of_competency WHERE username = ?";
+	private String queryPersonQuality3 = "SELECT * from competency_courses_grade WHERE username = ?";
+	private String queryPersonQuality4 = "SELECT * from competency_module_grade WHERE username = ?";
 	private String queryClassSql = "SELECT id, classname FROM class";
 	private String addClassSql = "INSERT INTO class(id, classname) VALUES (?,?)";
 	private String modifyClassInfoSql = "UPDATE class SET classname = ? WHERE id = ?";
@@ -72,7 +91,182 @@ public class DatabaseConnect {
 		rs.last();
 		return rs.getRow();
 	}
-
+	public StudentQualityGrade queryPersonalQualityInfo(String uname) throws SQLException {
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		// 2.获得数据库的连接
+		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		stmt = conn.createStatement();
+		presta = conn.prepareStatement(queryPersonQuality);
+		presta.setString(1, uname);
+		rs = presta.executeQuery();
+		Person pt  = new Person();
+		pt.setName(uname);
+		StudentQualityGrade trs = new StudentQualityGrade(pt,0);
+		rs.next();
+		for(int i=0;i<12;i++) {
+			trs.getGrade()[i][0]=rs.getFloat(i+3);
+		}
+		PreparedStatement presta1 = conn.prepareStatement(queryPersonQuality1);
+		presta1.setString(1, uname);
+		rs = presta1.executeQuery();
+		rs.next();
+		for(int i = 0;i<12;i++) {
+			trs.getGrade()[i][1] = rs.getFloat(i+3);
+		}
+		PreparedStatement presta2 = conn.prepareStatement(queryPersonQuality2);
+		presta2.setString(1, uname);
+		rs = presta2.executeQuery();
+		rs.next();
+		for(int i = 0;i<12;i++) {
+			trs.getGrade()[i][2] = rs.getFloat(i+3);
+		}
+		PreparedStatement presta3 = conn.prepareStatement(queryPersonQuality3);
+		presta3.setString(1, uname);
+		rs = presta3.executeQuery();
+		rs.next();
+		for(int i = 0;i<12;i++) {
+			trs.getGrade()[i][3] = rs.getFloat(i+3);
+		}
+		PreparedStatement presta4 = conn.prepareStatement(queryPersonQuality4);
+		presta4.setString(1, uname);
+		rs = presta4.executeQuery();
+		rs.next();
+		System.out.println(rs.getFloat(3));
+		System.out.println(rs.getFloat(4));
+		System.out.println(rs.getFloat(5));
+		for(int i = 0;i<3;i++) {
+			//trs.setModuleGrade(i,  rs.getFloat(i+3));
+			trs.getModuleGrade()[i] = rs.getFloat(i+3);
+		}
+		trs.setTotalGrade(rs.getFloat(6));  
+		return trs;
+		
+	}
+	public StudentGrade queryPersonalScoreInfo(String uname) throws SQLException {
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		// 2.获得数据库的连接
+		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		stmt = conn.createStatement();
+		presta = conn.prepareStatement(queryPersonCourse);
+		// 设置sql语句中的values值
+		presta.setString(1, uname);
+		rs = presta.executeQuery();
+		Person pt  = new Person();
+		pt.setName(uname);
+		StudentGrade trs = new StudentGrade(pt,0);
+		rs.next();
+		for(int i =0;i<19;i++) {
+			trs.getGrade()[i][0]=rs.getFloat(i+3);
+		}
+		PreparedStatement presta1 = conn.prepareStatement(queryPersonCourse1);
+		presta1.setString(1, uname);
+		rs = presta1.executeQuery();
+		rs.next();
+		for(int i = 0;i<19;i++) {
+			trs.getGrade()[i][1] = rs.getFloat(i+3);
+		}
+		PreparedStatement presta2 = conn.prepareStatement(queryPersonCourse2);
+		presta2.setString(1, uname);
+		rs = presta2.executeQuery();
+		rs.next();
+		for(int i = 0;i<19;i++) {
+			trs.getGrade()[i][2] = rs.getFloat(i+3);
+		}
+		PreparedStatement presta3 = conn.prepareStatement(queryPersonCourse3);
+		presta3.setString(1, uname);
+		rs = presta1.executeQuery();
+		rs.next();
+		for(int i = 0;i<19;i++) {
+			trs.getGrade()[i][3] = rs.getFloat(i+3);
+		}
+		PreparedStatement presta4 = conn.prepareStatement(queryPersonCourse4);
+		presta4.setString(1, uname);
+		rs = presta1.executeQuery();
+		rs.next();
+		for(int i = 0;i<19;i++) {
+			trs.getGrade()[i][4] = rs.getFloat(i+3);
+		}
+		PreparedStatement presta5 = conn.prepareStatement(queryPersonCourse5);
+		presta5.setString(1, uname);
+		rs = presta1.executeQuery();
+		rs.next();
+		for(int i = 0;i<19;i++) {
+			trs.getGrade()[i][5] = rs.getFloat(i+3);
+		}
+		//trs.setGrade(null);
+		return trs;
+		
+	}
+	public Vector<ClassScoreSum> queryClassScoreSumInfo() throws SQLException{
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		// 2.获得数据库的连接
+		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		stmt = conn.createStatement();
+		rs = stmt.executeQuery(queryClassScoreSum);
+		Vector<ClassScoreSum> model = new Vector<ClassScoreSum>();
+		while(rs.next()) {
+			ClassScoreSum Itemlocation = new ClassScoreSum(rs.getString(1),rs.getFloat(2),rs.getFloat(3),rs.getFloat(4),rs.getFloat(5));
+			model.add(Itemlocation);
+		}
+		return model;
+		
+	}
+	public Vector<General> queryGeneralInfo() throws SQLException{
+		
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		// 2.获得数据库的连接
+		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		stmt = conn.createStatement();
+		rs = stmt.executeQuery(queryGeneral);
+		Vector<General> model = new Vector<General>();
+		int i=1;
+		while(rs.next()) {
+			General Itemlocation = new General(i,rs.getString(1),rs.getInt(2),rs.getFloat(3),rs.getFloat(4));
+			model.add(Itemlocation);
+			i++;
+		}
+		
+		return model;
+		
+	}
+	
+	public Vector<CourseScore> queryCourseScoreInfo() throws SQLException{
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		// 2.获得数据库的连接
+		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		stmt = conn.createStatement();
+		rs = stmt.executeQuery(queryCourseScore);
+		Vector<CourseScore> model = new Vector<CourseScore>();
+		int i =1;
+		while(rs.next()) {
+			CourseScore Itemlocation = new CourseScore(i,rs.getString(2),rs.getFloat(3),rs.getFloat(4),rs.getFloat(5),rs.getFloat(6),rs.getFloat(7));
+			model.add(Itemlocation);
+			i++;
+		}
+	
+		return model;
+	}
+	public Vector<StudentQualityGrade> queryQualityScoreInfo() throws SQLException{
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		// 2.获得数据库的连接
+		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		stmt = conn.createStatement();
+		rs = stmt.executeQuery(queryQualityScore);
+		Vector<StudentQualityGrade> model = new Vector<StudentQualityGrade>();
+		int i =1;
+		while(rs.next()) {
+			Person ta =new Person();
+			ta.setName(rs.getString(2));
+			StudentQualityGrade Itemlocation = new StudentQualityGrade(ta,0);
+			Itemlocation.setModuleGrade(0,rs.getFloat(3));
+			Itemlocation.setModuleGrade(1,rs.getFloat(4));
+			Itemlocation.setModuleGrade(2,rs.getFloat(5));
+			Itemlocation.setTotalGrade(rs.getFloat(6));
+			model.add(Itemlocation);
+			i++;
+		}
+		return model;
+	}
 	public void addClass(String name) throws SQLException {
 		// 预处理sql语句
 		presta = conn.prepareStatement(addClassSql);
