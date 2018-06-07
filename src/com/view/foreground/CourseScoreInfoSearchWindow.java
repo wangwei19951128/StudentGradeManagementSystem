@@ -1,15 +1,20 @@
 package com.view.foreground;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
@@ -19,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.main.Main;
 import com.model.CourseScore;
+import com.view.LoginWindow;
 
 public class CourseScoreInfoSearchWindow extends JFrame {
 
@@ -48,8 +54,36 @@ public class CourseScoreInfoSearchWindow extends JFrame {
 	 * @throws SQLException 
 	 */
 	public CourseScoreInfoSearchWindow() throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 566, 427);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int option = JOptionPane.showConfirmDialog(CourseScoreInfoSearchWindow.this, "确定退出系统? ", "提示 ",
+						JOptionPane.YES_NO_CANCEL_OPTION);
+				if (option == JOptionPane.YES_OPTION)
+					if (e.getWindow() == CourseScoreInfoSearchWindow.this) {
+						try {
+							Main.databaseConnection.close();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							JOptionPane.showMessageDialog(null, "断开数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
+						}
+						System.exit(0);
+					} else {
+						return;
+					}
+			}
+		});
+		setBounds(100, 100, 600, 400);
+		int windowWidth = this.getWidth(); // 获得窗口宽
+		int windowHeight = this.getHeight(); // 获得窗口高
+		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
+		Dimension screenSize = kit.getScreenSize(); // 获取屏幕的尺寸
+		int screenWidth = screenSize.width; // 获取屏幕的宽
+		int screenHeight = screenSize.height; // 获取屏幕的高
+		this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// 设置窗口居中显示
+
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -86,10 +120,19 @@ public class CourseScoreInfoSearchWindow extends JFrame {
 		btnNewButton.addActionListener(e -> {
 			//数据库查询验证
 			PersonalScoreInfoWindow frame;
+			String tname = textField_1.getText();
+			String name1 = textField.getText();
 			try {
-				frame = new 	PersonalScoreInfoWindow();
-				frame.setVisible(true);
-				this.dispose();
+				frame = new PersonalScoreInfoWindow(tname,name1);
+				if(frame.searchP()) {
+					frame.exeTFrame();
+					frame.setVisible(true);
+					this.dispose();
+				}else {
+					JOptionPane.showMessageDialog(null, "查询失败 ", "查询结果 ", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -100,7 +143,7 @@ public class CourseScoreInfoSearchWindow extends JFrame {
 		panel.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(124, 29, 405, 306);
+		scrollPane.setBounds(124, 29, 450, 322);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();

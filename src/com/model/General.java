@@ -3,13 +3,13 @@ package com.model;
 public class General {
 	private int id;
 	private String name;
-	private int classnum;
+	private String classnum;
 	private float classscore;
 	private float quascore;
-	public General(int i, String string, int  cn, float cs, float qc) {
+	public General(int i, String string, String  string2, float cs, float qc) {
 		setId(i);
 		name = string;
-		classnum = cn;
+		classnum = string2;
 		classscore = cs;
 		quascore = qc;
 		// TODO Auto-generated constructor stub
@@ -20,10 +20,10 @@ public class General {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getClassnum() {
+	public String getClassnum() {
 		return classnum;
 	}
-	public void setClassnum(int classnum) {
+	public void setClassnum(String classnum) {
 		this.classnum = classnum;
 	}
 	public float getClassscore() {

@@ -5,12 +5,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.main.Main;
+import com.view.foreground.ClassGeneralInfoWindow;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
@@ -58,11 +60,6 @@ public class LoginWindow extends JFrame {
 					}
 			}
 		});
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
 		int windowWidth = this.getWidth(); // 获得窗口宽
 		int windowHeight = this.getHeight(); // 获得窗口高
 		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -71,6 +68,12 @@ public class LoginWindow extends JFrame {
 		int screenHeight = screenSize.height; // 获取屏幕的高
 		this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// 设置窗口居中显示
 
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		
 		JLabel label = new JLabel("\u767B\u9646");
 		label.setFont(new Font("微软雅黑", Font.BOLD, 50));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -119,9 +122,19 @@ public class LoginWindow extends JFrame {
 				e1.printStackTrace();
 			}
 			if (Main.person.getRole() == 0) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							ClassGeneralInfoWindow frame = new ClassGeneralInfoWindow();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
 				// 学生前台界面
 				// new AdminWindow();
-				// frame.dispose();
+				 this.dispose();
 			} else if (Main.person.getRole() == 1) {
 				new AdminWindow();
 				this.dispose();

@@ -1,7 +1,12 @@
 package com.view.foreground;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,18 +18,35 @@ import javax.swing.table.TableColumn;
 
 import com.main.Main;
 import com.model.StudentGrade;
+import com.view.LoginWindow;
 import com.view.foreground.test.CombineColumnRender;
 import com.view.foreground.test.CombineData;
 import com.view.foreground.test.CombineTable;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PersonalScoreInfoWindow extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	private String tname="ceshi";
+	private String name = "ceshi";
+
+	public boolean searchP() throws SQLException {
+		
+		return Main.databaseConnection.searchDC(tname,name);
+		
+	}
 
 	/**
 	 * Launch the application.
@@ -33,7 +55,7 @@ public class PersonalScoreInfoWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PersonalScoreInfoWindow frame = new PersonalScoreInfoWindow();
+					PersonalScoreInfoWindow frame = new PersonalScoreInfoWindow("ceshi0123","456");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,25 +68,80 @@ public class PersonalScoreInfoWindow extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public PersonalScoreInfoWindow() throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("                                      个人成绩");
-		lblNewLabel.setBounds(60, 10, 323, 42);
-		contentPane.add(lblNewLabel);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 50, 414, 201);
-		contentPane.add(scrollPane);
-		
-		table = getPersonalScoreInfoTable();
-		scrollPane.setViewportView(table);
+	
+	public boolean exeTFrame() throws SQLException {
+		if(this.searchP()) {
+			addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosing(WindowEvent e) {
+					int option = JOptionPane.showConfirmDialog(PersonalScoreInfoWindow.this, "确定退出系统? ", "提示 ",
+							JOptionPane.YES_NO_CANCEL_OPTION);
+					if (option == JOptionPane.YES_OPTION)
+						if (e.getWindow() == PersonalScoreInfoWindow.this) {
+							try {
+								Main.databaseConnection.close();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+								JOptionPane.showMessageDialog(null, "断开数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
+							}
+							System.exit(0);
+						} else {
+							return;
+						}
+				}
+			});
+			setBounds(100, 100, 600, 400);
+			int windowWidth = this.getWidth(); // 获得窗口宽
+			int windowHeight = this.getHeight(); // 获得窗口高
+			Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
+			Dimension screenSize = kit.getScreenSize(); // 获取屏幕的尺寸
+			int screenWidth = screenSize.width; // 获取屏幕的宽
+			int screenHeight = screenSize.height; // 获取屏幕的高
+			this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// 设置窗口居中显示
+
+			
+			contentPane = new JPanel();
+			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+			setContentPane(contentPane);
+			contentPane.setLayout(null);
+			
+			JLabel lblNewLabel = new JLabel("                                      个人成绩");
+			lblNewLabel.setBounds(60, 10, 327, 23);
+			contentPane.add(lblNewLabel);
+			
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setBounds(10, 33, 564, 287);
+			contentPane.add(scrollPane);
+			table = getPersonalScoreInfoTable();
+			scrollPane.setViewportView(table);
+			
+			JButton btnNewButton = new JButton("返回");
+			btnNewButton.addActionListener(e->{
+				this.dispose();
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							ClassGeneralInfoWindow frame = new ClassGeneralInfoWindow();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			});
+			btnNewButton.setBounds(481, 328, 93, 23);
+			contentPane.add(btnNewButton);
+			return true;
+		}else {
+			return false;
+		}		
 	}
+	public PersonalScoreInfoWindow() throws HeadlessException, SQLException {
+		super();
+		
+	}
+
 	private CombineTable getPersonalScoreInfoTable() throws SQLException {
         String[][] datas = new String[20][9];
         Object[][] modeldata = new Object[20][9];
@@ -107,7 +184,7 @@ public class PersonalScoreInfoWindow extends JFrame {
        datas[17][1]="空军联考";
        datas[18][1]="综合展示";
        datas[19][1]="课程评分";
-       StudentGrade model=Main.databaseConnection.queryPersonalScoreInfo("ceshi003");
+       StudentGrade model=Main.databaseConnection.queryPersonalScoreInfo(tname);
        for (int j = 0;j<19;j++) {
     	   for (int i = 0;i<6;i++) {
     		   modeldata[j][i+2] = model.getGrade()[j][i];
@@ -147,7 +224,7 @@ public class PersonalScoreInfoWindow extends JFrame {
         }
         CombineData m = new CombineData(datas, combineColumns);
        // CombineData m1 = new CombineData(datas1, combineColumns1);
-        DefaultTableModel tm = new DefaultTableModel(modeldata, new String[]{"张三","", "课前课后表现", "集中授课表现", "练习中表现", "比武竞赛表现","模拟骨干表现","分数","总分"});
+        DefaultTableModel tm = new DefaultTableModel(modeldata, new String[]{tname,"", "课前课后表现", "集中授课表现", "练习中表现", "比武竞赛表现","模拟骨干表现","分数","总分"});
         CombineTable cTable = new CombineTable(m, tm);
  
         TableColumn column = cTable.getColumnModel().getColumn(0);
@@ -157,6 +234,11 @@ public class PersonalScoreInfoWindow extends JFrame {
         column.setMinWidth(50);
         cTable.setCellSelectionEnabled(true);
         return cTable;
+		
+	}
+	public PersonalScoreInfoWindow(String tname1,String name1) throws SQLException {
+		this.tname = tname1;
+		this.name = name1;
     }
 	
 }

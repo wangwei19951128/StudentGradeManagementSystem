@@ -1,8 +1,14 @@
 package com.view.foreground;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,18 +16,27 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import com.main.Main;
+import com.model.ClassPerScore;
+import com.model.General;
+import com.view.LoginWindow;
 import com.view.foreground.test.CombineColumnRender;
 import com.view.foreground.test.CombineData;
 import com.view.foreground.test.CombineTable;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ClassPerQualityInfoWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private Vector<ClassPerScore> model;
 
 	/**
 	 * Launch the application.
@@ -43,23 +58,68 @@ public class ClassPerQualityInfoWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public ClassPerQualityInfoWindow() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int option = JOptionPane.showConfirmDialog(ClassPerQualityInfoWindow.this, "确定退出系统? ", "提示 ",
+						JOptionPane.YES_NO_CANCEL_OPTION);
+				if (option == JOptionPane.YES_OPTION)
+					if (e.getWindow() == ClassPerQualityInfoWindow.this) {
+						try {
+							Main.databaseConnection.close();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							JOptionPane.showMessageDialog(null, "断开数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
+						}
+						System.exit(0);
+					} else {
+						return;
+					}
+			}
+		});
+		setBounds(100, 100, 600, 446);
+		int windowWidth = this.getWidth(); // 获得窗口宽
+		int windowHeight = this.getHeight(); // 获得窗口高
+		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
+		Dimension screenSize = kit.getScreenSize(); // 获取屏幕的尺寸
+		int screenWidth = screenSize.width; // 获取屏幕的宽
+		int screenHeight = screenSize.height; // 获取屏幕的高
+		this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// 设置窗口居中显示
+
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("期班课程成绩分析");
-		lblNewLabel.setBounds(157, 10, 104, 15);
+		lblNewLabel.setBounds(239, 6, 104, 15);
 		contentPane.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 23, 414, 238);
+		scrollPane.setBounds(10, 31, 564, 340);
 		contentPane.add(scrollPane);
 		
 		table = getPersonalScoreInfoTable();
 		scrollPane.setViewportView(table);
+		
+		JButton btnNewButton = new JButton("返回");
+		btnNewButton.addActionListener(e->{
+			this.dispose();
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						ClassGeneralInfoWindow frame = new ClassGeneralInfoWindow();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		});
+		btnNewButton.setBounds(481, 381, 93, 23);
+		contentPane.add(btnNewButton);
 	}
 	private CombineTable getPersonalScoreInfoTable() {
         String[][] datas = new String[20][8];
@@ -105,8 +165,38 @@ public class ClassPerQualityInfoWindow extends JFrame {
         System.out.print(datas[4][0]);
         ArrayList<Integer> combineColumns = new ArrayList<Integer>();
         combineColumns.add(0);
+        try {
+			model=Main.databaseConnection.queryClassPerInfo();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Object a[][] = new Object[19][model.size()+2];
+		for(int i=2;i<model.size()+2;i++) {
+				ClassPerScore te =model.get(i-2);
+				for(int j=0;j<19;j++) {
+					a[j][i] = te.getGrade()[j];
+				}
+				/*a[i][0]=te.get;
+				a[i][1] = te.getName();
+				a[i][2] = te.getClass();
+				a[i][3] = te.getClassscore();
+				a[i][4] = te.getQuascore();*/
+		}
+		for(int i=0;i<2;i++) {
+			for(int j =0;j<19;j++) {
+				a[j][i] = datas[j][i];
+			}
+		}
         CombineData m = new CombineData(datas, combineColumns);
-        DefaultTableModel tm = new DefaultTableModel(datas, new String[]{"","科目", "飞发一班", "飞发一班", "机械一班", "机械一班","机电一班","机电一班"});
+        String b[] = new String[model.size()+2];
+        for(int  i=2;i<=model.size()+1;i++) {
+        	b[i]= model.get(i-2).getClname();
+        }
+        b[0] = "";
+        b[1] = "科目";
+        DefaultTableModel tm = new DefaultTableModel(a, b);
         CombineTable cTable = new CombineTable(m, tm);
  
         TableColumn column = cTable.getColumnModel().getColumn(0);

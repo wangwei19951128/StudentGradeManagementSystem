@@ -1,15 +1,22 @@
 package com.view.foreground;
 
 import java.awt.BorderLayout;
+import java.awt.Dialog;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -19,8 +26,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import com.main.Main;
+import com.model.KeyValue;
 import com.model.StudentGrade;
 import com.model.StudentQualityGrade;
+import com.view.LoginWindow;
 import com.view.foreground.test.CombineColumnRender;
 import com.view.foreground.test.CombineData;
 import com.view.foreground.test.CombineTable;
@@ -29,10 +38,18 @@ public class PersonalQualityScoreInfoSearchWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-
+	private String tname="c";
+	private String uname="张";
+	private Object[][] modeldata;
 	/**
 	 * Launch the application.
 	 */
+	public boolean searchP() throws SQLException {
+		System.out.println("asdasdasda");
+		System.out.println(tname);
+		return Main.databaseConnection.searchDC(tname,uname);
+		
+	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -46,28 +63,103 @@ public class PersonalQualityScoreInfoSearchWindow extends JFrame {
 		});
 	}
 
+	public PersonalQualityScoreInfoSearchWindow(String tname, String uname) throws HeadlessException {
+		super();
+		this.tname = tname;
+		this.uname = uname;
+		System.out.println(tname);
+	}
+
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
 	public PersonalQualityScoreInfoSearchWindow() throws SQLException {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 566, 427);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		/**/
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 29, 519, 306);
-		contentPane.add(scrollPane);
-		
-		table = getCombineTable();
-		scrollPane.setViewportView(table);
-		
-		JLabel lblNewLabel = new JLabel("个人能力素质评分");
-		lblNewLabel.setBounds(174, 10, 104, 15);
-		contentPane.add(lblNewLabel);
+	}
+	public boolean exePersonalQualityScore() throws SQLException {
+		if(this.searchP()) {
+			addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosing(WindowEvent e) {
+					int option = JOptionPane.showConfirmDialog(PersonalQualityScoreInfoSearchWindow.this, "确定退出系统? ", "提示 ",
+							JOptionPane.YES_NO_CANCEL_OPTION);
+					if (option == JOptionPane.YES_OPTION)
+						if (e.getWindow() == PersonalQualityScoreInfoSearchWindow.this) {
+							try {
+								Main.databaseConnection.close();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+								JOptionPane.showMessageDialog(null, "断开数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
+							}
+							System.exit(0);
+						} else {
+							return;
+						}
+				}
+			});
+			setBounds(100, 100, 600, 400);
+			int windowWidth = this.getWidth(); // 获得窗口宽
+			int windowHeight = this.getHeight(); // 获得窗口高
+			Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
+			Dimension screenSize = kit.getScreenSize(); // 获取屏幕的尺寸
+			int screenWidth = screenSize.width; // 获取屏幕的宽
+			int screenHeight = screenSize.height; // 获取屏幕的高
+			this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// 设置窗口居中显示
+
+			
+			contentPane = new JPanel();
+			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+			setContentPane(contentPane);
+			contentPane.setLayout(null);
+			
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setBounds(10, 29, 564, 290);
+			contentPane.add(scrollPane);
+			
+			table = getCombineTable();
+			scrollPane.setViewportView(table);
+			
+			JLabel lblNewLabel = new JLabel("个人能力素质评分");
+			lblNewLabel.setBounds(174, 10, 104, 15);
+			contentPane.add(lblNewLabel);
+			
+			JButton btnNewButton = new JButton("个人素质图表");
+			btnNewButton.addActionListener(e->{
+				float[][] gd = new float[3][3];
+				gd[0][0] = gd[0][1]=gd[0][2]=10.0f;
+				gd[2][0] = gd[2][1]=gd[2][2]=6.0f;
+				gd[1][0]=Float.valueOf(String.valueOf(modeldata[0][6]))/10.0f;
+				gd[1][1]=Float.valueOf(String.valueOf(modeldata[4][6]))/10.0f;
+				gd[1][2]=Float.valueOf(String.valueOf(modeldata[8][6]))/10.0f;
+				Dialog ch1 = new AbilityRatingChartWindow(uname,new String[] { "技术能力指数", "指挥能力指数", "管理能力指数" }, new String[] {"满分","成绩","及格线"}, gd);
+				ch1.setVisible(true);
+			});
+			btnNewButton.setBounds(10, 329, 159, 23);
+			contentPane.add(btnNewButton);
+			
+			JButton btnNewButton_1 = new JButton("返回");
+			btnNewButton_1.addActionListener(e->{
+				this.dispose();
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							ClassGeneralInfoWindow frame = new ClassGeneralInfoWindow();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			});
+			btnNewButton_1.setBounds(481, 329, 93, 23);
+			contentPane.add(btnNewButton_1);
+			return true;
+		}else{
+			return false;
+		}
 	}
 	private  CombineTable getCombineTable() throws SQLException {
         String[][] datas = new String[12][8];
@@ -98,7 +190,7 @@ public class PersonalQualityScoreInfoSearchWindow extends JFrame {
         datas[9][1]="维护作风";
         datas[10][1]="实习纪律";
         datas[11][1]="实战感知";
-        Object[][] modeldata = new Object[12][8];
+        modeldata = new Object[12][8];
         StudentQualityGrade model=Main.databaseConnection.queryPersonalQualityInfo("ceshi003");
         for (int j = 0;j<12;j++) {
      	   for (int i = 0;i<4;i++) {
@@ -137,7 +229,7 @@ public class PersonalQualityScoreInfoSearchWindow extends JFrame {
         combineColumns.add(6);
         combineColumns.add(7);
         CombineData m = new CombineData(datas, combineColumns);
-        DefaultTableModel tm = new DefaultTableModel(modeldata, new String[]{"张三", "指标", "第一课时", "第二课时", "第三课时","分数","总分","能力素质评分"});
+        DefaultTableModel tm = new DefaultTableModel(modeldata, new String[]{uname, "指标", "第一课时", "第二课时", "第三课时","分数","总分","能力素质评分"});
         CombineTable cTable = new CombineTable(m, tm);
  
         TableColumn column = cTable.getColumnModel().getColumn(0);
