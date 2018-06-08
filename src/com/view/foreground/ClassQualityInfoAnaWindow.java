@@ -70,24 +70,21 @@ public class ClassQualityInfoAnaWindow extends JFrame {
 		JComboBox<KeyValue> comboBox = new JComboBox<KeyValue>(model);
 		
 
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				int option = JOptionPane.showConfirmDialog(ClassQualityInfoAnaWindow.this, "确定退出系统? ", "提示 ",
-						JOptionPane.YES_NO_CANCEL_OPTION);
-				if (option == JOptionPane.YES_OPTION)
-					if (e.getWindow() == ClassQualityInfoAnaWindow.this) {
-						try {
-							Main.databaseConnection.close();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-							JOptionPane.showMessageDialog(null, "断开数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
-						}
-						System.exit(0);
-					} else {
-						return;
+				int option = JOptionPane.showConfirmDialog(null, "确定退出系统? ", "提示 ", JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					try {
+						Main.databaseConnection.close();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "断开数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
 					}
+					System.exit(0);
+				}
 			}
 		});
 		setBounds(100, 100, 600, 400);
