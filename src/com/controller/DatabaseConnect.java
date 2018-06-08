@@ -26,9 +26,9 @@ public class DatabaseConnect {
 	private PreparedStatement presta = null;
 	private Statement stmt = null;
 	private ResultSet rs = null;
-	private String queryGeneral ="SELECT user_class.username,class.classname,competency_module_grade.total_grade,total_grade.total_grade FROM user_class,competency_module_grade,total_grade,class WHERE user_class.username = competency_module_grade.username AND user_class.username = total_grade.username AND user_class.class = class.id";
-	private String queryCourseScore = "SELECT * from total_grade";
-	private String queryQualityScore = "SELECT * from competency_module_grade";
+	private String queryGeneral ="SELECT user.name,class.classname,competency_module_grade.total_grade,total_grade.total_grade FROM user,user_class,competency_module_grade,total_grade,class WHERE user_class.username = competency_module_grade.username AND user_class.username = total_grade.username AND user_class.class = class.id AND user_class.username = user.username";
+	private String queryCourseScore = "SELECT total_grade.id,user.name,total_grade.engineering_accomplishment,total_grade.basic_skills,total_grade.forces_internship,total_grade.comprehensive_practice,total_grade.total_grade from total_grade,user WHERE user.username=total_grade.username";
+	private String queryQualityScore = "SELECT competency_module_grade.id,user.name,competency_module_grade.knowledge_skills,competency_module_grade.command_management,competency_module_grade.maintenance_accomplishment,competency_module_grade.total_grade from competency_module_grade,user WHERE competency_module_grade.username=user.username";
 	private String queryClassScoreSum ="SELECT class.classname,AVG(competency_module_grade.knowledge_skills),AVG(competency_module_grade.maintenance_accomplishment),AVG(competency_module_grade.total_grade),AVG(competency_module_grade.command_management) FROM user_class , class,competency_module_grade WHERE user_class.username = competency_module_grade.username AND user_class.class = class.id GROUP BY class.id ";
 	private String loginSql = "SELECT username, password, role, name FROM user WHERE username = ?";
 	private String queryPersonCourse ="SELECT * from bac_grade WHERE username = ?";

@@ -91,7 +91,7 @@ public class PersonalScoreInfoWindow extends JFrame {
 						}
 				}
 			});
-			setBounds(100, 100, 600, 400);
+			setBounds(100, 100, 800, 500);
 			int windowWidth = this.getWidth(); // 获得窗口宽
 			int windowHeight = this.getHeight(); // 获得窗口高
 			Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -106,12 +106,12 @@ public class PersonalScoreInfoWindow extends JFrame {
 			setContentPane(contentPane);
 			contentPane.setLayout(null);
 			
-			JLabel lblNewLabel = new JLabel("                                      个人成绩");
+			JLabel lblNewLabel = new JLabel("                                                                                                 个人 成绩");
 			lblNewLabel.setBounds(60, 10, 327, 23);
 			contentPane.add(lblNewLabel);
 			
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 33, 564, 287);
+			scrollPane.setBounds(10, 33, 764, 385);
 			contentPane.add(scrollPane);
 			table = getPersonalScoreInfoTable();
 			scrollPane.setViewportView(table);
@@ -130,7 +130,7 @@ public class PersonalScoreInfoWindow extends JFrame {
 					}
 				});
 			});
-			btnNewButton.setBounds(481, 328, 93, 23);
+			btnNewButton.setBounds(681, 428, 93, 23);
 			contentPane.add(btnNewButton);
 			return true;
 		}else {
@@ -183,7 +183,7 @@ public class PersonalScoreInfoWindow extends JFrame {
        datas[16][1]="发行机实装试车强化训练";
        datas[17][1]="空军联考";
        datas[18][1]="综合展示";
-       datas[19][1]="课程评分";
+       datas[19][1]="";
        StudentGrade model=Main.databaseConnection.queryPersonalScoreInfo(tname);
        for (int j = 0;j<19;j++) {
     	   for (int i = 0;i<6;i++) {
@@ -222,6 +222,7 @@ public class PersonalScoreInfoWindow extends JFrame {
         	datas[i][8]=String.valueOf(sum4);
         	modeldata[i][8] = sum4;
         }
+        modeldata[19][8]= (sum1+sum2+sum3+sum4)/4.0f;
         CombineData m = new CombineData(datas, combineColumns);
        // CombineData m1 = new CombineData(datas1, combineColumns1);
         DefaultTableModel tm = new DefaultTableModel(modeldata, new String[]{tname,"", "课前课后表现", "集中授课表现", "练习中表现", "比武竞赛表现","模拟骨干表现","分数","总分"});
