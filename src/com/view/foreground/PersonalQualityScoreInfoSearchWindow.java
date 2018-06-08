@@ -188,7 +188,7 @@ public class PersonalQualityScoreInfoSearchWindow extends JFrame {
         datas[10][1]="实习纪律";
         datas[11][1]="实战感知";
         modeldata = new Object[12][8];
-        StudentQualityGrade model=Main.databaseConnection.queryPersonalQualityInfo("ceshi003");
+        StudentQualityGrade model=Main.databaseConnection.queryPersonalQualityInfo(tname);
         for (int j = 0;j<12;j++) {
      	   for (int i = 0;i<4;i++) {
      		   modeldata[j][i+2] = model.getGrade()[j][i];
