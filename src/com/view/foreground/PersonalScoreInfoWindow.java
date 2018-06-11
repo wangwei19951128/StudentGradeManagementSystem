@@ -30,6 +30,7 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class PersonalScoreInfoWindow extends JFrame {
 
@@ -88,7 +89,7 @@ public class PersonalScoreInfoWindow extends JFrame {
 					}
 				}
 			});
-			setBounds(100, 100, 800, 500);
+			setBounds(100, 100, 1191, 700);
 			int windowWidth = this.getWidth(); // 获得窗口宽
 			int windowHeight = this.getHeight(); // 获得窗口高
 			Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -103,12 +104,12 @@ public class PersonalScoreInfoWindow extends JFrame {
 			setContentPane(contentPane);
 			contentPane.setLayout(null);
 			
-			JLabel lblNewLabel = new JLabel("                                                                                                 个人 成绩");
-			lblNewLabel.setBounds(60, 10, 327, 23);
+			JLabel lblNewLabel = new JLabel("                                                                                                 个人成绩");
+			lblNewLabel.setBounds(60, 10, 865, 23);
 			contentPane.add(lblNewLabel);
 			
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 33, 764, 385);
+			scrollPane.setBounds(10, 33, 1155, 585);
 			contentPane.add(scrollPane);
 			table = getPersonalScoreInfoTable();
 			scrollPane.setViewportView(table);
@@ -127,7 +128,8 @@ public class PersonalScoreInfoWindow extends JFrame {
 					}
 				});
 			});
-			btnNewButton.setBounds(681, 428, 93, 23);
+			btnNewButton.setBounds(1072, 628, 93, 23);
+			contentPane.add(btnNewButton);
 			contentPane.add(btnNewButton);
 			return true;
 		}else {
@@ -136,7 +138,65 @@ public class PersonalScoreInfoWindow extends JFrame {
 	}
 	public PersonalScoreInfoWindow() throws HeadlessException, SQLException {
 		super();
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int option = JOptionPane.showConfirmDialog(null, "确定退出系统? ", "提示 ", JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					try {
+						Main.databaseConnection.close();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "断开数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
+					}
+					System.exit(0);
+				}
+			}
+		});
+		setBounds(100, 100, 1191, 700);
+		int windowWidth = this.getWidth(); // 获得窗口宽
+		int windowHeight = this.getHeight(); // 获得窗口高
+		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
+		Dimension screenSize = kit.getScreenSize(); // 获取屏幕的尺寸
+		int screenWidth = screenSize.width; // 获取屏幕的宽
+		int screenHeight = screenSize.height; // 获取屏幕的高
+		this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// 设置窗口居中显示
+
 		
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("个人成绩");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(60, 10, 865, 23);
+		contentPane.add(lblNewLabel);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 33, 1155, 585);
+		contentPane.add(scrollPane);
+		table = getPersonalScoreInfoTable();
+		scrollPane.setViewportView(table);
+		
+		JButton btnNewButton = new JButton("返回");
+		btnNewButton.addActionListener(e->{
+			this.dispose();
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						ClassGeneralInfoWindow frame = new ClassGeneralInfoWindow();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		});
+		btnNewButton.setBounds(1072, 628, 93, 23);
+		contentPane.add(btnNewButton);
 	}
 
 	private CombineTable getPersonalScoreInfoTable() throws SQLException {
@@ -226,6 +286,13 @@ public class PersonalScoreInfoWindow extends JFrame {
         CombineTable cTable = new CombineTable(m, tm);
  
         TableColumn column = cTable.getColumnModel().getColumn(0);
+        cTable.getColumnModel().getColumn(1).setMinWidth(200);
+        cTable.getColumnModel().getColumn(2).setPreferredWidth(93);
+        cTable.getColumnModel().getColumn(2).setMaxWidth(93);
+        cTable.getColumnModel().getColumn(3).setPreferredWidth(85);
+        cTable.getColumnModel().getColumn(3).setMaxWidth(85);
+        cTable.getColumnModel().getColumn(5).setPreferredWidth(88);
+        cTable.getColumnModel().getColumn(6).setPreferredWidth(91);
         column.setCellRenderer(new CombineColumnRender());
         column.setWidth(200);
         column.setMaxWidth(200);

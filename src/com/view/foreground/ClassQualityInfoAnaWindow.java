@@ -30,6 +30,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
 
 public class ClassQualityInfoAnaWindow extends JFrame {
 
@@ -103,7 +104,8 @@ public class ClassQualityInfoAnaWindow extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("期班教学能力素质分析");
-		lblNewLabel.setBounds(266, 10, 138, 15);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(113, 10, 379, 15);
 		contentPane.add(lblNewLabel);
 
 		JScrollPane scrollPane = new JScrollPane();

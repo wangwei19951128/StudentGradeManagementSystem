@@ -31,6 +31,7 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class ClassPerQualityInfoWindow extends JFrame {
 
@@ -91,7 +92,8 @@ public class ClassPerQualityInfoWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("期班课程成绩分析");
-		lblNewLabel.setBounds(239, 6, 104, 15);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(73, 6, 437, 15);
 		contentPane.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();

@@ -207,7 +207,7 @@ public class AdminStudentGradeWindow extends JDialog {
 
 		JLabel label_1 = new JLabel("课程");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(146, 169, 215, 15);
+		label_1.setBounds(115, 169, 266, 15);
 		contentPanel.add(label_1);
 		{
 			JLabel label_2 = new JLabel("课前课后表现");
@@ -235,91 +235,91 @@ public class AdminStudentGradeWindow extends JDialog {
 		{
 			JLabel label_3 = new JLabel("机务素养");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(31, 245, 54, 15);
+			label_3.setBounds(0, 245, 116, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("实战化开训");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(146, 200, 215, 15);
+			label_3.setBounds(115, 200, 266, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("航空兵机务部队组织架构和机务工作流程");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(126, 225, 255, 15);
+			label_3.setBounds(61, 225, 396, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("航空机务法规专项教育");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(146, 250, 215, 15);
+			label_3.setBounds(115, 250, 266, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel lblNewLabel = new JLabel("飞行保障和典型定检工作");
 			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel.setBounds(146, 275, 215, 15);
+			lblNewLabel.setBounds(115, 275, 266, 15);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			JLabel label_3 = new JLabel("基本维护技能");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(146, 300, 215, 15);
+			label_3.setBounds(115, 300, 266, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("机件的拆装及保险");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(146, 341, 215, 15);
+			label_3.setBounds(115, 341, 266, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("歼7飞机机轮安装");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(146, 366, 215, 15);
+			label_3.setBounds(115, 366, 266, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("机身后段的拆装");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(146, 391, 215, 15);
+			label_3.setBounds(115, 391, 266, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("副油箱减速伞的安装与投放");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(146, 416, 215, 15);
+			label_3.setBounds(115, 416, 266, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("联合收放检查");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(146, 441, 215, 15);
+			label_3.setBounds(115, 441, 266, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("刹车压力油门操纵系统检查与调整");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(146, 466, 215, 15);
+			label_3.setBounds(115, 466, 266, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("平尾操纵系统检查与调整");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(146, 491, 215, 15);
+			label_3.setBounds(115, 491, 266, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("基本技能");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(31, 441, 54, 15);
+			label_3.setBounds(0, 441, 116, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("部队实习");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(31, 579, 54, 15);
+			label_3.setBounds(0, 579, 116, 15);
 			contentPanel.add(label_3);
 		}
 
@@ -695,27 +695,27 @@ public class AdminStudentGradeWindow extends JDialog {
 
 		label_9 = new JLabel("飞行检查");
 		label_9.setHorizontalAlignment(SwingConstants.CENTER);
-		label_9.setBounds(146, 516, 215, 15);
+		label_9.setBounds(115, 516, 266, 15);
 		contentPanel.add(label_9);
 
 		label_10 = new JLabel("机务部队实习");
 		label_10.setHorizontalAlignment(SwingConstants.CENTER);
-		label_10.setBounds(146, 554, 215, 15);
+		label_10.setBounds(115, 554, 266, 15);
 		contentPanel.add(label_10);
 
 		label_11 = new JLabel("部队见习收获内部交流");
 		label_11.setHorizontalAlignment(SwingConstants.CENTER);
-		label_11.setBounds(146, 579, 215, 15);
+		label_11.setBounds(115, 579, 266, 15);
 		contentPanel.add(label_11);
 
 		label_12 = new JLabel("机务部队飞行保障及定检工作");
 		label_12.setHorizontalAlignment(SwingConstants.CENTER);
-		label_12.setBounds(146, 604, 215, 15);
+		label_12.setBounds(115, 604, 266, 15);
 		contentPanel.add(label_12);
 
 		label_13 = new JLabel("综合演练");
 		label_13.setHorizontalAlignment(SwingConstants.CENTER);
-		label_13.setBounds(31, 670, 54, 15);
+		label_13.setBounds(0, 670, 116, 15);
 		contentPanel.add(label_13);
 
 		textField_63 = new JTextField();
@@ -840,17 +840,17 @@ public class AdminStudentGradeWindow extends JDialog {
 
 		label_5 = new JLabel("机务部队实习");
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setBounds(146, 645, 215, 15);
+		label_5.setBounds(115, 645, 266, 15);
 		contentPanel.add(label_5);
 
 		label_6 = new JLabel("部队见习收获内部交流");
 		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		label_6.setBounds(146, 670, 215, 15);
+		label_6.setBounds(115, 670, 266, 15);
 		contentPanel.add(label_6);
 
 		label_14 = new JLabel("机务部队飞行保障及定检工作");
 		label_14.setHorizontalAlignment(SwingConstants.CENTER);
-		label_14.setBounds(146, 695, 215, 15);
+		label_14.setBounds(115, 695, 266, 15);
 		contentPanel.add(label_14);
 
 		textField_84 = new JTextField();

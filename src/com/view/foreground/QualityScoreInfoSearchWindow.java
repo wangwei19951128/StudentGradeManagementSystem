@@ -73,7 +73,7 @@ public class QualityScoreInfoSearchWindow extends JFrame {
 				}
 			}
 		});
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 930, 659);
 		int windowWidth = this.getWidth(); // 获得窗口宽
 		int windowHeight = this.getHeight(); // 获得窗口高
 		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -89,30 +89,30 @@ public class QualityScoreInfoSearchWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 29, 104, 99);
+		panel.setBounds(10, 29, 169, 186);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("  个人成绩：");
-		lblNewLabel.setBounds(0, 0, 76, 21);
+		lblNewLabel.setBounds(0, 13, 169, 21);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel(" 姓名");
-		lblNewLabel_1.setBounds(0, 26, 39, 21);
+		lblNewLabel_1.setBounds(0, 42, 39, 21);
 		panel.add(lblNewLabel_1);
 		
 		JLabel label = new JLabel(" 学号");
-		label.setBounds(0, 47, 39, 21);
+		label.setBounds(0, 73, 39, 21);
 		panel.add(label);
 		
 		textField = new JTextField();
-		textField.setBounds(37, 31, 57, 16);
+		textField.setBounds(37, 44, 57, 16);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(37, 50, 57, 18);
+		textField_1.setBounds(37, 74, 57, 18);
 		panel.add(textField_1);
 		
 		
@@ -139,11 +139,11 @@ public class QualityScoreInfoSearchWindow extends JFrame {
 			
 			
 		});
-		btnNewButton.setBounds(10, 78, 84, 21);
+		btnNewButton.setBounds(10, 104, 84, 21);
 		panel.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(124, 29, 450, 322);
+		scrollPane.setBounds(189, 29, 715, 581);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();

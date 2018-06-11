@@ -33,6 +33,7 @@ import com.view.LoginWindow;
 import com.view.foreground.test.CombineColumnRender;
 import com.view.foreground.test.CombineData;
 import com.view.foreground.test.CombineTable;
+import javax.swing.SwingConstants;
 
 public class PersonalQualityScoreInfoSearchWindow extends JFrame {
 
@@ -76,7 +77,80 @@ public class PersonalQualityScoreInfoSearchWindow extends JFrame {
 	 */
 	public PersonalQualityScoreInfoSearchWindow() throws SQLException {
 		/**/
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int option = JOptionPane.showConfirmDialog(null, "确定退出系统? ", "提示 ", JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					try {
+						Main.databaseConnection.close();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "断开数据库连接失败！", "错误", JOptionPane.ERROR_MESSAGE);
+					}
+					System.exit(0);
+				}
+			}
+		});
+		setBounds(100, 100, 848, 634);
+		int windowWidth = this.getWidth(); // 获得窗口宽
+		int windowHeight = this.getHeight(); // 获得窗口高
+		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
+		Dimension screenSize = kit.getScreenSize(); // 获取屏幕的尺寸
+		int screenWidth = screenSize.width; // 获取屏幕的宽
+		int screenHeight = screenSize.height; // 获取屏幕的高
+		this.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// 设置窗口居中显示
+
 		
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 29, 812, 519);
+		contentPane.add(scrollPane);
+		
+		table = getCombineTable();
+		scrollPane.setViewportView(table);
+		
+		JLabel lblNewLabel = new JLabel("个人能力素质评分");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(174, 10, 510, 15);
+		contentPane.add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("个人素质图表");
+		btnNewButton.addActionListener(e->{
+			float[][] gd = new float[3][3];
+			gd[0][0] = gd[0][1]=gd[0][2]=10.0f;
+			gd[2][0] = gd[2][1]=gd[2][2]=6.0f;
+			gd[1][0]=Float.valueOf(String.valueOf(modeldata[0][6]))/10.0f;
+			gd[1][1]=Float.valueOf(String.valueOf(modeldata[4][6]))/10.0f;
+			gd[1][2]=Float.valueOf(String.valueOf(modeldata[8][6]))/10.0f;
+			Dialog ch1 = new AbilityRatingChartWindow(uname,new String[] { "技术能力指数", "指挥能力指数", "管理能力指数" }, new String[] {"满分","成绩","及格线"}, gd);
+			ch1.setVisible(true);
+		});
+		btnNewButton.setBounds(10, 562, 159, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("返回");
+		btnNewButton_1.addActionListener(e->{
+			this.dispose();
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						ClassGeneralInfoWindow frame = new ClassGeneralInfoWindow();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		});
+		btnNewButton_1.setBounds(739, 562, 93, 23);
+		contentPane.add(btnNewButton_1);
 	}
 	public boolean exePersonalQualityScore() throws SQLException {
 		if(this.searchP()) {
@@ -97,7 +171,7 @@ public class PersonalQualityScoreInfoSearchWindow extends JFrame {
 					}
 				}
 			});
-			setBounds(100, 100, 600, 400);
+			setBounds(100, 100, 848, 634);
 			int windowWidth = this.getWidth(); // 获得窗口宽
 			int windowHeight = this.getHeight(); // 获得窗口高
 			Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -113,7 +187,7 @@ public class PersonalQualityScoreInfoSearchWindow extends JFrame {
 			contentPane.setLayout(null);
 			
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 29, 564, 290);
+			scrollPane.setBounds(10, 29, 812, 519);
 			contentPane.add(scrollPane);
 			
 			table = getCombineTable();
@@ -134,7 +208,7 @@ public class PersonalQualityScoreInfoSearchWindow extends JFrame {
 				Dialog ch1 = new AbilityRatingChartWindow(uname,new String[] { "技术能力指数", "指挥能力指数", "管理能力指数" }, new String[] {"满分","成绩","及格线"}, gd);
 				ch1.setVisible(true);
 			});
-			btnNewButton.setBounds(10, 329, 159, 23);
+			btnNewButton.setBounds(10, 562, 159, 23);
 			contentPane.add(btnNewButton);
 			
 			JButton btnNewButton_1 = new JButton("返回");
@@ -151,7 +225,7 @@ public class PersonalQualityScoreInfoSearchWindow extends JFrame {
 					}
 				});
 			});
-			btnNewButton_1.setBounds(481, 329, 93, 23);
+			btnNewButton_1.setBounds(739, 562, 93, 23);
 			contentPane.add(btnNewButton_1);
 			return true;
 		}else{
@@ -230,6 +304,8 @@ public class PersonalQualityScoreInfoSearchWindow extends JFrame {
         CombineTable cTable = new CombineTable(m, tm);
  
         TableColumn column = cTable.getColumnModel().getColumn(0);
+        cTable.getColumnModel().getColumn(0).setMinWidth(100);
+        cTable.getColumnModel().getColumn(0).setMaxWidth(100);
         column.setCellRenderer(new CombineColumnRender());
         column.setWidth(50);
         column.setMaxWidth(50);

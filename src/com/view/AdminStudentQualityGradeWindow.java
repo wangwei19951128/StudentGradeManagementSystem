@@ -159,91 +159,91 @@ public class AdminStudentQualityGradeWindow extends JDialog {
 		{
 			JLabel label_3 = new JLabel("知识技能");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(31, 245, 54, 15);
+			label_3.setBounds(0, 245, 116, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("实习成绩");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(166, 201, 54, 15);
+			label_3.setBounds(124, 201, 145, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("专业素养");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(166, 227, 54, 15);
+			label_3.setBounds(124, 227, 145, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("代教能力");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(166, 254, 54, 15);
+			label_3.setBounds(124, 254, 145, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel lblNewLabel = new JLabel("竞赛比武");
 			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel.setBounds(166, 282, 54, 15);
+			lblNewLabel.setBounds(124, 282, 145, 15);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			JLabel label_3 = new JLabel("组织能力");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(166, 316, 54, 15);
+			label_3.setBounds(124, 316, 145, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("应变能力");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(166, 341, 54, 15);
+			label_3.setBounds(124, 341, 145, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("管理能力");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(166, 366, 54, 15);
+			label_3.setBounds(124, 366, 145, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("协调能力");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(166, 391, 54, 15);
+			label_3.setBounds(124, 391, 145, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("机务精神");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(166, 426, 54, 15);
+			label_3.setBounds(124, 426, 145, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("维护作风");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(166, 451, 54, 15);
+			label_3.setBounds(124, 451, 145, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("实习纪律");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(166, 476, 54, 15);
+			label_3.setBounds(124, 476, 145, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("实战感知");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(166, 501, 54, 15);
+			label_3.setBounds(124, 501, 145, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("指挥管理");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(31, 355, 54, 15);
+			label_3.setBounds(0, 355, 116, 15);
 			contentPanel.add(label_3);
 		}
 		{
 			JLabel label_3 = new JLabel("机务素养");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
-			label_3.setBounds(31, 465, 54, 15);
+			label_3.setBounds(0, 465, 116, 15);
 			contentPanel.add(label_3);
 		}
 

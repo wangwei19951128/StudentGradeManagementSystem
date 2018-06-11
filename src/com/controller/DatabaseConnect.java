@@ -19,7 +19,7 @@ import com.model.StudentGrade;
 import com.model.StudentQualityGrade;
 
 public class DatabaseConnect {
-	private static final String URL = "jdbc:mysql://49.140.86.196:3306/student_grade_management_system?useSSL=false&serverTimezone=Hongkong&characterEncoding=utf-8&autoReconnect=true";
+	private static final String URL = "jdbc:mysql://localhost:3306/student_grade_management_system?useSSL=false&serverTimezone=Hongkong&characterEncoding=utf-8&autoReconnect=true";
 	private static final String NAME = "root";
 	private static final String PASSWORD = "123456qwe";
 	private Connection conn = null;
@@ -70,6 +70,19 @@ public class DatabaseConnect {
 	private String addStudentQualityGradeInfoTotalGradeSql = "INSERT INTO competency_module_grade VALUES (?,?,?,?,?,?)";
 	private String modifyStudentClassInfoSql = "UPDATE user_class SET class = ? WHERE username = ?";
 	private String modifyPasswordInfoSql = "UPDATE user SET password = ? WHERE username = ?";
+	
+	private String deleteStudentGradeInfoBacGradeSql = "delete FROM bac_grade WHERE username = ?";
+	private String deleteStudentGradeInfoFocusTeachingGradeSql = "delete FROM focus_on_teaching_grade WHERE username = ?";
+	private String deleteStudentGradeInfoperPracticeGradeSql = "delete FROM performance_in_practice_grade WHERE username = ?";
+	private String deleteStudentGradeInfoCompetitiveGradeSql = "delete FROM competitive_grade WHERE username = ?";
+	private String deleteStudentGradeInfoSimulateBackboneGradeSql = "delete FROM simulated_backbone_grade WHERE username = ?";
+	private String deleteStudentGradeInfoCourseGradeSql = "delete FROM course_grade WHERE username = ?";
+	private String deleteStudentGradeInfoTotalGradeSql = "delete FROM total_grade WHERE username = ?";
+	private String deleteStudentQualityGradeInfoFirstClassGradeSql = "delete FROM first_class_of_competency WHERE username = ?";
+	private String deleteStudentQualityGradeInfoSecondClassGradeSql = "delete FROM second_class_of_competency WHERE username = ?";
+	private String deleteStudentQualityGradeInfoThirdClassGradeSql = "delete FROM third_class_of_competency WHERE username = ?";
+	private String deleteStudentQualityGradeInfoCourseClassGradeSql = "delete FROM competency_courses_grade WHERE username = ?";
+	private String deleteStudentQualityGradeInfoTotalGradeSql = "delete FROM competency_module_grade WHERE username = ?";
 
 	public DatabaseConnect() {
 		super();
@@ -445,7 +458,7 @@ public class DatabaseConnect {
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryStudentGradeInfoBacGradeSql);
 		rs.last();
-		return rs.getRow();
+		return rs.getInt(1);
 	}
 
 	public void addStudentGradeInfo(StudentGrade studentGrade) throws SQLException {
@@ -711,7 +724,7 @@ public class DatabaseConnect {
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryStudentQualityGradeInfoFirstClassGradeSql);
 		rs.last();
-		return rs.getRow();
+		return rs.getInt(1);
 	}
 	
 	public void addStudentQualityGradeInfo(StudentQualityGrade studentQualityGrade) throws SQLException {
@@ -879,6 +892,564 @@ public class DatabaseConnect {
 		presta.setString(2, person.getUsername());
 		presta.executeUpdate();
 	}
+	
+	public void deleteStudentGrade(String username) throws SQLException {
+		conn.setAutoCommit(false); // 需要用到事务，不能让他自动提交，需要手动提交
+		PreparedStatement pst = conn.prepareStatement(deleteStudentGradeInfoBacGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst1 = conn.prepareStatement(deleteStudentGradeInfoFocusTeachingGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst2 = conn.prepareStatement(deleteStudentGradeInfoperPracticeGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst3 = conn.prepareStatement(deleteStudentGradeInfoCompetitiveGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst4 = conn.prepareStatement(deleteStudentGradeInfoSimulateBackboneGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst5 = conn.prepareStatement(deleteStudentGradeInfoCourseGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst6 = conn.prepareStatement(deleteStudentGradeInfoTotalGradeSql); // INSERT_SQL表示对另一张表的插入记录
+		PreparedStatement pst7 = conn.prepareStatement(deleteStudentQualityGradeInfoFirstClassGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst8 = conn.prepareStatement(deleteStudentQualityGradeInfoSecondClassGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst9 = conn.prepareStatement(deleteStudentQualityGradeInfoThirdClassGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst10 = conn.prepareStatement(deleteStudentQualityGradeInfoCourseClassGradeSql); // INSERT_SQL表示对一张表的插入记录
+		PreparedStatement pst11 = conn.prepareStatement(deleteStudentQualityGradeInfoTotalGradeSql); // INSERT_SQL表示对另一张表的插入记录
+		pst.setString(1, username);
+		pst.addBatch();
+		pst1.setString(1, username);
+		pst1.addBatch();
+		pst2.setString(1, username);
+		pst2.addBatch();
+		pst3.setString(1, username);
+		pst3.addBatch();
+		pst4.setString(1, username);
+		pst4.addBatch();
+		pst5.setString(1, username);
+		pst5.addBatch();
+		pst6.setString(1, username);
+		pst6.addBatch();
+		pst7.setString(1, username);
+		pst7.addBatch();
+		pst8.setString(1, username);
+		pst8.addBatch();
+		pst9.setString(1, username);
+		pst9.addBatch();
+		pst10.setString(1, username);
+		pst10.addBatch();
+		pst11.setString(1, username);
+		pst11.addBatch();
+
+		int[] count = pst.executeBatch();
+		int[] count1 = pst1.executeBatch();
+		int[] count2 = pst2.executeBatch();
+		int[] count3 = pst3.executeBatch();
+		int[] count4 = pst4.executeBatch();
+		int[] count5 = pst5.executeBatch();
+		int[] count6 = pst6.executeBatch();
+		int[] count7 = pst7.executeBatch();
+		int[] count8 = pst8.executeBatch();
+		int[] count9 = pst9.executeBatch();
+		int[] count10 = pst10.executeBatch();
+		int[] count11 = pst11.executeBatch();
+		conn.commit(); // 提交事务，这个非常重要
+		for (int i : count) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
+				if(pst7!=null) {
+					pst7.close();
+				}
+				if(pst8!=null) {
+					pst8.close();
+				}
+				if(pst9!=null) {
+					pst9.close();
+				}
+				if(pst10!=null) {
+					pst10.close();
+				}
+				if(pst11!=null) {
+					pst11.close();
+				}
+				throw new SQLException();
+			}
+		}
+		for (int i : count1) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
+				if(pst7!=null) {
+					pst7.close();
+				}
+				if(pst8!=null) {
+					pst8.close();
+				}
+				if(pst9!=null) {
+					pst9.close();
+				}
+				if(pst10!=null) {
+					pst10.close();
+				}
+				if(pst11!=null) {
+					pst11.close();
+				}
+				throw new SQLException();
+			}
+		}
+		for (int i : count2) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
+				if(pst7!=null) {
+					pst7.close();
+				}
+				if(pst8!=null) {
+					pst8.close();
+				}
+				if(pst9!=null) {
+					pst9.close();
+				}
+				if(pst10!=null) {
+					pst10.close();
+				}
+				if(pst11!=null) {
+					pst11.close();
+				}
+				throw new SQLException();
+			}
+		}
+		for (int i : count3) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
+				if(pst7!=null) {
+					pst7.close();
+				}
+				if(pst8!=null) {
+					pst8.close();
+				}
+				if(pst9!=null) {
+					pst9.close();
+				}
+				if(pst10!=null) {
+					pst10.close();
+				}
+				if(pst11!=null) {
+					pst11.close();
+				}
+				throw new SQLException();
+			}
+		}
+		for (int i : count4) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
+				if(pst7!=null) {
+					pst7.close();
+				}
+				if(pst8!=null) {
+					pst8.close();
+				}
+				if(pst9!=null) {
+					pst9.close();
+				}
+				if(pst10!=null) {
+					pst10.close();
+				}
+				if(pst11!=null) {
+					pst11.close();
+				}
+				throw new SQLException();
+			}
+		}
+		for (int i : count5) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
+				if(pst7!=null) {
+					pst7.close();
+				}
+				if(pst8!=null) {
+					pst8.close();
+				}
+				if(pst9!=null) {
+					pst9.close();
+				}
+				if(pst10!=null) {
+					pst10.close();
+				}
+				if(pst11!=null) {
+					pst11.close();
+				}
+				throw new SQLException();
+			}
+		}
+		for (int i : count6) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
+				if(pst7!=null) {
+					pst7.close();
+				}
+				if(pst8!=null) {
+					pst8.close();
+				}
+				if(pst9!=null) {
+					pst9.close();
+				}
+				if(pst10!=null) {
+					pst10.close();
+				}
+				if(pst11!=null) {
+					pst11.close();
+				}
+				throw new SQLException();
+			}
+		}
+		for (int i : count7) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
+				if(pst7!=null) {
+					pst7.close();
+				}
+				if(pst8!=null) {
+					pst8.close();
+				}
+				if(pst9!=null) {
+					pst9.close();
+				}
+				if(pst10!=null) {
+					pst10.close();
+				}
+				if(pst11!=null) {
+					pst11.close();
+				}
+				throw new SQLException();
+			}
+		}
+		for (int i : count8) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
+				if(pst7!=null) {
+					pst7.close();
+				}
+				if(pst8!=null) {
+					pst8.close();
+				}
+				if(pst9!=null) {
+					pst9.close();
+				}
+				if(pst10!=null) {
+					pst10.close();
+				}
+				if(pst11!=null) {
+					pst11.close();
+				}
+				throw new SQLException();
+			}
+		}
+		for (int i : count9) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
+				if(pst7!=null) {
+					pst7.close();
+				}
+				if(pst8!=null) {
+					pst8.close();
+				}
+				if(pst9!=null) {
+					pst9.close();
+				}
+				if(pst10!=null) {
+					pst10.close();
+				}
+				if(pst11!=null) {
+					pst11.close();
+				}
+				throw new SQLException();
+			}
+		}
+		for (int i : count10) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
+				if(pst7!=null) {
+					pst7.close();
+				}
+				if(pst8!=null) {
+					pst8.close();
+				}
+				if(pst9!=null) {
+					pst9.close();
+				}
+				if(pst10!=null) {
+					pst10.close();
+				}
+				if(pst11!=null) {
+					pst11.close();
+				}
+				throw new SQLException();
+			}
+		}
+		for (int i : count11) {
+			if (i == 0) {
+				conn.rollback(); // 回滚，非常重要
+				if(pst!=null) {
+					pst.close();
+				}
+				if(pst1!=null) {
+					pst1.close();
+				}
+				if(pst2!=null) {
+					pst2.close();
+				}
+				if(pst3!=null) {
+					pst3.close();
+				}
+				if(pst4!=null) {
+					pst4.close();
+				}
+				if(pst5!=null) {
+					pst5.close();
+				}
+				if(pst6!=null) {
+					pst6.close();
+				}
+				if(pst7!=null) {
+					pst7.close();
+				}
+				if(pst8!=null) {
+					pst8.close();
+				}
+				if(pst9!=null) {
+					pst9.close();
+				}
+				if(pst10!=null) {
+					pst10.close();
+				}
+				if(pst11!=null) {
+					pst11.close();
+				}
+				throw new SQLException();
+			}
+		}
+	}
 
 	public void close() throws SQLException {
 		if (rs != null) {
@@ -891,4 +1462,6 @@ public class DatabaseConnect {
 			conn.close();
 		}
 	}
+	
+	
 }

@@ -69,7 +69,7 @@ public class ClassGeneralInfoWindow extends JFrame {
 				}
 			}
 		});
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 848, 516);
 		int windowWidth = this.getWidth(); // 获得窗口宽
 		int windowHeight = this.getHeight(); // 获得窗口高
 		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -103,11 +103,11 @@ public class ClassGeneralInfoWindow extends JFrame {
 				
 			}
 		});*/
-		btn1.setBounds(10, 26, 136, 23);
+		btn1.setBounds(10, 26, 176, 23);
 		contentPane.add(btn1);
 		
 		JButton btn2 = new JButton("能力素质评分查询");
-		btn2.setBounds(10, 66, 136, 23);
+		btn2.setBounds(10, 66, 176, 23);
 		contentPane.add(btn2);
 		btn2.addActionListener(e -> {
 			QualityScoreInfoSearchWindow frame;
@@ -122,7 +122,7 @@ public class ClassGeneralInfoWindow extends JFrame {
 			
 				});
 		JButton btn3 = new JButton("期班成绩分析");
-		btn3.setBounds(10, 106, 136, 23);
+		btn3.setBounds(10, 106, 176, 23);
 		contentPane.add(btn3);
 		btn3.addActionListener(e ->{
 			ClassPerQualityInfoWindow frame;
@@ -147,10 +147,10 @@ public class ClassGeneralInfoWindow extends JFrame {
 				e1.printStackTrace();
 			}
 		});
-		button.setBounds(10, 148, 136, 23);
+		button.setBounds(10, 148, 176, 23);
 		contentPane.add(button);
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(153, 10, 421, 341);
+		scrollPane.setBounds(196, 10, 626, 457);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();

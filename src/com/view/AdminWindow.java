@@ -33,7 +33,7 @@ public class AdminWindow extends JFrame {
 	 */
 	public AdminWindow() {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 504);
+		setBounds(100, 100, 600, 534);
 		
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
@@ -144,7 +144,7 @@ public class AdminWindow extends JFrame {
 		});
 		contentPane.add(button_7);
 		
-		JLabel label_1 = new JLabel("欢迎您,"+Main.person.getName()+(Main.person.getRole()==1?"老师":"同学")+"!");
+		JLabel label_1 = new JLabel("欢迎您,"+Main.person.getName()+"!");
 		label_1.setFont(new Font("微软雅黑 Light", Font.PLAIN, 13));
 		label_1.setBounds(439, 10, 124, 15);
 		contentPane.add(label_1);
@@ -170,9 +170,18 @@ public class AdminWindow extends JFrame {
 		JButton button_10 = new JButton("修改密码");
 		button_10.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
 		button_10.setBounds(174, 432, 235, 23);
-		contentPane.add(button_10);
 		button_10.addActionListener(e->{
 			JDialog dialog=new AdminModifyPasswordWindow();
+			dialog.setVisible(true);
+		});
+		contentPane.add(button_10);
+		
+		JButton button_11 = new JButton("删除学生成绩");
+		button_11.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
+		button_11.setBounds(174, 465, 235, 23);
+		contentPane.add(button_11);
+		button_11.addActionListener(e->{
+			JDialog dialog=new AdminDeleteGradeWindow();
 			dialog.setVisible(true);
 		});
 		this.setVisible(true);
