@@ -91,6 +91,7 @@ public class DatabaseConnect {
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 		// 2.获得数据库的连接
 		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		presta = conn.prepareStatement(queryPersonNumber);
 		presta.setInt(1, clsid);
@@ -115,6 +116,7 @@ public class DatabaseConnect {
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 		// 2.获得数据库的连接
 		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		conn.setAutoCommit(true);
 		presta = conn.prepareStatement(queryLogin);
 		// 设置sql语句中的values值
 		System.out.println(tn);
@@ -138,6 +140,7 @@ public class DatabaseConnect {
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 		// 2.获得数据库的连接
 		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		conn.setAutoCommit(true);
 		// 预处理sql语句
 		presta = conn.prepareStatement(loginSql);
 		// 设置sql语句中的values值
@@ -153,6 +156,7 @@ public class DatabaseConnect {
 	}
 
 	public int queryClassNumber() throws SQLException {
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryClassSql);
 		rs.last();
@@ -162,6 +166,7 @@ public class DatabaseConnect {
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 		// 2.获得数据库的连接
 		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryClassPerQuality);
 		Vector<ClassPerScore> model = new Vector<ClassPerScore>();
@@ -181,6 +186,7 @@ public class DatabaseConnect {
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 		// 2.获得数据库的连接
 		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		presta = conn.prepareStatement(queryPersonQuality);
 		presta.setString(1, uname);
@@ -232,6 +238,7 @@ public class DatabaseConnect {
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 		// 2.获得数据库的连接
 		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		presta = conn.prepareStatement(queryPersonCourse);
 		// 设置sql语句中的values值
@@ -287,6 +294,7 @@ public class DatabaseConnect {
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 		// 2.获得数据库的连接
 		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryClassScoreSum);
 		Vector<ClassScoreSum> model = new Vector<ClassScoreSum>();
@@ -302,6 +310,7 @@ public class DatabaseConnect {
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 		// 2.获得数据库的连接
 		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryGeneral);
 		Vector<General> model = new Vector<General>();
@@ -320,6 +329,7 @@ public class DatabaseConnect {
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 		// 2.获得数据库的连接
 		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryCourseScore);
 		Vector<CourseScore> model = new Vector<CourseScore>();
@@ -336,6 +346,7 @@ public class DatabaseConnect {
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 		// 2.获得数据库的连接
 		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryQualityScore);
 		Vector<StudentQualityGrade> model = new Vector<StudentQualityGrade>();
@@ -354,6 +365,7 @@ public class DatabaseConnect {
 		return model;
 	}
 	public void addClass(String name) throws SQLException {
+		conn.setAutoCommit(true);
 		// 预处理sql语句
 		presta = conn.prepareStatement(addClassSql);
 		// 设置sql语句中的values值
@@ -366,6 +378,7 @@ public class DatabaseConnect {
 		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 		// 2.获得数据库的连接
 		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryClassSql);
 		Vector<KeyValue> model = new Vector<KeyValue>();
@@ -377,6 +390,7 @@ public class DatabaseConnect {
 	}
 
 	public Vector<KeyValue> queryClassInfo() throws SQLException {
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryClassSql);
 		Vector<KeyValue> model = new Vector<KeyValue>();
@@ -388,6 +402,7 @@ public class DatabaseConnect {
 	}
 
 	public void modifyClassInfo(int id, String classname) throws SQLException {
+		conn.setAutoCommit(true);
 		// 预处理sql语句
 		presta = conn.prepareStatement(modifyClassInfoSql);
 		// 设置sql语句中的values值
@@ -397,6 +412,7 @@ public class DatabaseConnect {
 	}
 
 	public Vector<KeyValueS> queryStudentInfo() throws SQLException {
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryStudentInfoSql);
 		Vector<KeyValueS> model = new Vector<KeyValueS>();
@@ -408,6 +424,7 @@ public class DatabaseConnect {
 	}
 
 	public void addPerson(Person student) throws SQLException {
+		conn.setAutoCommit(true);
 		// 预处理sql语句
 		presta = conn.prepareStatement(addPersonSql);
 		// 设置sql语句中的values值
@@ -420,6 +437,7 @@ public class DatabaseConnect {
 	}
 
 	public void modifyPersonInfo(Person student) throws SQLException {
+		conn.setAutoCommit(true);
 		// 预处理sql语句
 		presta = conn.prepareStatement(modifyPersonInfoSql);
 		// 设置sql语句中的values值
@@ -429,6 +447,7 @@ public class DatabaseConnect {
 	}
 
 	public int queryStudentClassNumber() throws SQLException {
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryStudentClassSql);
 		rs.last();
@@ -436,6 +455,7 @@ public class DatabaseConnect {
 	}
 
 	public void addStudentClassInfo(String username, int classid) throws SQLException {
+		conn.setAutoCommit(true);
 		// 预处理sql语句
 		presta = conn.prepareStatement(addStudentClassInfoSql);
 		// 设置sql语句中的values值
@@ -446,6 +466,7 @@ public class DatabaseConnect {
 	}
 
 	public void modifyStudentClassInfo(String username, int classid) throws SQLException {
+		conn.setAutoCommit(true);
 		// 预处理sql语句
 		presta = conn.prepareStatement(modifyStudentClassInfoSql);
 		// 设置sql语句中的values值
@@ -455,6 +476,7 @@ public class DatabaseConnect {
 	}
 
 	public int queryStudentGradeInfoNumber() throws SQLException {
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryStudentGradeInfoBacGradeSql);
 		rs.last();
@@ -721,6 +743,7 @@ public class DatabaseConnect {
 	}
 	
 	public int queryStudentQualityGradeInfoNumber() throws SQLException {
+		conn.setAutoCommit(true);
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(queryStudentQualityGradeInfoFirstClassGradeSql);
 		rs.last();
@@ -885,6 +908,7 @@ public class DatabaseConnect {
 	}
 
 	public void modifyPasswordInfo(Person person) throws SQLException {
+		conn.setAutoCommit(true);
 		// 预处理sql语句
 		presta = conn.prepareStatement(modifyPasswordInfoSql);
 		// 设置sql语句中的values值
