@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -31,6 +32,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class PersonalScoreInfoWindow extends JFrame {
 
@@ -89,7 +91,7 @@ public class PersonalScoreInfoWindow extends JFrame {
 					}
 				}
 			});
-			setBounds(100, 100, 1191, 700);
+			setBounds(100, 100, 1900, 1000);
 			int windowWidth = this.getWidth(); // 获得窗口宽
 			int windowHeight = this.getHeight(); // 获得窗口高
 			Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -104,16 +106,21 @@ public class PersonalScoreInfoWindow extends JFrame {
 			setContentPane(contentPane);
 			contentPane.setLayout(null);
 			
-			JLabel lblNewLabel = new JLabel("                                                                                                 个人成绩");
-			lblNewLabel.setBounds(60, 10, 865, 23);
+			JLabel lblNewLabel = new JLabel("个人成绩");
+			lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 21));
+			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel.setBounds(509, 10, 865, 54);
 			contentPane.add(lblNewLabel);
 			
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 33, 1155, 585);
+			scrollPane.setBounds(10, 74, 1874, 844);
 			contentPane.add(scrollPane);
 			table = getPersonalScoreInfoTable();
+			table.setFont(new Font("宋体", Font.PLAIN, 20));
+			DefaultTableCellRenderer   r   =   new   DefaultTableCellRenderer();   
+			r.setHorizontalAlignment(JLabel.CENTER);   
 			scrollPane.setViewportView(table);
-			
+			table.setRowHeight(25);
 			JButton btnNewButton = new JButton("返回");
 			btnNewButton.addActionListener(e->{
 				this.dispose();
@@ -128,8 +135,7 @@ public class PersonalScoreInfoWindow extends JFrame {
 					}
 				});
 			});
-			btnNewButton.setBounds(1072, 628, 93, 23);
-			contentPane.add(btnNewButton);
+			btnNewButton.setBounds(1669, 928, 215, 23);
 			contentPane.add(btnNewButton);
 			return true;
 		}else {
@@ -155,7 +161,7 @@ public class PersonalScoreInfoWindow extends JFrame {
 				}
 			}
 		});
-		setBounds(100, 100, 1191, 700);
+		setBounds(100, 100, 1900, 1000);
 		int windowWidth = this.getWidth(); // 获得窗口宽
 		int windowHeight = this.getHeight(); // 获得窗口高
 		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -171,16 +177,20 @@ public class PersonalScoreInfoWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("个人成绩");
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 21));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(60, 10, 865, 23);
+		lblNewLabel.setBounds(509, 10, 865, 54);
 		contentPane.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 33, 1155, 585);
+		scrollPane.setBounds(10, 74, 1874, 844);
 		contentPane.add(scrollPane);
 		table = getPersonalScoreInfoTable();
+		table.setFont(new Font("宋体", Font.PLAIN, 20));
+		DefaultTableCellRenderer   r   =   new   DefaultTableCellRenderer();   
+		r.setHorizontalAlignment(JLabel.CENTER);   
 		scrollPane.setViewportView(table);
-		
+		table.setRowHeight(25);
 		JButton btnNewButton = new JButton("返回");
 		btnNewButton.addActionListener(e->{
 			this.dispose();
@@ -195,7 +205,7 @@ public class PersonalScoreInfoWindow extends JFrame {
 				}
 			});
 		});
-		btnNewButton.setBounds(1072, 628, 93, 23);
+		btnNewButton.setBounds(1669, 928, 215, 23);
 		contentPane.add(btnNewButton);
 	}
 
@@ -244,7 +254,7 @@ public class PersonalScoreInfoWindow extends JFrame {
        StudentGrade model=Main.databaseConnection.queryPersonalScoreInfo(tname);
        for (int j = 0;j<19;j++) {
     	   for (int i = 0;i<6;i++) {
-    		   modeldata[j][i+2] = model.getGrade()[j][i];
+    		   modeldata[j][i+2] = (int)model.getGrade()[j][i];
     	   }
        }
      float sum1 = (model.getGrade()[0][5]+model.getGrade()[1][5]+model.getGrade()[2][5]+model.getGrade()[3][5]+model.getGrade()[4][5])/(5.0f);
@@ -265,25 +275,26 @@ public class PersonalScoreInfoWindow extends JFrame {
         }
         for(int i=0;i<5;i++) {
         	datas[i][8]=String.valueOf(sum1);
-        	modeldata[i][8]=sum1;
+        	modeldata[i][8]=(int)sum1;
         }
         for(int i=5;i<13;i++) {
         	datas[i][8]=String.valueOf(sum2);
-        	modeldata[i][8]=sum2;
+        	modeldata[i][8]=(int)sum2;
         }
         for(int i=13;i<16;i++) {
         	datas[i][8]=String.valueOf(sum3);
-        	modeldata[i][8]=sum3;
+        	modeldata[i][8]=(int)sum3;
         }
         for(int  i=16;i<19;i++) {
         	datas[i][8]=String.valueOf(sum4);
-        	modeldata[i][8] = sum4;
+        	modeldata[i][8] = (int)sum4;
         }
-        modeldata[19][8]= (sum1+sum2+sum3+sum4)/4.0f;
+        modeldata[19][8]= (int)((sum1+sum2+sum3+sum4)/4.0f);
         CombineData m = new CombineData(datas, combineColumns);
        // CombineData m1 = new CombineData(datas1, combineColumns1);
         DefaultTableModel tm = new DefaultTableModel(modeldata, new String[]{tname,"", "课前课后表现", "集中授课表现", "练习中表现", "比武竞赛表现","模拟骨干表现","分数","总分"});
         CombineTable cTable = new CombineTable(m, tm);
+        cTable.setFont(new Font("宋体", Font.PLAIN, 20));
  
         TableColumn column = cTable.getColumnModel().getColumn(0);
         cTable.getColumnModel().getColumn(1).setMinWidth(200);

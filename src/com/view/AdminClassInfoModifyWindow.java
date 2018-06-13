@@ -36,7 +36,7 @@ public class AdminClassInfoModifyWindow extends JDialog {
 	 * Create the dialog.
 	 */
 	public AdminClassInfoModifyWindow() {
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 1900, 1000);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -53,27 +53,27 @@ public class AdminClassInfoModifyWindow extends JDialog {
 		{
 			JLabel label = new JLabel("修改班级信息");
 			label.setFont(new Font("微软雅黑", Font.BOLD, 50));
-			label.setBounds(135, 58, 314, 78);
+			label.setBounds(785, 230, 314, 78);
 			contentPanel.add(label);
 		}
 		{
 			JLabel label = new JLabel("班级名称");
 			label.setHorizontalAlignment(SwingConstants.RIGHT);
 			label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
-			label.setBounds(146, 193, 116, 38);
+			label.setBounds(729, 473, 116, 38);
 			contentPanel.add(label);
 		}
 
 		textField = new JTextField();
 		textField.setToolTipText("请输入修改后的班级名称");
-		textField.setBounds(273, 202, 149, 21);
+		textField.setBounds(924, 482, 175, 21);
 		contentPanel.add(textField);
 		textField.setColumns(10);
 		{
 			JLabel label = new JLabel("选择班级");
 			label.setHorizontalAlignment(SwingConstants.RIGHT);
 			label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
-			label.setBounds(147, 158, 115, 38);
+			label.setBounds(730, 390, 115, 38);
 			contentPanel.add(label);
 		}
 
@@ -87,7 +87,7 @@ public class AdminClassInfoModifyWindow extends JDialog {
 		}
 		JComboBox<KeyValue> comboBox = new JComboBox<KeyValue>(model);
 		comboBox.setToolTipText("请选择要修改的班级");
-		comboBox.setBounds(273, 171, 149, 21);
+		comboBox.setBounds(924, 403, 175, 21);
 		contentPanel.add(comboBox);
 		{
 			JPanel buttonPane = new JPanel();

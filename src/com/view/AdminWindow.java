@@ -33,7 +33,7 @@ public class AdminWindow extends JFrame {
 	 */
 	public AdminWindow() {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 534);
+		setBounds(100, 100, 1900, 1000);
 		
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
@@ -68,7 +68,7 @@ public class AdminWindow extends JFrame {
 		
 		JButton button = new JButton("录入班级信息");
 		button.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
-		button.setBounds(174, 103, 235, 23);
+		button.setBounds(824, 327, 235, 23);
 		button.addActionListener(e->{
 			JDialog dialog=new AdminClassInfoWindow();
 			dialog.setVisible(true);
@@ -77,7 +77,7 @@ public class AdminWindow extends JFrame {
 		
 		JButton button_1 = new JButton("录入学生信息");
 		button_1.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
-		button_1.setBounds(174, 168, 235, 23);
+		button_1.setBounds(824, 392, 235, 23);
 		button_1.addActionListener(e->{
 			JDialog dialog=new AdminStudentInfoWindow();
 			dialog.setVisible(true);
@@ -86,7 +86,7 @@ public class AdminWindow extends JFrame {
 		
 		JButton button_2 = new JButton("录入个人成绩");
 		button_2.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
-		button_2.setBounds(174, 234, 235, 23);
+		button_2.setBounds(824, 458, 235, 23);
 		button_2.addActionListener(e->{
 			JDialog dialog=new AdminStudentGradeWindow();
 			dialog.setVisible(true);
@@ -95,7 +95,7 @@ public class AdminWindow extends JFrame {
 		
 		JButton button_3 = new JButton("录入素质评分");
 		button_3.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
-		button_3.setBounds(174, 267, 235, 23);
+		button_3.setBounds(824, 491, 235, 23);
 		button_3.addActionListener(e->{
 			JDialog dialog=new AdminStudentQualityGradeWindow();
 			dialog.setVisible(true);
@@ -104,7 +104,7 @@ public class AdminWindow extends JFrame {
 		
 		JButton button_4 = new JButton("修改学生信息");
 		button_4.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
-		button_4.setBounds(174, 201, 235, 23);
+		button_4.setBounds(824, 425, 235, 23);
 		button_4.addActionListener(e->{
 			JDialog dialog=new AdminStudentInfoModifyWindow();
 			dialog.setVisible(true);
@@ -113,7 +113,7 @@ public class AdminWindow extends JFrame {
 		
 		JButton button_5 = new JButton("修改班级信息");
 		button_5.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
-		button_5.setBounds(174, 135, 235, 23);
+		button_5.setBounds(824, 359, 235, 23);
 		button_5.addActionListener(e->{
 			JDialog dialog=new AdminClassInfoModifyWindow();
 			dialog.setVisible(true);
@@ -123,12 +123,12 @@ public class AdminWindow extends JFrame {
 		JLabel label = new JLabel("后台管理");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("微软雅黑", Font.BOLD, 50));
-		label.setBounds(189, 25, 205, 62);
+		label.setBounds(839, 129, 205, 62);
 		contentPane.add(label);
 		
 		JButton button_6 = new JButton("录入教师信息");
 		button_6.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
-		button_6.setBounds(174, 300, 235, 23);
+		button_6.setBounds(824, 524, 235, 23);
 		contentPane.add(button_6);
 		button_6.addActionListener(e->{
 			JDialog dialog=new AdminTeacherInfoWindow();
@@ -137,7 +137,7 @@ public class AdminWindow extends JFrame {
 		
 		JButton button_7 = new JButton("修改教师信息");
 		button_7.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
-		button_7.setBounds(174, 333, 235, 23);
+		button_7.setBounds(824, 557, 235, 23);
 		button_7.addActionListener(e->{
 			JDialog dialog=new AdminTeacherInfoModifyWindow();
 			dialog.setVisible(true);
@@ -145,13 +145,13 @@ public class AdminWindow extends JFrame {
 		contentPane.add(button_7);
 		
 		JLabel label_1 = new JLabel("欢迎您,"+Main.person.getName()+"!");
-		label_1.setFont(new Font("微软雅黑 Light", Font.PLAIN, 13));
-		label_1.setBounds(439, 10, 124, 15);
+		label_1.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
+		label_1.setBounds(1516, 25, 358, 39);
 		contentPane.add(label_1);
 		
 		JButton button_8 = new JButton("分配班级");
 		button_8.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
-		button_8.setBounds(174, 366, 235, 23);
+		button_8.setBounds(824, 590, 235, 23);
 		button_8.addActionListener(e->{
 			JDialog dialog=new AdminStudentClassInfoWindow();
 			dialog.setVisible(true);
@@ -160,7 +160,7 @@ public class AdminWindow extends JFrame {
 		
 		JButton button_9 = new JButton("修改班级分配");
 		button_9.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
-		button_9.setBounds(174, 399, 235, 23);
+		button_9.setBounds(824, 623, 235, 23);
 		button_9.addActionListener(e->{
 			JDialog dialog=new AdminStudentClassInfoModifyWindow();
 			dialog.setVisible(true);
@@ -169,7 +169,7 @@ public class AdminWindow extends JFrame {
 		
 		JButton button_10 = new JButton("修改密码");
 		button_10.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
-		button_10.setBounds(174, 432, 235, 23);
+		button_10.setBounds(824, 656, 235, 23);
 		button_10.addActionListener(e->{
 			JDialog dialog=new AdminModifyPasswordWindow();
 			dialog.setVisible(true);
@@ -178,12 +178,22 @@ public class AdminWindow extends JFrame {
 		
 		JButton button_11 = new JButton("删除学生成绩");
 		button_11.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
-		button_11.setBounds(174, 465, 235, 23);
-		contentPane.add(button_11);
+		button_11.setBounds(824, 689, 235, 23);
 		button_11.addActionListener(e->{
 			JDialog dialog=new AdminDeleteGradeWindow();
 			dialog.setVisible(true);
 		});
+		contentPane.add(button_11);
+		
+		JButton button_12 = new JButton("重新登录系统");
+		button_12.setFont(new Font("微软雅黑 Light", Font.PLAIN, 20));
+		button_12.setBounds(824, 722, 235, 23);
+		button_12.addActionListener(e -> {
+			new LoginWindow();
+			this.dispose();
+		});
+		contentPane.add(button_12);
+		
 		this.setVisible(true);
 	}
 }

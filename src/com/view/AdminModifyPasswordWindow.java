@@ -44,7 +44,7 @@ public class AdminModifyPasswordWindow extends JDialog {
 	 * Create the dialog.
 	 */
 	public AdminModifyPasswordWindow() {
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 1900, 1000);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -61,20 +61,20 @@ public class AdminModifyPasswordWindow extends JDialog {
 		{
 			JLabel label = new JLabel("修改教师密码");
 			label.setFont(new Font("微软雅黑", Font.BOLD, 50));
-			label.setBounds(135, 58, 314, 78);
+			label.setBounds(785, 227, 314, 78);
 			contentPanel.add(label);
 		}
 		{
 			JLabel label = new JLabel("新密码");
 			label.setHorizontalAlignment(SwingConstants.RIGHT);
 			label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
-			label.setBounds(147, 193, 116, 38);
+			label.setBounds(746, 435, 116, 38);
 			contentPanel.add(label);
 		}
 		
 		textField = new JTextField();
 		textField.setToolTipText("请输入修改后的密码");
-		textField.setBounds(273, 202, 149, 21);
+		textField.setBounds(906, 448, 193, 21);
 		contentPanel.add(textField);
 		textField.setColumns(10);
 		{

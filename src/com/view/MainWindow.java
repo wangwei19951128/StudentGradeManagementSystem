@@ -30,7 +30,7 @@ public class MainWindow {
 	 */
 	public MainWindow() {
 		setFrame(new JFrame());
-		getFrame().setBounds(100, 100, 900, 600);
+		getFrame().setBounds(100, 100, 1900, 1000);
 		
 		getFrame().setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		getFrame().addWindowListener(new WindowAdapter() {
@@ -57,48 +57,30 @@ public class MainWindow {
 		int screenWidth = screenSize.width; // 获取屏幕的宽
 		int screenHeight = screenSize.height; // 获取屏幕的高
 		getFrame().setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2 - windowHeight / 2);// 设置窗口居中显示
+		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
-		getFrame().getContentPane().add(panel, BorderLayout.NORTH);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 30));
-
-		Box verticalBox = Box.createVerticalBox();
-		panel.add(verticalBox);
-
-		JPanel panel_3 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) panel_3.getLayout();
-		flowLayout_1.setVgap(25);
-		verticalBox.add(panel_3);
-
-		Component verticalGlue = Box.createVerticalGlue();
-		panel_3.add(verticalGlue);
-
-		JPanel panel_1 = new JPanel();
-		verticalBox.add(panel_1);
-
-		JLabel lblXxxxxxxxxxxx = new JLabel("\u822A\u7A7A\u673A\u52A1\u9662\u6821");
-		lblXxxxxxxxxxxx.setFont(new Font("微软雅黑", Font.BOLD, 50));
-		lblXxxxxxxxxxxx.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_1.add(lblXxxxxxxxxxxx);
-
-		JPanel panel_2 = new JPanel();
-		verticalBox.add(panel_2);
-
-		JLabel label = new JLabel("\u5916\u573A\u5B9E\u4E60\u8BC4\u4F30\u7CFB\u7EDF");
-		label.setFont(new Font("微软雅黑", Font.BOLD, 50));
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(label);
-
-		JPanel panel_4 = new JPanel();
-		verticalBox.add(panel_4);
-
-		Component verticalGlue_1 = Box.createVerticalGlue();
-		panel_4.add(verticalGlue_1);
+		panel.setBounds(0, 0, 1884, 600);
+		getFrame().getContentPane().add(panel);
+						panel.setLayout(null);
+				
+						JLabel label = new JLabel("\u5916\u573A\u5B9E\u4E60\u8BC4\u4F30\u7CFB\u7EDF");
+						label.setBounds(742, 300, 400, 67);
+						panel.add(label);
+						label.setFont(new Font("微软雅黑", Font.BOLD, 50));
+						label.setHorizontalAlignment(SwingConstants.CENTER);
+		
+				JLabel lblXxxxxxxxxxxx = new JLabel("\u822A\u7A7A\u673A\u52A1\u9662\u6821");
+				lblXxxxxxxxxxxx.setBounds(792, 209, 300, 67);
+				panel.add(lblXxxxxxxxxxxx);
+				lblXxxxxxxxxxxx.setFont(new Font("微软雅黑", Font.BOLD, 50));
+				lblXxxxxxxxxxxx.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JPanel panel_5 = new JPanel();
+		panel_5.setBounds(0, 599, 1884, 362);
 		FlowLayout flowLayout = (FlowLayout) panel_5.getLayout();
 		flowLayout.setVgap(70);
-		getFrame().getContentPane().add(panel_5, BorderLayout.CENTER);
+		getFrame().getContentPane().add(panel_5);
 
 		Box verticalBox_1 = Box.createVerticalBox();
 		panel_5.add(verticalBox_1);

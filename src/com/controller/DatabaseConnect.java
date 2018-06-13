@@ -136,10 +136,12 @@ public class DatabaseConnect {
 	}
 	public Person login(String username, String password) throws SQLException, ClassNotFoundException {
 		Person person = new Person();
-		// 1.加载驱动程序
-		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-		// 2.获得数据库的连接
-		conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		if(conn==null) {
+			// 1.加载驱动程序
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+			// 2.获得数据库的连接
+			conn = DriverManager.getConnection(URL, NAME, PASSWORD);
+		}
 		conn.setAutoCommit(true);
 		// 预处理sql语句
 		presta = conn.prepareStatement(loginSql);

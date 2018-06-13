@@ -36,7 +36,7 @@ public class AdminStudentClassInfoWindow extends JDialog {
 	 * Create the dialog.
 	 */
 	public AdminStudentClassInfoWindow() {
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 1900, 1000);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -54,21 +54,21 @@ public class AdminStudentClassInfoWindow extends JDialog {
 			JLabel label = new JLabel("分配班级");
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setFont(new Font("微软雅黑", Font.BOLD, 50));
-			label.setBounds(135, 58, 314, 78);
+			label.setBounds(785, 228, 314, 78);
 			contentPanel.add(label);
 		}
 		{
 			JLabel label = new JLabel("选择班级");
 			label.setHorizontalAlignment(SwingConstants.RIGHT);
 			label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
-			label.setBounds(147, 193, 116, 38);
+			label.setBounds(770, 473, 116, 38);
 			contentPanel.add(label);
 		}
 
 		JLabel label = new JLabel("选择学生");
 		label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setBounds(157, 146, 106, 37);
+		label.setBounds(780, 402, 106, 37);
 		contentPanel.add(label);
 
 		try {
@@ -80,7 +80,7 @@ public class AdminStudentClassInfoWindow extends JDialog {
 			return;
 		}
 		JComboBox<KeyValueS> comboBox = new JComboBox<KeyValueS>(modelS);
-		comboBox.setBounds(273, 158, 129, 21);
+		comboBox.setBounds(930, 414, 129, 21);
 		contentPanel.add(comboBox);
 
 		try {
@@ -92,7 +92,7 @@ public class AdminStudentClassInfoWindow extends JDialog {
 			return;
 		}
 		JComboBox<KeyValue> comboBox_1 = new JComboBox<KeyValue>(model);
-		comboBox_1.setBounds(273, 206, 129, 21);
+		comboBox_1.setBounds(930, 486, 129, 21);
 		contentPanel.add(comboBox_1);
 		{
 			JPanel buttonPane = new JPanel();

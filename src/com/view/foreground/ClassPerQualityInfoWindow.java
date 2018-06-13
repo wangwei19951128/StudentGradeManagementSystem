@@ -13,6 +13,7 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -32,6 +33,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class ClassPerQualityInfoWindow extends JFrame {
 
@@ -76,7 +78,7 @@ public class ClassPerQualityInfoWindow extends JFrame {
 				}
 			}
 		});
-		setBounds(100, 100, 600, 446);
+		setBounds(100, 100, 1900, 1000);
 		int windowWidth = this.getWidth(); // 获得窗口宽
 		int windowHeight = this.getHeight(); // 获得窗口高
 		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -92,17 +94,21 @@ public class ClassPerQualityInfoWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("期班课程成绩分析");
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(73, 6, 437, 15);
+		lblNewLabel.setBounds(723, 10, 437, 28);
 		contentPane.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 31, 564, 340);
+		scrollPane.setBounds(10, 65, 1864, 845);
 		contentPane.add(scrollPane);
 		
 		table = getPersonalScoreInfoTable();
+		table.setFont(new Font("宋体", Font.PLAIN, 20));
+		DefaultTableCellRenderer   r   =   new   DefaultTableCellRenderer();   
+		r.setHorizontalAlignment(JLabel.CENTER);   
 		scrollPane.setViewportView(table);
-		
+		table.setRowHeight(25);
 		JButton btnNewButton = new JButton("返回");
 		btnNewButton.addActionListener(e->{
 			this.dispose();
@@ -117,7 +123,7 @@ public class ClassPerQualityInfoWindow extends JFrame {
 				}
 			});
 		});
-		btnNewButton.setBounds(481, 381, 93, 23);
+		btnNewButton.setBounds(1781, 928, 93, 23);
 		contentPane.add(btnNewButton);
 	}
 	private CombineTable getPersonalScoreInfoTable() {
@@ -175,7 +181,7 @@ public class ClassPerQualityInfoWindow extends JFrame {
 		for(int i=2;i<model.size()+2;i++) {
 				ClassPerScore te =model.get(i-2);
 				for(int j=0;j<19;j++) {
-					a[j][i] = te.getGrade()[j];
+					a[j][i] = (int)te.getGrade()[j];
 				}
 				/*a[i][0]=te.get;
 				a[i][1] = te.getName();
@@ -197,6 +203,7 @@ public class ClassPerQualityInfoWindow extends JFrame {
         b[1] = "科目";
         DefaultTableModel tm = new DefaultTableModel(a, b);
         CombineTable cTable = new CombineTable(m, tm);
+        cTable.setFont(new Font("宋体", Font.PLAIN, 20));
  
         TableColumn column = cTable.getColumnModel().getColumn(0);
         column.setCellRenderer(new CombineColumnRender());

@@ -33,7 +33,7 @@ public class AdminTeacherInfoModifyWindow extends JDialog {
 	 * Create the dialog.
 	 */
 	public AdminTeacherInfoModifyWindow() {
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 1900, 1000);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -50,33 +50,33 @@ public class AdminTeacherInfoModifyWindow extends JDialog {
 		{
 			JLabel label = new JLabel("修改教师信息");
 			label.setFont(new Font("微软雅黑", Font.BOLD, 50));
-			label.setBounds(135, 58, 314, 78);
+			label.setBounds(785, 193, 314, 78);
 			contentPanel.add(label);
 		}
 		{
 			JLabel label = new JLabel("姓名");
 			label.setHorizontalAlignment(SwingConstants.RIGHT);
 			label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
-			label.setBounds(147, 193, 116, 38);
+			label.setBounds(744, 454, 116, 38);
 			contentPanel.add(label);
 		}
 
 		textField = new JTextField();
 		textField.setToolTipText("请输入修改后的名称");
-		textField.setBounds(273, 202, 149, 21);
+		textField.setBounds(912, 467, 149, 21);
 		contentPanel.add(textField);
 		textField.setColumns(10);
 		{
 			JLabel label = new JLabel("用户名");
 			label.setHorizontalAlignment(SwingConstants.RIGHT);
 			label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
-			label.setBounds(168, 146, 95, 41);
+			label.setBounds(765, 407, 95, 41);
 			contentPanel.add(label);
 		}
 		{
 			textField_1 = new JTextField();
 			textField_1.setToolTipText("输入要修改教师的用户名");
-			textField_1.setBounds(273, 156, 149, 21);
+			textField_1.setBounds(912, 421, 149, 21);
 			contentPanel.add(textField_1);
 			textField_1.setColumns(10);
 		}

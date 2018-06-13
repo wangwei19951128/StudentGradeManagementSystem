@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,6 +19,7 @@ import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import com.main.Main;
@@ -25,6 +27,7 @@ import com.model.General;
 import com.model.KeyValue;
 import com.model.Person;
 import com.view.LoginWindow;
+import java.awt.Font;
 
 public class ClassGeneralInfoWindow extends JFrame {
 
@@ -69,7 +72,7 @@ public class ClassGeneralInfoWindow extends JFrame {
 				}
 			}
 		});
-		setBounds(100, 100, 848, 516);
+		setBounds(100, 100, 1900, 1000);
 		int windowWidth = this.getWidth(); // 获得窗口宽
 		int windowHeight = this.getHeight(); // 获得窗口高
 		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -150,10 +153,15 @@ public class ClassGeneralInfoWindow extends JFrame {
 		button.setBounds(10, 148, 176, 23);
 		contentPane.add(button);
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(196, 10, 626, 457);
+		scrollPane.setBounds(230, 10, 1644, 919);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setFont(new Font("宋体", Font.PLAIN, 20));
+		DefaultTableCellRenderer   r   =   new   DefaultTableCellRenderer();   
+		r.setHorizontalAlignment(JLabel.CENTER);   
+		table.setDefaultRenderer(Object.class,   r);
+		table.setRowHeight(25);
 		model=Main.databaseConnection.queryGeneralInfo();
 		
 		Object a[][] = new Object[model.size()][5];
@@ -162,8 +170,8 @@ public class ClassGeneralInfoWindow extends JFrame {
 				a[i][0]=te.getId();
 				a[i][1] = te.getName();
 				a[i][2] = te.getClassnum();
-				a[i][3] = te.getClassscore();
-				a[i][4] = te.getQuascore();
+				a[i][3] = (int)te.getClassscore();
+				a[i][4] = (int)te.getQuascore();
 		}
 		table.setModel(new DefaultTableModel(
 			a,

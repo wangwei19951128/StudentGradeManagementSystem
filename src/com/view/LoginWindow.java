@@ -38,7 +38,7 @@ public class LoginWindow extends JFrame {
 	public LoginWindow() {
 		setResizable(false);
 		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 1900, 1000);
 
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
@@ -74,38 +74,38 @@ public class LoginWindow extends JFrame {
 		JLabel label = new JLabel("\u767B\u9646");
 		label.setFont(new Font("微软雅黑", Font.BOLD, 50));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(231, 49, 131, 86);
+		label.setBounds(881, 241, 131, 86);
 		contentPane.add(label);
 
 		JLabel label_1 = new JLabel("\u7528\u6237\u540D");
 		label_1.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_1.setBounds(140, 152, 95, 28);
+		label_1.setBounds(745, 458, 95, 28);
 		contentPane.add(label_1);
 
 		JLabel label_2 = new JLabel("\u5BC6   \u7801");
 		label_2.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
 		label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_2.setBounds(140, 186, 95, 30);
+		label_2.setBounds(745, 552, 95, 30);
 		contentPane.add(label_2);
 
 		textField = new JTextField();
 		textField.setHorizontalAlignment(SwingConstants.LEFT);
 		textField.setToolTipText("\u8BF7\u8F93\u5165\u7528\u6237\u540D");
-		textField.setBounds(257, 156, 180, 21);
+		textField.setBounds(881, 466, 220, 21);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
 		textField_1.setHorizontalAlignment(SwingConstants.LEFT);
 		textField_1.setToolTipText("\u8BF7\u8F93\u5165\u5BC6\u7801");
-		textField_1.setBounds(257, 191, 180, 21);
+		textField_1.setBounds(881, 561, 220, 21);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 
 		JButton button = new JButton("\u70B9\u51FB\u767B\u9646");
 		button.setFont(new Font("微软雅黑 Light", Font.PLAIN, 30));
-		button.setBounds(214, 261, 166, 38);
+		button.setBounds(864, 727, 166, 38);
 		button.addActionListener(e -> {
 			String username = textField.getText();
 			String password = textField_1.getText();

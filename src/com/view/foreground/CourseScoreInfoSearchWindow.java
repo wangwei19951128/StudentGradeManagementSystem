@@ -20,11 +20,14 @@ import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import com.main.Main;
 import com.model.CourseScore;
 import com.view.LoginWindow;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class CourseScoreInfoSearchWindow extends JFrame {
 
@@ -71,7 +74,7 @@ public class CourseScoreInfoSearchWindow extends JFrame {
 				}
 			}
 		});
-		setBounds(100, 100, 902, 600);
+		setBounds(100, 100, 1900, 1000);
 		int windowWidth = this.getWidth(); // 获得窗口宽
 		int windowHeight = this.getHeight(); // 获得窗口高
 		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -87,33 +90,40 @@ public class CourseScoreInfoSearchWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 29, 171, 170);
+		panel.setBounds(10, 29, 262, 253);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("  个人成绩：");
-		lblNewLabel.setBounds(0, 0, 171, 21);
+		JLabel lblNewLabel = new JLabel("个人成绩");
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(10, 10, 242, 70);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel(" 姓名");
-		lblNewLabel_1.setBounds(0, 26, 39, 21);
+		lblNewLabel_1.setFont(new Font("宋体", Font.PLAIN, 30));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(10, 78, 84, 62);
 		panel.add(lblNewLabel_1);
 		
 		JLabel label = new JLabel(" 学号");
-		label.setBounds(0, 67, 39, 21);
+		label.setFont(new Font("宋体", Font.PLAIN, 30));
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(10, 150, 84, 62);
 		panel.add(label);
 		
 		textField = new JTextField();
-		textField.setBounds(37, 31, 57, 16);
+		textField.setBounds(104, 94, 148, 31);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(37, 68, 57, 18);
+		textField_1.setBounds(104, 166, 148, 31);
 		panel.add(textField_1);
 		
 		JButton btnNewButton = new JButton("查询");
+		btnNewButton.setFont(new Font("宋体", Font.PLAIN, 24));
 		btnNewButton.addActionListener(e -> {
 			//数据库查询验证
 			PersonalScoreInfoWindow frame;
@@ -136,25 +146,30 @@ public class CourseScoreInfoSearchWindow extends JFrame {
 			}
 			
 		});
-		btnNewButton.setBounds(10, 107, 84, 21);
+		btnNewButton.setBounds(10, 212, 242, 31);
 		panel.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(191, 29, 685, 522);
+		scrollPane.setBounds(282, 29, 1592, 922);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setFont(new Font("宋体", Font.PLAIN, 20));
+		DefaultTableCellRenderer   r   =   new   DefaultTableCellRenderer();   
+		r.setHorizontalAlignment(JLabel.CENTER);   
+		table.setFont(new Font("宋体", Font.PLAIN, 20));
+		table.setRowHeight(25);
 		Vector<CourseScore> model=Main.databaseConnection.queryCourseScoreInfo();
 		Object tsdata[][] = new Object[model.size()][7];
 		for(int i=0;i<model.size();i++) {
 			CourseScore cst = model.get(i);
 			tsdata[i][0] = cst.getId();
 			tsdata[i][1] = cst.getUsername();
-			tsdata[i][2] = cst.getEa();
-			tsdata[i][3] = cst.getBs();
-			tsdata[i][4] = cst.getFi();
-			tsdata[i][5] = cst.getCp();
-			tsdata[i][6] = cst.getTg();
+			tsdata[i][2] = (int)cst.getEa();
+			tsdata[i][3] = (int)cst.getBs();
+			tsdata[i][4] = (int)cst.getFi();
+			tsdata[i][5] = (int)cst.getCp();
+			tsdata[i][6] = (int)cst.getTg();
  					
 		}
 		table.setModel(new DefaultTableModel(

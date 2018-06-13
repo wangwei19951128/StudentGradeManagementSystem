@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import com.main.Main;
@@ -31,6 +32,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class ClassQualityInfoAnaWindow extends JFrame {
 
@@ -88,7 +90,7 @@ public class ClassQualityInfoAnaWindow extends JFrame {
 				}
 			}
 		});
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 1900, 1000);
 		int windowWidth = this.getWidth(); // 获得窗口宽
 		int windowHeight = this.getHeight(); // 获得窗口高
 		Toolkit kit = Toolkit.getDefaultToolkit(); // 定义工具包
@@ -104,24 +106,30 @@ public class ClassQualityInfoAnaWindow extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("期班教学能力素质分析");
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 21));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(113, 10, 379, 15);
+		lblNewLabel.setBounds(752, 10, 379, 43);
 		contentPane.add(lblNewLabel);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 35, 564, 286);
+		scrollPane.setBounds(0, 63, 1874, 848);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
+		table.setFont(new Font("宋体", Font.PLAIN, 20));
+		DefaultTableCellRenderer   r   =   new   DefaultTableCellRenderer();   
+		r.setHorizontalAlignment(JLabel.CENTER);   
+		table.setFont(new Font("宋体", Font.PLAIN, 20));
+		table.setRowHeight(25);
 		Vector<ClassScoreSum> model = Main.databaseConnection.queryClassScoreSumInfo();
 		Object tsdata[][] = new Object[model.size()][5];
 		for (int i = 0; i < model.size(); i++) {
 			ClassScoreSum cst = model.get(i);
 			tsdata[i][0] = cst.getCl();
-			tsdata[i][1] = cst.getCm();
-			tsdata[i][2] = cst.getKs();
-			tsdata[i][3] = cst.getMa();
-			tsdata[i][4] = cst.getTg();
+			tsdata[i][1] = (int)cst.getCm();
+			tsdata[i][2] = (int)cst.getKs();
+			tsdata[i][3] = (int)cst.getMa();
+			tsdata[i][4] = (int)cst.getTg();
 
 		}
 		table.setModel(new DefaultTableModel(tsdata, new String[] { "\u671F\u73ED", "\u77E5\u8BC6\u6280\u80FD",
@@ -143,7 +151,7 @@ public class ClassQualityInfoAnaWindow extends JFrame {
 				}
 			});
 		});
-		btnNewButton_1.setBounds(10, 6, 93, 23);
+		btnNewButton_1.setBounds(1659, 921, 215, 30);
 		contentPane.add(btnNewButton_1);
 		/*
 		 * table.addMouseListener(new java.awt.event.MouseAdapter(){
@@ -176,7 +184,9 @@ public class ClassQualityInfoAnaWindow extends JFrame {
 		float[][] gd = new float[model.size()][4];
 		for (int i = 0; i < model.size(); i++) {
 			for (int j = 0; j < 4; j++) {
-				gd[i][j] = Float.valueOf(String.valueOf((tsdata[i][j + 1])));
+				float temp = Float.valueOf(String.valueOf((tsdata[i][j + 1])));
+				int temin =  (int)temp;
+				gd[i][j] =temin;
 			}
 		}
 		button.addActionListener(e -> {
@@ -185,7 +195,7 @@ public class ClassQualityInfoAnaWindow extends JFrame {
 			ch.setVisible(true);
 
 		});
-		button.setBounds(481, 331, 93, 23);
+		button.setBounds(0, 921, 215, 30);
 		contentPane.add(button);
 
 		JButton button_1 = new JButton("班级成绩分布");
@@ -203,10 +213,10 @@ public class ClassQualityInfoAnaWindow extends JFrame {
 			}
 			// Dialog ch1 = new CompetencyAnalysisPieChartWindow(number, className)
 		});
-		button_1.setBounds(149, 331, 146, 23);
+		button_1.setBounds(149, 19, 146, 30);
 		contentPane.add(button_1);
 		
-		comboBox.setBounds(10, 331, 129, 21);
+		comboBox.setBounds(10, 20, 129, 29);
 		contentPane.add(comboBox);
 	}
 }

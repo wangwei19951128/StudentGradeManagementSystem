@@ -47,7 +47,7 @@ public class AdminDeleteGradeWindow extends JDialog {
 	 * Create the dialog.
 	 */
 	public AdminDeleteGradeWindow() {
-		setBounds(100, 100, 600, 400);
+		setBounds(100, 100, 1900, 1000);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -65,14 +65,14 @@ public class AdminDeleteGradeWindow extends JDialog {
 			JLabel label = new JLabel("删除学生成绩");
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setFont(new Font("微软雅黑", Font.BOLD, 50));
-			label.setBounds(135, 58, 314, 78);
+			label.setBounds(785, 223, 314, 78);
 			contentPanel.add(label);
 		}
 
 		JLabel label = new JLabel("选择学生");
 		label.setFont(new Font("微软雅黑 Light", Font.BOLD, 20));
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setBounds(157, 146, 106, 37);
+		label.setBounds(766, 437, 106, 37);
 		contentPanel.add(label);
 
 		try {
@@ -85,7 +85,7 @@ public class AdminDeleteGradeWindow extends JDialog {
 		}
 		JComboBox<KeyValueS> comboBox = new JComboBox<KeyValueS>(modelS);
 		comboBox.setToolTipText("选择要删除成绩的学生");
-		comboBox.setBounds(273, 158, 129, 21);
+		comboBox.setBounds(928, 449, 189, 21);
 		contentPanel.add(comboBox);
 
 		{
