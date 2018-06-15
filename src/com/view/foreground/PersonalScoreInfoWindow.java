@@ -299,15 +299,15 @@ public class PersonalScoreInfoWindow extends JFrame {
         TableColumn column = cTable.getColumnModel().getColumn(0);
         cTable.getColumnModel().getColumn(1).setMinWidth(200);
         cTable.getColumnModel().getColumn(2).setPreferredWidth(93);
-        cTable.getColumnModel().getColumn(2).setMaxWidth(93);
+        cTable.getColumnModel().getColumn(2).setMinWidth(100);
         cTable.getColumnModel().getColumn(3).setPreferredWidth(85);
-        cTable.getColumnModel().getColumn(3).setMaxWidth(85);
+        cTable.getColumnModel().getColumn(3).setMinWidth(100);
         cTable.getColumnModel().getColumn(5).setPreferredWidth(88);
         cTable.getColumnModel().getColumn(6).setPreferredWidth(91);
         column.setCellRenderer(new CombineColumnRender());
         column.setWidth(200);
-        column.setMaxWidth(200);
-        column.setMinWidth(50);
+       // column.setMaxWidth(200);
+        column.setMinWidth(100);
         cTable.setCellSelectionEnabled(true);
         return cTable;
 		
