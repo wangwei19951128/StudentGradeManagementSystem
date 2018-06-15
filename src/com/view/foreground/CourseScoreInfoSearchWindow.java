@@ -63,7 +63,6 @@ public class CourseScoreInfoSearchWindow extends JFrame {
 		}else {
 			return i+"(不及格)";
 		}
-		
 	}
 	/**
 	 * Create the frame.
