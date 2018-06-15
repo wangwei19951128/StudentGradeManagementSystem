@@ -187,5 +187,23 @@ public class QualityScoreInfoSearchWindow extends JFrame {
 		table.getColumnModel().getColumn(4).setPreferredWidth(60);
 		table.getColumnModel().getColumn(5).setPreferredWidth(87);
 		scrollPane.setViewportView(table);
+		
+		JButton button = new JButton("返回");
+		button.addActionListener(e->{
+			this.dispose();
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						ClassGeneralInfoWindow frame = new ClassGeneralInfoWindow();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		});
+		button.setFont(new Font("宋体", Font.PLAIN, 24));
+		button.setBounds(10, 292, 242, 31);
+		contentPane.add(button);
 	}
 }

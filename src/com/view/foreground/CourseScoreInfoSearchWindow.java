@@ -51,7 +51,20 @@ public class CourseScoreInfoSearchWindow extends JFrame {
 			}
 		});
 	}
-
+	public String judge(int i) {
+		if(i>=90) {
+			return i+"(优秀)";
+		}else if(i>=80) {
+			return i+"(良好)";
+		}else if(i>=70){
+			return i+"(中等)";
+		}else if(i>=60) {
+			return i+"(及格)";
+		}else {
+			return i+"(不及格)";
+		}
+		
+	}
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
@@ -186,5 +199,23 @@ public class CourseScoreInfoSearchWindow extends JFrame {
 		table.getColumnModel().getColumn(5).setPreferredWidth(61);
 		table.getColumnModel().getColumn(6).setPreferredWidth(65);
 		scrollPane.setViewportView(table);
+		
+		JButton button = new JButton("返回");
+		button.addActionListener(e->{
+			this.dispose();
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						ClassGeneralInfoWindow frame = new ClassGeneralInfoWindow();
+						frame.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		});
+		button.setFont(new Font("宋体", Font.PLAIN, 24));
+		button.setBounds(20, 292, 242, 31);
+		contentPane.add(button);
 	}
 }

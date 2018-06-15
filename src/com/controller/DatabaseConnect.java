@@ -19,7 +19,7 @@ import com.model.StudentGrade;
 import com.model.StudentQualityGrade;
 
 public class DatabaseConnect {
-	private static final String URL = "jdbc:mysql://localhost:3306/student_grade_management_system?useSSL=false&serverTimezone=Hongkong&characterEncoding=utf-8&autoReconnect=true";
+	private static final String URL = "jdbc:mysql://49.140.86.196:3306/student_grade_management_system?useSSL=false&serverTimezone=Hongkong&characterEncoding=utf-8&autoReconnect=true";
 	private static final String NAME = "root";
 	private static final String PASSWORD = "123456qwe";
 	private Connection conn = null;

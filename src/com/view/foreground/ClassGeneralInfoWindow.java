@@ -185,5 +185,15 @@ public class ClassGeneralInfoWindow extends JFrame {
 		table.getColumnModel().getColumn(3).setPreferredWidth(70);
 		table.getColumnModel().getColumn(4).setPreferredWidth(89);
 		scrollPane.setViewportView(table);
+		
+		JButton button_1 = new JButton("返回登陆界面");
+		button_1.addActionListener(e->{
+			LoginWindow frame;
+			frame = new LoginWindow();
+			frame.setVisible(true);
+			this.dispose();
+		});
+		button_1.setBounds(10, 190, 176, 23);
+		contentPane.add(button_1);
 	}
 }
