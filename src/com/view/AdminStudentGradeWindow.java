@@ -135,25 +135,6 @@ public class AdminStudentGradeWindow extends JDialog {
 	private JTextField textField_98;
 	private JTextField textField_99;
 	private Vector<KeyValueS> modelS;
-	private JTextField textField_14;
-	private JTextField textField_27;
-	private JTextField textField_40;
-	private JTextField textField_75;
-	private JTextField textField_93;
-	private JTextField textField_100;
-	private JTextField textField_101;
-	private JTextField textField_102;
-	private JTextField textField_103;
-	private JTextField textField_104;
-	private JTextField textField_105;
-	private JTextField textField_106;
-	private JTextField textField_107;
-	private JTextField textField_108;
-	private JTextField textField_109;
-	private JTextField textField_110;
-	private JTextField textField_111;
-	private JTextField textField_112;
-	private JTextField textField_113;
 
 	/**
 	 * Create the dialog.
@@ -227,11 +208,6 @@ public class AdminStudentGradeWindow extends JDialog {
 			label_2.setBounds(1100, 200, 150, 15);
 			contentPanel.add(label_2);
 		}
-
-		JLabel label_2 = new JLabel("分数");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(1550, 200, 150, 15);
-		contentPanel.add(label_2);
 		{
 			JLabel label_3 = new JLabel("机务素养");
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -943,120 +919,6 @@ public class AdminStudentGradeWindow extends JDialog {
 		textField_99.setBounds(1440, 795, 66, 21);
 		contentPanel.add(textField_99);
 
-		textField_14 = new JTextField();
-		textField_14.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_14.setColumns(10);
-		textField_14.setBounds(1595, 255, 66, 21);
-		contentPanel.add(textField_14);
-
-		textField_27 = new JTextField();
-		textField_27.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_27.setColumns(10);
-		textField_27.setBounds(1595, 285, 66, 21);
-		contentPanel.add(textField_27);
-
-		textField_40 = new JTextField();
-		textField_40.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_40.setColumns(10);
-		textField_40.setBounds(1595, 315, 66, 21);
-		contentPanel.add(textField_40);
-
-		textField_75 = new JTextField();
-		textField_75.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_75.setColumns(10);
-		textField_75.setBounds(1595, 345, 66, 21);
-		contentPanel.add(textField_75);
-
-		textField_93 = new JTextField();
-		textField_93.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_93.setColumns(10);
-		textField_93.setBounds(1595, 375, 66, 21);
-		contentPanel.add(textField_93);
-
-		textField_100 = new JTextField();
-		textField_100.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_100.setColumns(10);
-		textField_100.setBounds(1595, 405, 66, 21);
-		contentPanel.add(textField_100);
-
-		textField_101 = new JTextField();
-		textField_101.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_101.setColumns(10);
-		textField_101.setBounds(1595, 435, 66, 21);
-		contentPanel.add(textField_101);
-
-		textField_102 = new JTextField();
-		textField_102.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_102.setColumns(10);
-		textField_102.setBounds(1595, 465, 66, 21);
-		contentPanel.add(textField_102);
-
-		textField_103 = new JTextField();
-		textField_103.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_103.setColumns(10);
-		textField_103.setBounds(1595, 495, 66, 21);
-		contentPanel.add(textField_103);
-
-		textField_104 = new JTextField();
-		textField_104.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_104.setColumns(10);
-		textField_104.setBounds(1595, 525, 66, 21);
-		contentPanel.add(textField_104);
-
-		textField_105 = new JTextField();
-		textField_105.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_105.setColumns(10);
-		textField_105.setBounds(1595, 555, 66, 21);
-		contentPanel.add(textField_105);
-
-		textField_106 = new JTextField();
-		textField_106.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_106.setColumns(10);
-		textField_106.setBounds(1595, 585, 66, 21);
-		contentPanel.add(textField_106);
-
-		textField_107 = new JTextField();
-		textField_107.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_107.setColumns(10);
-		textField_107.setBounds(1595, 615, 66, 21);
-		contentPanel.add(textField_107);
-
-		textField_108 = new JTextField();
-		textField_108.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_108.setColumns(10);
-		textField_108.setBounds(1595, 645, 66, 21);
-		contentPanel.add(textField_108);
-
-		textField_109 = new JTextField();
-		textField_109.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_109.setColumns(10);
-		textField_109.setBounds(1595, 675, 66, 21);
-		contentPanel.add(textField_109);
-
-		textField_110 = new JTextField();
-		textField_110.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_110.setColumns(10);
-		textField_110.setBounds(1595, 705, 66, 21);
-		contentPanel.add(textField_110);
-
-		textField_111 = new JTextField();
-		textField_111.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_111.setColumns(10);
-		textField_111.setBounds(1595, 735, 66, 21);
-		contentPanel.add(textField_111);
-
-		textField_112 = new JTextField();
-		textField_112.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_112.setColumns(10);
-		textField_112.setBounds(1595, 765, 66, 21);
-		contentPanel.add(textField_112);
-
-		textField_113 = new JTextField();
-		textField_113.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_113.setColumns(10);
-		textField_113.setBounds(1595, 795, 66, 21);
-		contentPanel.add(textField_113);
-
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBounds(0, 928, 1884, 33);
@@ -1172,44 +1034,52 @@ public class AdminStudentGradeWindow extends JDialog {
 						studentGrade.setGrade(17, 4, Float.parseFloat(textField_98.getText()));
 						studentGrade.setGrade(18, 4, Float.parseFloat(textField_99.getText()));
 
-						studentGrade.setGrade(0, 5, Float.parseFloat(textField_14.getText()));
-						studentGrade.setGrade(1, 5, Float.parseFloat(textField_27.getText()));
-						studentGrade.setGrade(2, 5, Float.parseFloat(textField_40.getText()));
-						studentGrade.setGrade(3, 5, Float.parseFloat(textField_75.getText()));
-						studentGrade.setGrade(4, 5, Float.parseFloat(textField_93.getText()));
-						studentGrade.setGrade(5, 5, Float.parseFloat(textField_100.getText()));
-						studentGrade.setGrade(6, 5, Float.parseFloat(textField_101.getText()));
-						studentGrade.setGrade(7, 5, Float.parseFloat(textField_102.getText()));
-						studentGrade.setGrade(8, 5, Float.parseFloat(textField_103.getText()));
-						studentGrade.setGrade(9, 5, Float.parseFloat(textField_104.getText()));
-						studentGrade.setGrade(10, 5, Float.parseFloat(textField_105.getText()));
-						studentGrade.setGrade(11, 5, Float.parseFloat(textField_106.getText()));
-						studentGrade.setGrade(12, 5, Float.parseFloat(textField_107.getText()));
-						studentGrade.setGrade(13, 5, Float.parseFloat(textField_108.getText()));
-						studentGrade.setGrade(14, 5, Float.parseFloat(textField_109.getText()));
-						studentGrade.setGrade(15, 5, Float.parseFloat(textField_110.getText()));
-						studentGrade.setGrade(16, 5, Float.parseFloat(textField_111.getText()));
-						studentGrade.setGrade(17, 5, Float.parseFloat(textField_112.getText()));
-						studentGrade.setGrade(18, 5, Float.parseFloat(textField_113.getText()));
+						studentGrade.setGrade(0, 5, Float.parseFloat(textField_2.getText())+Float.parseFloat(textField_3.getText())+Float.parseFloat(textField_4.getText())+Float.parseFloat(textField.getText())+Float.parseFloat(textField_51.getText()));
+						studentGrade.setGrade(1, 5, Float.parseFloat(textField_5.getText())+Float.parseFloat(textField_6.getText())+Float.parseFloat(textField_7.getText())+Float.parseFloat(textField_4.getText())+Float.parseFloat(textField_52.getText()));
+						studentGrade.setGrade(2, 5, Float.parseFloat(textField_8.getText())+Float.parseFloat(textField_9.getText())+Float.parseFloat(textField_10.getText())+Float.parseFloat(textField_41.getText())+Float.parseFloat(textField_53.getText()));
+						studentGrade.setGrade(3, 5, Float.parseFloat(textField_11.getText())+Float.parseFloat(textField_12.getText())+Float.parseFloat(textField_13.getText())+Float.parseFloat(textField_42.getText())+Float.parseFloat(textField_54.getText()));
+						studentGrade.setGrade(4, 5, Float.parseFloat(textField_15.getText())+Float.parseFloat(textField_16.getText())+Float.parseFloat(textField_17.getText())+Float.parseFloat(textField_43.getText())+Float.parseFloat(textField_55.getText()));
+						studentGrade.setGrade(5, 5, Float.parseFloat(textField_18.getText())+Float.parseFloat(textField_19.getText())+Float.parseFloat(textField_20.getText())+Float.parseFloat(textField_44.getText())+Float.parseFloat(textField_56.getText()));
+						studentGrade.setGrade(6, 5, Float.parseFloat(textField_21.getText())+Float.parseFloat(textField_22.getText())+Float.parseFloat(textField_23.getText())+Float.parseFloat(textField_45.getText())+Float.parseFloat(textField_57.getText()));
+						studentGrade.setGrade(7, 5, Float.parseFloat(textField_24.getText())+Float.parseFloat(textField_25.getText())+Float.parseFloat(textField_26.getText())+Float.parseFloat(textField_46.getText())+Float.parseFloat(textField_58.getText()));
+						studentGrade.setGrade(8, 5, Float.parseFloat(textField_28.getText())+Float.parseFloat(textField_29.getText())+Float.parseFloat(textField_30.getText())+Float.parseFloat(textField_47.getText())+Float.parseFloat(textField_59.getText()));
+						studentGrade.setGrade(9, 5, Float.parseFloat(textField_31.getText())+Float.parseFloat(textField_32.getText())+Float.parseFloat(textField_33.getText())+Float.parseFloat(textField_48.getText())+Float.parseFloat(textField_60.getText()));
+						studentGrade.setGrade(10, 5, Float.parseFloat(textField_34.getText())+Float.parseFloat(textField_35.getText())+Float.parseFloat(textField_36.getText())+Float.parseFloat(textField_49.getText())+Float.parseFloat(textField_61.getText()));
+						studentGrade.setGrade(11, 5, Float.parseFloat(textField_37.getText())+Float.parseFloat(textField_38.getText())+Float.parseFloat(textField_39.getText())+Float.parseFloat(textField_50.getText())+Float.parseFloat(textField_62.getText()));
+						studentGrade.setGrade(12, 5, Float.parseFloat(textField_63.getText())+Float.parseFloat(textField_64.getText())+Float.parseFloat(textField_65.getText())+Float.parseFloat(textField_76.getText())+Float.parseFloat(textField_80.getText()));
+						studentGrade.setGrade(13, 5, Float.parseFloat(textField_66.getText())+Float.parseFloat(textField_67.getText())+Float.parseFloat(textField_68.getText())+Float.parseFloat(textField_77.getText())+Float.parseFloat(textField_81.getText()));
+						studentGrade.setGrade(14, 5, Float.parseFloat(textField_69.getText())+Float.parseFloat(textField_70.getText())+Float.parseFloat(textField_71.getText())+Float.parseFloat(textField_78.getText())+Float.parseFloat(textField_82.getText()));
+						studentGrade.setGrade(15, 5, Float.parseFloat(textField_72.getText())+Float.parseFloat(textField_73.getText())+Float.parseFloat(textField_74.getText())+Float.parseFloat(textField_79.getText())+Float.parseFloat(textField_83.getText()));
+						studentGrade.setGrade(16, 5, Float.parseFloat(textField_84.getText())+Float.parseFloat(textField_85.getText())+Float.parseFloat(textField_86.getText())+Float.parseFloat(textField_94.getText())+Float.parseFloat(textField_97.getText()));
+						studentGrade.setGrade(17, 5, Float.parseFloat(textField_87.getText())+Float.parseFloat(textField_88.getText())+Float.parseFloat(textField_89.getText())+Float.parseFloat(textField_95.getText())+Float.parseFloat(textField_98.getText()));
+						studentGrade.setGrade(18, 5, Float.parseFloat(textField_90.getText())+Float.parseFloat(textField_91.getText())+Float.parseFloat(textField_92.getText())+Float.parseFloat(textField_96.getText())+Float.parseFloat(textField_99.getText()));
 
-						float moduleGrade0 = (Float.parseFloat(textField_14.getText())
-								+ Float.parseFloat(textField_27.getText()) + Float.parseFloat(textField_40.getText())
-								+ Float.parseFloat(textField_75.getText()) + Float.parseFloat(textField_93.getText()))
-								/ 5;
+						float moduleGrade0 = studentGrade.getGrade()[0][5]+studentGrade.getGrade()[1][5]+studentGrade.getGrade()[2][5]+studentGrade.getGrade()[3][5]+studentGrade.getGrade()[4][5];
+								
+//								(Float.parseFloat(textField_14.getText())
+//								+ Float.parseFloat(textField_27.getText()) + Float.parseFloat(textField_40.getText())
+//								+ Float.parseFloat(textField_75.getText()) + Float.parseFloat(textField_93.getText()))
+//								/ 5;
 						studentGrade.setModuleGrade(0, moduleGrade0);
-						float moduleGrade1 = (Float.parseFloat(textField_100.getText())
-								+ Float.parseFloat(textField_101.getText()) + Float.parseFloat(textField_102.getText())
-								+ Float.parseFloat(textField_103.getText()) + Float.parseFloat(textField_104.getText())
-								+ Float.parseFloat(textField_105.getText()) + Float.parseFloat(textField_106.getText())
-								+ Float.parseFloat(textField_107.getText())) / 8;
+						float moduleGrade1 = studentGrade.getGrade()[5][5]+studentGrade.getGrade()[6][5]+studentGrade.getGrade()[7][5]+studentGrade.getGrade()[8][5]+studentGrade.getGrade()[9][5]+studentGrade.getGrade()[10][5]+studentGrade.getGrade()[11][5]+studentGrade.getGrade()[12][5];
+								
+//								(Float.parseFloat(textField_100.getText())
+//								+ Float.parseFloat(textField_101.getText()) + Float.parseFloat(textField_102.getText())
+//								+ Float.parseFloat(textField_103.getText()) + Float.parseFloat(textField_104.getText())
+//								+ Float.parseFloat(textField_105.getText()) + Float.parseFloat(textField_106.getText())
+//								+ Float.parseFloat(textField_107.getText())) / 8;
 						studentGrade.setModuleGrade(1, moduleGrade1);
-						float moduleGrade2 = (Float.parseFloat(textField_108.getText())
-								+ Float.parseFloat(textField_109.getText()) + Float.parseFloat(textField_110.getText()))
-								/ 3;
+						float moduleGrade2 = studentGrade.getGrade()[13][5]+studentGrade.getGrade()[14][5]+studentGrade.getGrade()[15][5];
+								
+//								(Float.parseFloat(textField_108.getText())
+//								+ Float.parseFloat(textField_109.getText()) + Float.parseFloat(textField_110.getText()))
+//								/ 3;
 						studentGrade.setModuleGrade(2, moduleGrade2);
-						float moduleGrade3 = (Float.parseFloat(textField_111.getText())
-								+ Float.parseFloat(textField_112.getText()) + Float.parseFloat(textField_113.getText()))
-								/ 3;
+						float moduleGrade3 = studentGrade.getGrade()[16][5]+studentGrade.getGrade()[17][5]+studentGrade.getGrade()[18][5];
+								
+//								(Float.parseFloat(textField_111.getText())
+//								+ Float.parseFloat(textField_112.getText()) + Float.parseFloat(textField_113.getText()))
+//								/ 3;
 						studentGrade.setModuleGrade(3, moduleGrade3);
 						studentGrade.setTotalGrade((moduleGrade0+moduleGrade1+moduleGrade2+moduleGrade3)/4);
 						Main.databaseConnection.addStudentGradeInfo(studentGrade);

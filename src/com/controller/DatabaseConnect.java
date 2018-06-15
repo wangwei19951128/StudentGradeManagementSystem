@@ -269,21 +269,21 @@ public class DatabaseConnect {
 		}
 		PreparedStatement presta3 = conn.prepareStatement(queryPersonCourse3);
 		presta3.setString(1, uname);
-		rs = presta1.executeQuery();
+		rs = presta3.executeQuery();
 		rs.next();
 		for(int i = 0;i<19;i++) {
 			trs.getGrade()[i][3] = rs.getFloat(i+3);
 		}
 		PreparedStatement presta4 = conn.prepareStatement(queryPersonCourse4);
 		presta4.setString(1, uname);
-		rs = presta1.executeQuery();
+		rs = presta4.executeQuery();
 		rs.next();
 		for(int i = 0;i<19;i++) {
 			trs.getGrade()[i][4] = rs.getFloat(i+3);
 		}
 		PreparedStatement presta5 = conn.prepareStatement(queryPersonCourse5);
 		presta5.setString(1, uname);
-		rs = presta1.executeQuery();
+		rs = presta5.executeQuery();
 		rs.next();
 		for(int i = 0;i<19;i++) {
 			trs.getGrade()[i][5] = rs.getFloat(i+3);
