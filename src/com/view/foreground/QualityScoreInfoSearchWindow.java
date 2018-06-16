@@ -41,6 +41,19 @@ public class QualityScoreInfoSearchWindow extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	public String judge(int i) {
+		if(i>=90) {
+			return i+"(优秀)";
+		}else if(i>=80) {
+			return i+"(良好)";
+		}else if(i>=70){
+			return i+"(中等)";
+		}else if(i>=60) {
+			return i+"(及格)";
+		}else {
+			return i+"(不及格)";
+		}
+	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -168,10 +181,10 @@ public class QualityScoreInfoSearchWindow extends JFrame {
 			StudentQualityGrade cst = model.get(i);
 			tsdata[i][0] = i+1;
 			tsdata[i][1] = cst.getStudent().getName();
-			tsdata[i][2] = (int)cst.getModuleGrade()[0];
-			tsdata[i][3] = (int)cst.getModuleGrade()[1];
-			tsdata[i][4] = (int)cst.getModuleGrade()[2];
-			tsdata[i][5] = (int)cst.getTotalGrade();
+			tsdata[i][2] = this.judge((int)cst.getModuleGrade()[0]);
+			tsdata[i][3] = this.judge((int)cst.getModuleGrade()[1]);
+			tsdata[i][4] = this.judge((int)cst.getModuleGrade()[2]);
+			tsdata[i][5] = this.judge((int)cst.getTotalGrade());
  					
 		}
 		table.setModel(new DefaultTableModel(

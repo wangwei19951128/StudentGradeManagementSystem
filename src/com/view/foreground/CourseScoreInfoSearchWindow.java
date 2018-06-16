@@ -177,11 +177,11 @@ public class CourseScoreInfoSearchWindow extends JFrame {
 			CourseScore cst = model.get(i);
 			tsdata[i][0] = cst.getId();
 			tsdata[i][1] = cst.getUsername();
-			tsdata[i][2] = (int)cst.getEa();
-			tsdata[i][3] = (int)cst.getBs();
-			tsdata[i][4] = (int)cst.getFi();
-			tsdata[i][5] = (int)cst.getCp();
-			tsdata[i][6] = (int)cst.getTg();
+			tsdata[i][2] =this.judge((int)cst.getEa()); 
+			tsdata[i][3] =this.judge((int)cst.getBs());
+			tsdata[i][4] =this.judge((int)cst.getFi());
+			tsdata[i][5] =this.judge((int)cst.getCp());
+			tsdata[i][6] =this.judge((int)cst.getTg());
  					
 		}
 		table.setModel(new DefaultTableModel(
