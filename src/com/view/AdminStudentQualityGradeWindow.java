@@ -532,7 +532,7 @@ public class AdminStudentQualityGradeWindow extends JDialog {
 						// + Float.parseFloat(textField_27.getText()) +
 						// Float.parseFloat(textField_1.getText())
 						// + Float.parseFloat(textField.getText())) / 4;
-						studentQualityGrade.setModuleGrade(0, moduleGrade0);
+						studentQualityGrade.setModuleGrade(0, moduleGrade0 / 4);
 						float moduleGrade1 = studentQualityGrade.getGrade()[4][3] + studentQualityGrade.getGrade()[5][3]
 								+ studentQualityGrade.getGrade()[6][3] + studentQualityGrade.getGrade()[7][3];
 
@@ -540,7 +540,7 @@ public class AdminStudentQualityGradeWindow extends JDialog {
 						// + Float.parseFloat(textField_41.getText()) +
 						// Float.parseFloat(textField_42.getText())
 						// + Float.parseFloat(textField_43.getText())) / 4;
-						studentQualityGrade.setModuleGrade(1, moduleGrade1);
+						studentQualityGrade.setModuleGrade(1, moduleGrade1 / 4);
 						float moduleGrade2 = studentQualityGrade.getGrade()[8][3] + studentQualityGrade.getGrade()[9][3]
 								+ studentQualityGrade.getGrade()[10][3] + studentQualityGrade.getGrade()[11][3];
 
@@ -548,7 +548,7 @@ public class AdminStudentQualityGradeWindow extends JDialog {
 						// + Float.parseFloat(textField_45.getText()) +
 						// Float.parseFloat(textField_46.getText())
 						// + Float.parseFloat(textField_47.getText())) / 4;
-						studentQualityGrade.setModuleGrade(2, moduleGrade2);
+						studentQualityGrade.setModuleGrade(2, moduleGrade2 / 4);
 						studentQualityGrade
 								.setTotalGrade(moduleGrade0 * 0.5f + moduleGrade1 * 0.25f + moduleGrade2 * 0.25f);
 						Main.databaseConnection.addStudentQualityGradeInfo(studentQualityGrade);

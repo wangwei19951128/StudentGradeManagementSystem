@@ -1102,7 +1102,7 @@ public class AdminStudentGradeWindow extends JDialog {
 						// + Float.parseFloat(textField_75.getText()) +
 						// Float.parseFloat(textField_93.getText()))
 						// / 5;
-						studentGrade.setModuleGrade(0, moduleGrade0);
+						studentGrade.setModuleGrade(0, moduleGrade0 / 5);
 						float moduleGrade1 = studentGrade.getGrade()[5][5] + studentGrade.getGrade()[6][5]
 								+ studentGrade.getGrade()[7][5] + studentGrade.getGrade()[8][5]
 								+ studentGrade.getGrade()[9][5] + studentGrade.getGrade()[10][5]
@@ -1116,7 +1116,7 @@ public class AdminStudentGradeWindow extends JDialog {
 						// + Float.parseFloat(textField_105.getText()) +
 						// Float.parseFloat(textField_106.getText())
 						// + Float.parseFloat(textField_107.getText())) / 8;
-						studentGrade.setModuleGrade(1, moduleGrade1);
+						studentGrade.setModuleGrade(1, moduleGrade1 / 8);
 						float moduleGrade2 = studentGrade.getGrade()[13][5] + studentGrade.getGrade()[14][5]
 								+ studentGrade.getGrade()[15][5];
 
@@ -1124,7 +1124,7 @@ public class AdminStudentGradeWindow extends JDialog {
 						// + Float.parseFloat(textField_109.getText()) +
 						// Float.parseFloat(textField_110.getText()))
 						// / 3;
-						studentGrade.setModuleGrade(2, moduleGrade2);
+						studentGrade.setModuleGrade(2, moduleGrade2 / 3);
 						float moduleGrade3 = studentGrade.getGrade()[16][5] + studentGrade.getGrade()[17][5]
 								+ studentGrade.getGrade()[18][5];
 
@@ -1132,7 +1132,7 @@ public class AdminStudentGradeWindow extends JDialog {
 						// + Float.parseFloat(textField_112.getText()) +
 						// Float.parseFloat(textField_113.getText()))
 						// / 3;
-						studentGrade.setModuleGrade(3, moduleGrade3);
+						studentGrade.setModuleGrade(3, moduleGrade3 / 3);
 						studentGrade.setTotalGrade(
 								moduleGrade0 * 0.2f + moduleGrade1 * 0.3f + moduleGrade2 * 0.2f + moduleGrade3 * 0.3f);
 						Main.databaseConnection.addStudentGradeInfo(studentGrade);
