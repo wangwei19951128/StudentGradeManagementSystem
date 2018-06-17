@@ -289,7 +289,7 @@ public class PersonalScoreInfoWindow extends JFrame {
         	datas[i][8]=String.valueOf(sum4);
         	modeldata[i][8] = (int)sum4;
         }
-        modeldata[19][8]= (int)((sum1+sum2+sum3+sum4)/4.0f);
+        modeldata[19][8]= (int)(sum1*0.2f+sum2*0.3f+sum3*0.2f+sum4*0.3f);
         CombineData m = new CombineData(datas, combineColumns);
        // CombineData m1 = new CombineData(datas1, combineColumns1);
         DefaultTableModel tm = new DefaultTableModel(modeldata, new String[]{tname,"", "课前课后表现", "集中授课表现", "练习中表现", "比武竞赛表现","模拟骨干表现","分数","总分"});
