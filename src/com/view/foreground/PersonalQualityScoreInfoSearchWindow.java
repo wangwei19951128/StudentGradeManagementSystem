@@ -286,21 +286,20 @@ public class PersonalQualityScoreInfoSearchWindow extends JFrame {
         		modeldata[j][i] = datas[j][i];
         	}
         }
-        
         for(int i=0;i<4;i++) {
-        	datas[i][6]=String.valueOf(model.getModuleGrade()[0]);
-        	modeldata[i][6]=(int)model.getModuleGrade()[0];
+        	datas[i][6]=String.valueOf(model.getModuleGrade()[0]+0.001);
+        	modeldata[i][6]=(int)(model.getModuleGrade()[0]);
         }
         System.out.println(model.getModuleGrade()[0]);
         System.out.println(model.getModuleGrade()[1]);
         System.out.println(model.getModuleGrade()[2]);
         for(int i=4;i<8;i++) {
-        	datas[i][6]=String.valueOf(model.getModuleGrade()[1]);
-        	modeldata[i][6]=(int)model.getModuleGrade()[1];
+        	datas[i][6]=String.valueOf(model.getModuleGrade()[1]+0.002);
+        	modeldata[i][6]=(int)(model.getModuleGrade()[1]);
         }
         for(int i=8;i<12;i++) {
-        	datas[i][6]=String.valueOf(model.getModuleGrade()[2]);
-        	modeldata[i][6]=(int)model.getModuleGrade()[2];
+        	datas[i][6]=String.valueOf(model.getModuleGrade()[2]+0.003);
+        	modeldata[i][6]=(int)(model.getModuleGrade()[2]);
         }
         for(int  i=0;i<12;i++) {
         	datas[i][7]=String.valueOf(model.getTotalGrade());

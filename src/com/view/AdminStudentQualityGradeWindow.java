@@ -500,30 +500,30 @@ public class AdminStudentQualityGradeWindow extends JDialog {
 						studentQualityGrade.setGrade(10, 2, Float.parseFloat(textField_36.getText()));
 						studentQualityGrade.setGrade(11, 2, Float.parseFloat(textField_39.getText()));
 
-						studentQualityGrade.setGrade(0, 3, Float.parseFloat(textField_2.getText())
-								+ Float.parseFloat(textField_3.getText()) + Float.parseFloat(textField_4.getText()));
-						studentQualityGrade.setGrade(1, 3, Float.parseFloat(textField_5.getText())
-								+ Float.parseFloat(textField_6.getText()) + Float.parseFloat(textField_7.getText()));
-						studentQualityGrade.setGrade(2, 3, Float.parseFloat(textField_8.getText())
-								+ Float.parseFloat(textField_9.getText()) + Float.parseFloat(textField_10.getText()));
-						studentQualityGrade.setGrade(3, 3, Float.parseFloat(textField_11.getText())
-								+ Float.parseFloat(textField_12.getText()) + Float.parseFloat(textField_13.getText()));
-						studentQualityGrade.setGrade(4, 3, Float.parseFloat(textField_15.getText())
-								+ Float.parseFloat(textField_16.getText()) + Float.parseFloat(textField_17.getText()));
-						studentQualityGrade.setGrade(5, 3, Float.parseFloat(textField_18.getText())
-								+ Float.parseFloat(textField_19.getText()) + Float.parseFloat(textField_20.getText()));
-						studentQualityGrade.setGrade(6, 3, Float.parseFloat(textField_21.getText())
-								+ Float.parseFloat(textField_22.getText()) + Float.parseFloat(textField_23.getText()));
-						studentQualityGrade.setGrade(7, 3, Float.parseFloat(textField_24.getText())
-								+ Float.parseFloat(textField_25.getText()) + Float.parseFloat(textField_26.getText()));
-						studentQualityGrade.setGrade(8, 3, Float.parseFloat(textField_28.getText())
-								+ Float.parseFloat(textField_29.getText()) + Float.parseFloat(textField_30.getText()));
-						studentQualityGrade.setGrade(9, 3, Float.parseFloat(textField_31.getText())
-								+ Float.parseFloat(textField_32.getText()) + Float.parseFloat(textField_33.getText()));
-						studentQualityGrade.setGrade(10, 3, Float.parseFloat(textField_34.getText())
-								+ Float.parseFloat(textField_35.getText()) + Float.parseFloat(textField_36.getText()));
-						studentQualityGrade.setGrade(11, 3, Float.parseFloat(textField_37.getText())
-								+ Float.parseFloat(textField_38.getText()) + Float.parseFloat(textField_39.getText()));
+						studentQualityGrade.setGrade(0, 3, (Float.parseFloat(textField_2.getText())
+								+ Float.parseFloat(textField_3.getText()) + Float.parseFloat(textField_4.getText()))/3.0f);
+						studentQualityGrade.setGrade(1, 3, (Float.parseFloat(textField_5.getText())
+								+ Float.parseFloat(textField_6.getText()) + Float.parseFloat(textField_7.getText()))/3.0f);
+						studentQualityGrade.setGrade(2, 3, (Float.parseFloat(textField_8.getText())
+								+ Float.parseFloat(textField_9.getText()) + Float.parseFloat(textField_10.getText()))/3.0f);
+						studentQualityGrade.setGrade(3, 3, (Float.parseFloat(textField_11.getText())
+								+ Float.parseFloat(textField_12.getText()) + Float.parseFloat(textField_13.getText()))/3.0f);
+						studentQualityGrade.setGrade(4, 3, (Float.parseFloat(textField_15.getText())
+								+ Float.parseFloat(textField_16.getText()) + Float.parseFloat(textField_17.getText()))/3.0f);
+						studentQualityGrade.setGrade(5, 3, (Float.parseFloat(textField_18.getText())
+								+ Float.parseFloat(textField_19.getText()) + Float.parseFloat(textField_20.getText()))/3.0f);
+						studentQualityGrade.setGrade(6, 3, (Float.parseFloat(textField_21.getText())
+								+ Float.parseFloat(textField_22.getText()) + Float.parseFloat(textField_23.getText()))/3.0f);
+						studentQualityGrade.setGrade(7, 3, (Float.parseFloat(textField_24.getText())
+								+ Float.parseFloat(textField_25.getText()) + Float.parseFloat(textField_26.getText()))/3.0f);
+						studentQualityGrade.setGrade(8, 3, (Float.parseFloat(textField_28.getText())
+								+ Float.parseFloat(textField_29.getText()) + Float.parseFloat(textField_30.getText()))/3.0f);
+						studentQualityGrade.setGrade(9, 3, (Float.parseFloat(textField_31.getText())
+								+ Float.parseFloat(textField_32.getText()) + Float.parseFloat(textField_33.getText()))/3.0f);
+						studentQualityGrade.setGrade(10, 3, (Float.parseFloat(textField_34.getText())
+								+ Float.parseFloat(textField_35.getText()) + Float.parseFloat(textField_36.getText()))/3.0f);
+						studentQualityGrade.setGrade(11, 3, (Float.parseFloat(textField_37.getText())
+								+ Float.parseFloat(textField_38.getText()) + Float.parseFloat(textField_39.getText()))/3.0f);
 
 						float moduleGrade0 = studentQualityGrade.getGrade()[0][3] + studentQualityGrade.getGrade()[1][3]
 								+ studentQualityGrade.getGrade()[2][3] + studentQualityGrade.getGrade()[3][3];
@@ -532,7 +532,7 @@ public class AdminStudentQualityGradeWindow extends JDialog {
 						// + Float.parseFloat(textField_27.getText()) +
 						// Float.parseFloat(textField_1.getText())
 						// + Float.parseFloat(textField.getText())) / 4;
-						studentQualityGrade.setModuleGrade(0, moduleGrade0 / 4);
+						studentQualityGrade.setModuleGrade(0, moduleGrade0 );
 						float moduleGrade1 = studentQualityGrade.getGrade()[4][3] + studentQualityGrade.getGrade()[5][3]
 								+ studentQualityGrade.getGrade()[6][3] + studentQualityGrade.getGrade()[7][3];
 
@@ -540,7 +540,7 @@ public class AdminStudentQualityGradeWindow extends JDialog {
 						// + Float.parseFloat(textField_41.getText()) +
 						// Float.parseFloat(textField_42.getText())
 						// + Float.parseFloat(textField_43.getText())) / 4;
-						studentQualityGrade.setModuleGrade(1, moduleGrade1 / 4);
+						studentQualityGrade.setModuleGrade(1, moduleGrade1 );
 						float moduleGrade2 = studentQualityGrade.getGrade()[8][3] + studentQualityGrade.getGrade()[9][3]
 								+ studentQualityGrade.getGrade()[10][3] + studentQualityGrade.getGrade()[11][3];
 
@@ -548,9 +548,9 @@ public class AdminStudentQualityGradeWindow extends JDialog {
 						// + Float.parseFloat(textField_45.getText()) +
 						// Float.parseFloat(textField_46.getText())
 						// + Float.parseFloat(textField_47.getText())) / 4;
-						studentQualityGrade.setModuleGrade(2, moduleGrade2 / 4);
+						studentQualityGrade.setModuleGrade(2, moduleGrade2 );
 						studentQualityGrade.setTotalGrade(
-								moduleGrade0 / 4 * 0.5f + moduleGrade1 / 4 * 0.25f + moduleGrade2 / 4 * 0.25f);
+								moduleGrade0  * 0.5f + moduleGrade1  * 0.25f + moduleGrade2  * 0.25f);
 						Main.databaseConnection.addStudentQualityGradeInfo(studentQualityGrade);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block

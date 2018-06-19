@@ -274,19 +274,19 @@ public class PersonalScoreInfoWindow extends JFrame {
         	}
         }
         for(int i=0;i<5;i++) {
-        	datas[i][8]=String.valueOf(sum1);
+        	datas[i][8]=String.valueOf(sum1+0.0001);
         	modeldata[i][8]=(int)sum1;
         }
         for(int i=5;i<13;i++) {
-        	datas[i][8]=String.valueOf(sum2);
+        	datas[i][8]=String.valueOf(sum2+0.00011);
         	modeldata[i][8]=(int)sum2;
         }
         for(int i=13;i<16;i++) {
-        	datas[i][8]=String.valueOf(sum3);
+        	datas[i][8]=String.valueOf(sum3+0.000111);
         	modeldata[i][8]=(int)sum3;
         }
         for(int  i=16;i<19;i++) {
-        	datas[i][8]=String.valueOf(sum4);
+        	datas[i][8]=String.valueOf(sum4+0.0001111);
         	modeldata[i][8] = (int)sum4;
         }
         modeldata[19][8]= (int)(sum1*0.2f+sum2*0.3f+sum3*0.2f+sum4*0.3f);
